@@ -1,6 +1,7 @@
 package edu.tcc.v1.usuario;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -23,6 +24,7 @@ public class Usuario {
     private String nome;
 
     @Column(nullable = false, unique = true)
+    @Size(min = 11, max = 12, message = "O CPF tem 11 dígitos.")
     private String cpf;
 
     @Column(nullable = false)
@@ -32,9 +34,18 @@ public class Usuario {
     private String email;
 
     @Column(nullable = false)
+    @Size(min = 11, max = 12, message = "O telefone tem 11 dígitos.")
     private String telefone;
 
     @Column(nullable = false)
     private String genero;
 
+    public Usuario() {
+        this.nome = nome;
+        this.cpf = cpf;
+        this.dataNascimento = dataNascimento;
+        this.email = email;
+        this.telefone = telefone;
+        this.genero = genero;
+    }
 }
