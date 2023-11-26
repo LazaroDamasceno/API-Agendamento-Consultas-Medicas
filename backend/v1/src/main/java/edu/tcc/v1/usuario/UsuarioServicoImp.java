@@ -19,4 +19,8 @@ public class UsuarioServicoImp implements UsuarioServico {
         return usuario;
     }
 
+    public static Usuario instanciar(CadastrarUsuarioDTO dto) {
+        return new Usuario(dto);
+    }
+
 }
