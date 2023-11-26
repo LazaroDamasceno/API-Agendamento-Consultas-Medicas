@@ -27,6 +27,24 @@ public class MedicoServicoImp implements MedicoServico {
     }
 
     @Override
+    public List<Medico> exibirTodosMedicosAtivos() {
+        return repositorio
+                .findAll()
+                .stream()
+                .filter(e -> e.getDataDemissao() == null)
+                .toList();
+    }
+
+    @Override
+    public List<Medico> exibirTodosMedicosDemitidos() {
+        return repositorio
+                .findAll()
+                .stream()
+                .filter(e -> e.getDataDemissao() != null)
+                .toList();
+    }
+
+    @Override
     public void cadastrarMedico(CadastrarMedicoDTO dto) {
         Medico medico = new Medico(dto);
         repositorio.save(medico);
