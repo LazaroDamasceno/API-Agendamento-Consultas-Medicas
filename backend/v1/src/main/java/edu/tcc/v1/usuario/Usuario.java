@@ -40,12 +40,17 @@ public class Usuario {
     @Column(nullable = false)
     private String genero;
 
-    public Usuario() {
-        this.nome = nome;
-        this.cpf = cpf;
-        this.dataNascimento = dataNascimento;
-        this.email = email;
-        this.telefone = telefone;
-        this.genero = genero;
+    private Usuario(CadastrarUsuarioDTO dto) {
+        this.nome = dto.nome();
+        this.cpf = dto.cpf();
+        this.dataNascimento = dto.dataNascimento();
+        this.email = dto.email();
+        this.telefone = dto.telefone();
+        this.genero = dto.genero();
     }
+
+    public Usuario instanciar(CadastrarUsuarioDTO dto) {
+        return new Usuario(dto);
+    }
+
 }
