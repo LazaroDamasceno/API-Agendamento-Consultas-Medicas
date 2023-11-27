@@ -1,5 +1,6 @@
 package edu.tcc.v1.agendamedica;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import edu.tcc.v1.consulta.Consulta;
 import edu.tcc.v1.medico.Medico;
 import jakarta.persistence.*;
@@ -22,6 +23,7 @@ public class AgendaMedica {
     private UUID id;
 
     @Column(nullable = false, unique = true)
+    @JsonFormat(pattern = "dd-MM-YYYY HH:mm:ss")
     private LocalDateTime dataDisponivel;
 
     @ManyToOne(cascade = CascadeType.ALL)
