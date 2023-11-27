@@ -46,7 +46,7 @@ public class AgendaMedicaServicoImp implements AgendaMedicaServico {
     }
 
     @Override
-    public void dessassociarConsulta(LocalDateTime dataDisponivel) {
+    public void desassociarConsulta(LocalDateTime dataDisponivel) {
         AgendaMedica am = exibirAgendaMedicaPelaDataDisponivel(dataDisponivel);
         am.setConsulta(null);
         repositorio.saveAndFlush(am);

@@ -12,6 +12,6 @@ public interface AgendaMedicaServico {
     List<AgendaMedica> exibirAgendasMedicasEntreDatas(LocalDateTime dataIncial, LocalDateTime dataFinal);
     void cadastrarAgendaMedica(CadastrarAgendaMedicaDTO dto);
     void associarConsulta(LocalDateTime dataDisponivel, Consulta consulta);
-    void dessassociarConsulta(LocalDateTime dataDisponivel);
+    void desassociarConsulta(LocalDateTime dataDisponivel);
 
 }
