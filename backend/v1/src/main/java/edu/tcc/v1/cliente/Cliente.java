@@ -37,7 +37,7 @@ public class Cliente {
     @Column(nullable = false)
     private String uf;
 
-    @JsonFormat(pattern = "dd-MM-yyyy")
+    @JsonFormat(pattern = "dd-MM-YYYY HH:mm:ss")
     private LocalDateTime dataCadastramento;
 
     @OneToOne(cascade = CascadeType.PERSIST)
