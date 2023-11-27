@@ -1,5 +1,7 @@
 package edu.tcc.v1.consulta;
 
+import edu.tcc.v1.cliente.Cliente;
+import edu.tcc.v1.medico.Medico;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +14,25 @@ import java.util.Optional;
 public class ConsultaServicoImp implements ConsultaServico {
 
     private ConsultaRepositorio repositorio;
+
+    @Override
+    public void atualizar(Consulta consulta) {
+        repositorio.saveAndFlush(consulta);
+    }
+
+    @Override
+    public void associarCliente(LocalDateTime dataAgendamento, Cliente cliente) {
+        Consulta consulta = exibirConsultaPelaDataDeAgendamento(dataAgendamento);
+        consulta.setCliente(cliente);
+        repositorio.saveAndFlush(consulta);
+    }
+
+    @Override
+    public void associarMedico(LocalDateTime dataAgendamento, Medico medico) {
+        Consulta consulta = exibirConsultaPelaDataDeAgendamento(dataAgendamento);
+        consulta.setMedico(medico);
+        repositorio.saveAndFlush(consulta);
+    }
 
     @Override
     public void cadastrarConsulta(AgendarConsulta dto) {

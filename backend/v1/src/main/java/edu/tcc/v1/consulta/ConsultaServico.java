@@ -1,10 +1,16 @@
 package edu.tcc.v1.consulta;
 
+import edu.tcc.v1.cliente.Cliente;
+import edu.tcc.v1.medico.Medico;
+
 import java.time.LocalDateTime;
 import java.util.List;
 
 public interface ConsultaServico {
 
+    public void atualizar(Consulta consulta);
+    void associarCliente(LocalDateTime dataAgendamento, Cliente cliente);
+    void associarMedico(LocalDateTime dataAgendamento, Medico medico);
     void cadastrarConsulta(AgendarConsulta dto);
     void cancelarConsulta(LocalDateTime dataAgendamento);
     Consulta exibirConsultaPelaDataDeAgendamento(LocalDateTime dataAgendamento);
