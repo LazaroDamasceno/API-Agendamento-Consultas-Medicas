@@ -3,8 +3,6 @@ package edu.tcc.v1.prontuario;
 import edu.tcc.v1.cliente.Cliente;
 import edu.tcc.v1.cliente.ClienteServicoImp;
 import edu.tcc.v1.consulta.Consulta;
-import edu.tcc.v1.usuario.Usuario;
-import edu.tcc.v1.usuario.UsuarioServicoImp;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
