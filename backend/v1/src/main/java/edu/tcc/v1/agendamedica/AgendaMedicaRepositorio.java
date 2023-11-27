@@ -2,6 +2,7 @@ package edu.tcc.v1.agendamedica;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -17,6 +18,7 @@ public interface AgendaMedicaRepositorio extends JpaRepository<AgendaMedica, UUI
         where am.dataDisponivel >= :dataInicial
         and am.dataDisponivel <= :dataFinal
     """)
-    List<AgendaMedica> exibirAgendasMedicasEntreDatas(LocalDateTime dataIncial, LocalDateTime dataFinal);
+    List<AgendaMedica> exibirAgendasMedicasEntreDatas(@Param("dataInicial") LocalDateTime dataInicial,
+                                                      @Param("dataFinal") LocalDateTime dataFinal);
 
 }
