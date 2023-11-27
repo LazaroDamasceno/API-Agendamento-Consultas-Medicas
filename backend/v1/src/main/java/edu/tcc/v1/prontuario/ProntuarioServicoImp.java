@@ -18,9 +18,16 @@ public class ProntuarioServicoImp implements ProntuarioServico {
     private ClienteServicoImp clienteServico;
 
     @Override
-    public void cadastrarProntuario() {
+    public void atualizar(Prontuario prontuario) {
+        repositorio.saveAndFlush(prontuario);
+    }
+
+    @Override
+    public void cadastrarProntuario(String cpf) {
         Prontuario prontuario = new Prontuario();
         prontuario.setDataCriacao(LocalDateTime.now());
+        Cliente cliente = clienteServico.exibirClientePeloCPF(cpf);
+        prontuario.setCliente(cliente);
         repositorio.save(prontuario);
     }
 
