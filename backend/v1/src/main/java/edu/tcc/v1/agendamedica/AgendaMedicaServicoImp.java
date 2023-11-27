@@ -1,6 +1,7 @@
 package edu.tcc.v1.agendamedica;
 
 import edu.tcc.v1.consulta.Consulta;
+import edu.tcc.v1.medico.Medico;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -49,6 +50,18 @@ public class AgendaMedicaServicoImp implements AgendaMedicaServico {
     public void desassociarConsulta(LocalDateTime dataDisponivel) {
         AgendaMedica am = exibirAgendaMedicaPelaDataDisponivel(dataDisponivel);
         am.setConsulta(null);
+        repositorio.saveAndFlush(am);
+    }
+
+    @Override
+    public void associarMedico(LocalDateTime dataDisponivel, Medico medico) {
+        AgendaMedica am = exibirAgendaMedicaPelaDataDisponivel(dataDisponivel);
+        am.setMedico(medico);
+        repositorio.saveAndFlush(am);
+    }
+
+    @Override
+    public void atualizar(AgendaMedica am) {
         repositorio.saveAndFlush(am);
     }
 
