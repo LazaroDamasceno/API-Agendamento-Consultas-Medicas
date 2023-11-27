@@ -14,7 +14,6 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -27,10 +26,7 @@ public class MedicoServicoImp implements MedicoServico {
 
     @Override
     public Medico exibirMedicoPeloCRM(String crm) {
-        Medico medico = null;
-        Optional<Medico> medicoOptional = repositorio.findByCrm(crm);
-        if (medicoOptional.isPresent()) medico = medicoOptional.get();
-        return medico;
+        return repositorio.findByCrm(crm).orElse(null);
     }
 
     @Override
@@ -247,7 +243,7 @@ public class MedicoServicoImp implements MedicoServico {
     public ResponseEntity<Prontuario> exibirProntuarioPeloCliente(String crm, String cpf) {
         Medico medico = exibirMedicoPeloCRM(crm);
         Prontuario prontuario = prontuarioServico.exibirProntuarioPeloCliente(cpf);
-        if (!prontuario.getMedico().equals(medico)) ResponseEntity.badRequest().build();
+        if (!prontuario.getMedico().equals(medico)) return ResponseEntity.badRequest().build();
         return ResponseEntity.ok().body(prontuario);
     }
 
