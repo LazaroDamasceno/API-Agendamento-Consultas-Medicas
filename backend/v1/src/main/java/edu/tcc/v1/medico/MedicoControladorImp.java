@@ -157,4 +157,10 @@ public class MedicoControladorImp implements MedicoControlador {
         return servico.exibirProntuariosEntreDatas(crm, dataInicial, dataFinal);
     }
 
+    @Override
+    @PatchMapping("adicionar/consulta/prontuario/{crm}/{cpf}/{dataAgendamento}")
+    public ResponseEntity<Void> adicionarConsultaAoProntuario(String crm, String cpf, LocalDateTime dataAgendamento) {
+        return null;
+    }
+
 }

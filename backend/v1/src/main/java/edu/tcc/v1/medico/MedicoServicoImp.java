@@ -4,6 +4,7 @@ import edu.tcc.v1.agendamedica.AgendaMedica;
 import edu.tcc.v1.agendamedica.AgendaMedicaServicoImp;
 import edu.tcc.v1.agendamedica.CadastrarAgendaMedicaDTO;
 import edu.tcc.v1.consulta.Consulta;
+import edu.tcc.v1.consulta.ConsultaServico;
 import edu.tcc.v1.consulta.ConsultaServicoImp;
 import edu.tcc.v1.prontuario.Prontuario;
 import edu.tcc.v1.prontuario.ProntuarioServicoImp;
@@ -91,9 +92,7 @@ public class MedicoServicoImp implements MedicoServico {
     public ResponseEntity<Void> cadastrarAgendaMedica(String crm, CadastrarAgendaMedicaDTO dto) {
         Medico medico = exibirMedicoPeloCRM(crm);
         amServico.cadastrarAgendaMedica(dto);
-        AgendaMedica am = amServico.exibirAgendaMedicaPelaDataDisponivel(dto.dataDisponivel());
         amServico.associarMedico(dto.dataDisponivel(), medico);
-        amServico.atualizar(am);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
@@ -233,9 +232,7 @@ public class MedicoServicoImp implements MedicoServico {
     public ResponseEntity<Void> cadastrarProntuario(String crm, String cpf) {
         Medico medico = exibirMedicoPeloCRM(crm);
         prontuarioServico.cadastrarProntuario(cpf);
-        Prontuario prontuario = prontuarioServico.exibirProntuarioPeloCliente(cpf);
-        prontuario.setMedico(medico);
-        prontuarioServico.atualizar(prontuario);
+        prontuarioServico.associarMedico(cpf, medico);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
@@ -267,6 +264,15 @@ public class MedicoServicoImp implements MedicoServico {
                 .filter(e -> e.getMedico().equals(medico))
                 .toList();
         return ResponseEntity.ok().body(prontuarios);
+    }
+
+    @Override
+    public ResponseEntity<Void> adicionarConsultaAoProntuario(String crm, String cpf, LocalDateTime dataAgendamento) {
+        Medico medico = exibirMedicoPeloCRM(crm);
+        Consulta consulta = consultaServico.exibirConsultaPelaDataDeAgendamento(dataAgendamento);
+        if (!consulta.getMedico().equals(medico)) return ResponseEntity.badRequest().build();
+        prontuarioServico.adicionarConsulta(cpf, consulta);
+        return ResponseEntity.noContent().build();
     }
 
 }

@@ -30,5 +30,6 @@ public interface MedicoControlador {
     ResponseEntity<Prontuario> exibirProntuarioPeloCliente(String crm, String cpf);
     ResponseEntity<List<Prontuario>> exibirTodosOsProntuarios(String crm);
     ResponseEntity<List<Prontuario>> exibirProntuariosEntreDatas(String crm, LocalDateTime dataInicial, LocalDateTime dataFinal);
+    ResponseEntity<Void> adicionarConsultaAoProntuario(String crm, String cpf, LocalDateTime dataAgendamento);
 
 }
