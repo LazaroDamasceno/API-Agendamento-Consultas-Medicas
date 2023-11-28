@@ -77,10 +77,10 @@ public class MedicoServicoImp implements MedicoServico {
     }
 
     @Override
-    public ResponseEntity<List<AgendaMedica>> exibirAgendasMedicasEntreDatas(String crm, LocalDateTime dataIncial, LocalDateTime dataFinal) {
+    public ResponseEntity<List<AgendaMedica>> exibirAgendasMedicasEntreDatas(String crm, LocalDateTime dataInicial, LocalDateTime dataFinal) {
         Medico medico = exibirMedicoPeloCRM(crm);
         List<AgendaMedica> am = amServico
-                .exibirAgendasMedicasEntreDatas(dataIncial, dataFinal)
+                .exibirAgendasMedicasEntreDatas(dataInicial, dataFinal)
                 .stream()
                 .filter(e -> e.getMedico().equals(medico))
                 .toList();

@@ -18,7 +18,7 @@ public interface MedicoServico {
     void cadastrarMedico(CadastrarMedicoDTO dto);
     void demitirMedico(String crm);
     ResponseEntity<List<AgendaMedica>> exibirTodasAsAgendasMedicas(String crm);
-    ResponseEntity<List<AgendaMedica>> exibirAgendasMedicasEntreDatas(String crm, LocalDateTime dataIncial, LocalDateTime dataFinal);
+    ResponseEntity<List<AgendaMedica>> exibirAgendasMedicasEntreDatas(String crm, LocalDateTime dataInicial, LocalDateTime dataFinal);
     ResponseEntity<Void> cadastrarAgendaMedica(String crm, CadastrarAgendaMedicaDTO dto);
     ResponseEntity<List<Consulta>> exibirTodasAsConsultas(String crm);
     ResponseEntity<List<Consulta>> exibirConsultasAgendadas(String crm);
