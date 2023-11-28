@@ -12,7 +12,7 @@ import java.util.List;
 @RestController
 @RequestMapping("api/v1/gerente")
 @AllArgsConstructor
-public class GerenteControladorImp implements GerenteServico {
+public class GerenteControladorImp implements GerenteControlador {
 
     private GerenteServicoImp servico;
 
