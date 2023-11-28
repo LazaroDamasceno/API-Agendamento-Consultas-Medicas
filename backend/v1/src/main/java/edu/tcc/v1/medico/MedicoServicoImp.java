@@ -4,7 +4,6 @@ import edu.tcc.v1.agendamedica.AgendaMedica;
 import edu.tcc.v1.agendamedica.AgendaMedicaServicoImp;
 import edu.tcc.v1.agendamedica.CadastrarAgendaMedicaDTO;
 import edu.tcc.v1.consulta.Consulta;
-import edu.tcc.v1.consulta.ConsultaServico;
 import edu.tcc.v1.consulta.ConsultaServicoImp;
 import edu.tcc.v1.prontuario.Prontuario;
 import edu.tcc.v1.prontuario.ProntuarioServicoImp;
@@ -78,10 +77,10 @@ public class MedicoServicoImp implements MedicoServico {
     }
 
     @Override
-    public ResponseEntity<List<AgendaMedica>> exibirAgendasMedicasEntreDatas(String crm, LocalDateTime dataInicial, LocalDateTime dataFinal) {
+    public ResponseEntity<List<AgendaMedica>> exibirAgendasMedicasEntreDatas(String crm, String dataInicial, String dataFinal) {
         Medico medico = exibirMedicoPeloCRM(crm);
         List<AgendaMedica> am = amServico
-                .exibirAgendasMedicasEntreDatas(dataInicial, dataFinal)
+                .exibirAgendasMedicasEntreDatas(LocalDateTime.parse(dataInicial), LocalDateTime.parse(dataFinal))
                 .stream()
                 .filter(e -> e.getMedico().equals(medico))
                 .toList();
@@ -130,10 +129,10 @@ public class MedicoServicoImp implements MedicoServico {
     }
 
     @Override
-    public ResponseEntity<List<Consulta>> exibirConsultasEntreDatas(String crm, LocalDateTime dataInicial, LocalDateTime dataFinal) {
+    public ResponseEntity<List<Consulta>> exibirConsultasEntreDatas(String crm, String dataInicial, String dataFinal) {
         Medico medico = exibirMedicoPeloCRM(crm);
         List<Consulta> consultas = consultaServico
-                .exibirConsultasEntreDatas(dataInicial, dataFinal)
+                .exibirConsultasEntreDatas(LocalDateTime.parse(dataInicial), LocalDateTime.parse(dataFinal))
                 .stream()
                 .filter(e -> e.getMedico().equals(medico))
                 .toList();
@@ -141,10 +140,10 @@ public class MedicoServicoImp implements MedicoServico {
     }
 
     @Override
-    public ResponseEntity<List<Consulta>> exibirConsultasAgendadasEntreDatas(String crm, LocalDateTime dataInicial, LocalDateTime dataFinal) {
+    public ResponseEntity<List<Consulta>> exibirConsultasAgendadasEntreDatas(String crm, String dataInicial, String dataFinal) {
         Medico medico = exibirMedicoPeloCRM(crm);
         List<Consulta> consultas = consultaServico
-                .exibirConsultasAgendadasEntreDatas(dataInicial, dataFinal)
+                .exibirConsultasAgendadasEntreDatas(LocalDateTime.parse(dataInicial), LocalDateTime.parse(dataFinal))
                 .stream()
                 .filter(e -> e.getMedico().equals(medico))
                 .toList();
@@ -152,10 +151,10 @@ public class MedicoServicoImp implements MedicoServico {
     }
 
     @Override
-    public ResponseEntity<List<Consulta>> exibirConsultasCanceladasEntreDatas(String crm, LocalDateTime dataInicial, LocalDateTime dataFinal) {
+    public ResponseEntity<List<Consulta>> exibirConsultasCanceladasEntreDatas(String crm, String dataInicial, String dataFinal) {
         Medico medico = exibirMedicoPeloCRM(crm);
         List<Consulta> consultas = consultaServico
-                .exibirConsultasAgendadasEntreDatas(dataInicial, dataFinal)
+                .exibirConsultasAgendadasEntreDatas(LocalDateTime.parse(dataInicial), LocalDateTime.parse(dataFinal))
                 .stream()
                 .filter(e -> e.getMedico().equals(medico))
                 .toList();
@@ -196,10 +195,10 @@ public class MedicoServicoImp implements MedicoServico {
     }
 
     @Override
-    public ResponseEntity<List<Consulta>> exibirConsultasEntreDatasPeloNomeDoCliente(String crm, String nomeCliente, LocalDateTime dataInicial, LocalDateTime dataFinal) {
+    public ResponseEntity<List<Consulta>> exibirConsultasEntreDatasPeloNomeDoCliente(String crm, String nomeCliente, String dataInicial, String dataFinal) {
         Medico medico = exibirMedicoPeloCRM(crm);
         List<Consulta> consultas = consultaServico
-                .exibirConsultasEntreDatasPeloNomeDoCliente(nomeCliente, dataInicial, dataFinal)
+                .exibirConsultasEntreDatasPeloNomeDoCliente(nomeCliente, LocalDateTime.parse(dataInicial), LocalDateTime.parse(dataFinal))
                 .stream()
                 .filter(e -> e.getMedico().equals(medico))
                 .toList();
@@ -207,10 +206,10 @@ public class MedicoServicoImp implements MedicoServico {
     }
 
     @Override
-    public ResponseEntity<List<Consulta>> exibirConsultasAgendadasEntreDatasPeloNomeDoCliente(String crm, String nomeCliente, LocalDateTime dataInicial, LocalDateTime dataFinal) {
+    public ResponseEntity<List<Consulta>> exibirConsultasAgendadasEntreDatasPeloNomeDoCliente(String crm, String nomeCliente, String dataInicial, String dataFinal) {
         Medico medico = exibirMedicoPeloCRM(crm);
         List<Consulta> consultas = consultaServico
-                .exibirConsultasAgendadasEntreDatasPeloNomeDoCliente(nomeCliente, dataInicial, dataFinal)
+                .exibirConsultasAgendadasEntreDatasPeloNomeDoCliente(nomeCliente, LocalDateTime.parse(dataInicial), LocalDateTime.parse(dataFinal))
                 .stream()
                 .filter(e -> e.getMedico().equals(medico))
                 .toList();
@@ -218,10 +217,10 @@ public class MedicoServicoImp implements MedicoServico {
     }
 
     @Override
-    public ResponseEntity<List<Consulta>> exibirConsultasCanceladasEntreDatasPeloNomeDoCliente(String crm, String nomeCliente, LocalDateTime dataInicial, LocalDateTime dataFinal) {
+    public ResponseEntity<List<Consulta>> exibirConsultasCanceladasEntreDatasPeloNomeDoCliente(String crm, String nomeCliente, String dataInicial, String dataFinal) {
         Medico medico = exibirMedicoPeloCRM(crm);
         List<Consulta> consultas = consultaServico
-                .exibirConsultasCanceladasEntreDatasPeloNomeDoCliente(nomeCliente, dataInicial, dataFinal)
+                .exibirConsultasCanceladasEntreDatasPeloNomeDoCliente(nomeCliente, LocalDateTime.parse(dataInicial), LocalDateTime.parse(dataFinal))
                 .stream()
                 .filter(e -> e.getMedico().equals(medico))
                 .toList();
@@ -256,10 +255,10 @@ public class MedicoServicoImp implements MedicoServico {
     }
 
     @Override
-    public ResponseEntity<List<Prontuario>> exibirProntuariosEntreDatas(String crm, LocalDateTime dataInicial, LocalDateTime dataFinal) {
+    public ResponseEntity<List<Prontuario>> exibirProntuariosEntreDatas(String crm, String dataInicial, String dataFinal) {
         Medico medico = exibirMedicoPeloCRM(crm);
         List<Prontuario> prontuarios = prontuarioServico
-                .exibirProntuariosEntreDatas(dataInicial, dataFinal)
+                .exibirProntuariosEntreDatas(LocalDateTime.parse(dataInicial), LocalDateTime.parse(dataFinal))
                 .stream()
                 .filter(e -> e.getMedico().equals(medico))
                 .toList();
@@ -267,9 +266,9 @@ public class MedicoServicoImp implements MedicoServico {
     }
 
     @Override
-    public ResponseEntity<Void> adicionarConsultaAoProntuario(String crm, String cpf, LocalDateTime dataAgendamento) {
+    public ResponseEntity<Void> adicionarConsultaAoProntuario(String crm, String cpf, String dataAgendamento) {
         Medico medico = exibirMedicoPeloCRM(crm);
-        Consulta consulta = consultaServico.exibirConsultaPelaDataDeAgendamento(dataAgendamento);
+        Consulta consulta = consultaServico.exibirConsultaPelaDataDeAgendamento(LocalDateTime.parse(dataAgendamento));
         if (!consulta.getMedico().equals(medico)) return ResponseEntity.badRequest().build();
         prontuarioServico.adicionarConsulta(cpf, consulta);
         return ResponseEntity.noContent().build();

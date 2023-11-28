@@ -8,7 +8,6 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -27,8 +26,8 @@ public class MedicoControladorImp implements MedicoControlador {
     @Override
     @GetMapping("exibir/agendasmedicas/{crm}/{dataInicial}/{dataFinal}")
     public ResponseEntity<List<AgendaMedica>> exibirAgendasMedicasEntreDatas(@PathVariable String crm, 
-                                                                             @PathVariable LocalDateTime dataInicial, 
-                                                                             @PathVariable LocalDateTime dataFinal) {
+                                                                             @PathVariable String dataInicial, 
+                                                                             @PathVariable String dataFinal) {
         return servico.exibirAgendasMedicasEntreDatas(crm, dataInicial, dataFinal);
     }
 
@@ -60,24 +59,24 @@ public class MedicoControladorImp implements MedicoControlador {
     @Override
     @GetMapping("exibir/consultas/{crm}/{dataInicial}/{dataFinal}")
     public ResponseEntity<List<Consulta>> exibirConsultasEntreDatas(@PathVariable String crm,
-                                                                    @PathVariable LocalDateTime dataInicial,
-                                                                    @PathVariable LocalDateTime dataFinal) {
+                                                                    @PathVariable String dataInicial,
+                                                                    @PathVariable String dataFinal) {
         return servico.exibirConsultasEntreDatas(crm, dataInicial, dataFinal);
     }
 
     @Override
     @GetMapping("exibir/consultas/agendadas/{crm}/{dataInicial}/{dataFinal}")
     public ResponseEntity<List<Consulta>> exibirConsultasAgendadasEntreDatas(@PathVariable String crm,
-                                                                             @PathVariable LocalDateTime dataInicial,
-                                                                             @PathVariable LocalDateTime dataFinal) {
+                                                                             @PathVariable String dataInicial,
+                                                                             @PathVariable String dataFinal) {
         return servico.exibirConsultasAgendadasEntreDatas(crm, dataInicial, dataFinal);
     }
 
     @Override
     @GetMapping("exibir/consultas/canceladas/{crm}/{dataInicial}/{dataFinal}")
     public ResponseEntity<List<Consulta>> exibirConsultasCanceladasEntreDatas(@PathVariable String crm,
-                                                                              @PathVariable LocalDateTime dataInicial,
-                                                                              @PathVariable LocalDateTime dataFinal) {
+                                                                              @PathVariable String dataInicial,
+                                                                              @PathVariable String dataFinal) {
         return servico.exibirConsultasCanceladasEntreDatas(crm, dataInicial, dataFinal);
     }
 
@@ -106,8 +105,8 @@ public class MedicoControladorImp implements MedicoControlador {
     @GetMapping("exibir/consultas/{crm}/{nomeCliente}/{dataInicial}/{dataFinal}")
     public ResponseEntity<List<Consulta>> exibirConsultasEntreDatasPeloNomeDoCliente(@PathVariable String crm,
                                                                                      @PathVariable String nomeCliente,
-                                                                                     @PathVariable LocalDateTime dataInicial,
-                                                                                     @PathVariable LocalDateTime dataFinal) {
+                                                                                     @PathVariable String dataInicial,
+                                                                                     @PathVariable String dataFinal) {
         return servico.exibirConsultasEntreDatasPeloNomeDoCliente(crm, nomeCliente, dataInicial, dataFinal);
     }
 
@@ -115,8 +114,8 @@ public class MedicoControladorImp implements MedicoControlador {
     @GetMapping("exibir/consultas/agendadas/{crm}/{nomeCliente}/{dataInicial}/{dataFinal}")
     public ResponseEntity<List<Consulta>> exibirConsultasAgendadasEntreDatasPeloNomeDoCliente(@PathVariable String crm,
                                                                                               @PathVariable String nomeCliente,
-                                                                                              @PathVariable LocalDateTime dataInicial,
-                                                                                              @PathVariable LocalDateTime dataFinal) {
+                                                                                              @PathVariable String dataInicial,
+                                                                                              @PathVariable String dataFinal) {
         return servico.exibirConsultasAgendadasEntreDatasPeloNomeDoCliente(crm, nomeCliente, dataInicial, dataFinal);
     }
 
@@ -124,8 +123,8 @@ public class MedicoControladorImp implements MedicoControlador {
     @GetMapping("exibir/consultas/canceladas/{crm}/{nomeCliente}/{dataInicial}/{dataFinal}")
     public ResponseEntity<List<Consulta>> exibirConsultasCanceladasEntreDatasPeloNomeDoCliente(@PathVariable String crm, 
                                                                                                @PathVariable String nomeCliente,
-                                                                                               @PathVariable LocalDateTime dataInicial,
-                                                                                               @PathVariable LocalDateTime dataFinal) {
+                                                                                               @PathVariable String dataInicial,
+                                                                                               @PathVariable String dataFinal) {
         return servico.exibirConsultasCanceladasEntreDatasPeloNomeDoCliente(crm, nomeCliente, dataInicial, dataFinal);
     }
 
@@ -152,14 +151,14 @@ public class MedicoControladorImp implements MedicoControlador {
     @Override
     @GetMapping("exibir/prontuarios/{crm}/{dataInicial}/{dataFinal}")
     public ResponseEntity<List<Prontuario>> exibirProntuariosEntreDatas(@PathVariable String crm, 
-                                                                        @PathVariable LocalDateTime dataInicial, 
-                                                                        @PathVariable LocalDateTime dataFinal) {
+                                                                        @PathVariable String dataInicial, 
+                                                                        @PathVariable String dataFinal) {
         return servico.exibirProntuariosEntreDatas(crm, dataInicial, dataFinal);
     }
 
     @Override
     @PatchMapping("adicionar/consulta/prontuario/{crm}/{cpf}/{dataAgendamento}")
-    public ResponseEntity<Void> adicionarConsultaAoProntuario(String crm, String cpf, LocalDateTime dataAgendamento) {
+    public ResponseEntity<Void> adicionarConsultaAoProntuario(String crm, String cpf, String dataAgendamento) {
         return null;
     }
 

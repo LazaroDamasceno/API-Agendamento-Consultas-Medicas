@@ -61,11 +61,11 @@ public class ClienteServicoImp implements ClienteServico {
     }
 
     @Override
-    public ResponseEntity<Void> cancelarConsulta(String cpf, LocalDateTime dataAgendamento) {
+    public ResponseEntity<Void> cancelarConsulta(String cpf, String dataAgendamento) {
         Cliente cliente = exibirClientePeloCPF(cpf);
-        Consulta consulta = consultaServico.exibirConsultaPelaDataDeAgendamento(dataAgendamento);
+        Consulta consulta = consultaServico.exibirConsultaPelaDataDeAgendamento(LocalDateTime.parse(dataAgendamento));
         if (!consulta.getCliente().equals(cliente)) return ResponseEntity.badRequest().build();
-        consultaServico.cancelarConsulta(dataAgendamento);
+        consultaServico.cancelarConsulta(LocalDateTime.parse(dataAgendamento));
         return ResponseEntity.noContent().build();
     }
 
@@ -103,10 +103,10 @@ public class ClienteServicoImp implements ClienteServico {
     }
 
     @Override
-    public ResponseEntity<List<Consulta>> exibirConsultasEntreDatas(String cpf, LocalDateTime dataInicial, LocalDateTime dataFinal) {
+    public ResponseEntity<List<Consulta>> exibirConsultasEntreDatas(String cpf, String dataInicial, String dataFinal) {
         Cliente cliente = exibirClientePeloCPF(cpf);
         List<Consulta> consultas = consultaServico
-                .exibirConsultasEntreDatas(dataFinal, dataFinal)
+                .exibirConsultasEntreDatas(LocalDateTime.parse(dataFinal), LocalDateTime.parse(dataFinal))
                 .stream()
                 .filter(e -> e.getCliente().equals(cliente))
                 .toList();
@@ -114,10 +114,10 @@ public class ClienteServicoImp implements ClienteServico {
     }
 
     @Override
-    public ResponseEntity<List<Consulta>> exibirConsultasAgendadasEntreDatas(String cpf, LocalDateTime dataInicial, LocalDateTime dataFinal) {
+    public ResponseEntity<List<Consulta>> exibirConsultasAgendadasEntreDatas(String cpf, String dataInicial, String dataFinal) {
         Cliente cliente = exibirClientePeloCPF(cpf);
         List<Consulta> consultas = consultaServico
-                .exibirConsultasAgendadasEntreDatas(dataFinal, dataFinal)
+                .exibirConsultasAgendadasEntreDatas(LocalDateTime.parse(dataFinal), LocalDateTime.parse(dataFinal))
                 .stream()
                 .filter(e -> e.getCliente().equals(cliente))
                 .toList();
@@ -125,10 +125,10 @@ public class ClienteServicoImp implements ClienteServico {
     }
 
     @Override
-    public ResponseEntity<List<Consulta>> exibirConsultasCanceladasEntreDatas(String cpf, LocalDateTime dataInicial, LocalDateTime dataFinal) {
+    public ResponseEntity<List<Consulta>> exibirConsultasCanceladasEntreDatas(String cpf, String dataInicial, String dataFinal) {
         Cliente cliente = exibirClientePeloCPF(cpf);
         List<Consulta> consultas = consultaServico
-                .exibirConsultasCanceladasEntreDatas(dataFinal, dataFinal)
+                .exibirConsultasCanceladasEntreDatas(LocalDateTime.parse(dataFinal), LocalDateTime.parse(dataFinal))
                 .stream()
                 .filter(e -> e.getCliente().equals(cliente))
                 .toList();
