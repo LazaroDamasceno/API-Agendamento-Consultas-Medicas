@@ -60,9 +60,4 @@ public class AgendaMedicaServicoImp implements AgendaMedicaServico {
         repositorio.saveAndFlush(am);
     }
 
-    @Override
-    public void atualizar(AgendaMedica am) {
-        repositorio.saveAndFlush(am);
-    }
-
 }

@@ -15,6 +15,5 @@ public interface AgendaMedicaServico {
     void associarConsulta(LocalDateTime dataDisponivel, Consulta consulta);
     void desassociarConsulta(LocalDateTime dataDisponivel);
     void associarMedico(LocalDateTime dataDisponivel, Medico medico);
-    void atualizar(AgendaMedica am);
 
 }
