@@ -40,7 +40,7 @@ public class Consulta {
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;
 
-    Consulta(AgendarConsulta dto) {
+    Consulta(AgendarConsultaDTO dto) {
         this.dataAgendamento = dto.dataAgendamento();
     }
 

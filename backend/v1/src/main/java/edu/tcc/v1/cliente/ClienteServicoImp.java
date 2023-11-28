@@ -2,7 +2,7 @@ package edu.tcc.v1.cliente;
 
 import edu.tcc.v1.agendamedica.AgendaMedica;
 import edu.tcc.v1.agendamedica.AgendaMedicaServicoImp;
-import edu.tcc.v1.consulta.AgendarConsulta;
+import edu.tcc.v1.consulta.AgendarConsultaDTO;
 import edu.tcc.v1.consulta.Consulta;
 import edu.tcc.v1.consulta.ConsultaServicoImp;
 import edu.tcc.v1.medico.Medico;
@@ -48,7 +48,7 @@ public class ClienteServicoImp implements ClienteServico {
     }
 
     @Override
-    public ResponseEntity<Void> cadastrarConsulta(String cpf, AgendarConsulta dto) {
+    public ResponseEntity<Void> cadastrarConsulta(String cpf, AgendarConsultaDTO dto) {
         Cliente cliente = exibirClientePeloCPF(cpf);
         AgendaMedica am = amServico.exibirAgendaMedicaPelaDataDisponivel(dto.dataAgendamento());
         Medico medico = am.getMedico();

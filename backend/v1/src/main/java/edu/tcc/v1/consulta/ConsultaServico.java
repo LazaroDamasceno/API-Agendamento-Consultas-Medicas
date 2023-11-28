@@ -11,7 +11,7 @@ public interface ConsultaServico {
     public void atualizar(Consulta consulta);
     void associarCliente(LocalDateTime dataAgendamento, Cliente cliente);
     void associarMedico(LocalDateTime dataAgendamento, Medico medico);
-    void cadastrarConsulta(AgendarConsulta dto);
+    void cadastrarConsulta(AgendarConsultaDTO dto);
     void cancelarConsulta(LocalDateTime dataAgendamento);
     Consulta exibirConsultaPelaDataDeAgendamento(LocalDateTime dataAgendamento);
     List<Consulta> exibirTodasAsConsultas();

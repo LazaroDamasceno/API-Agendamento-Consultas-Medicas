@@ -35,7 +35,7 @@ public class ConsultaServicoImp implements ConsultaServico {
     }
 
     @Override
-    public void cadastrarConsulta(AgendarConsulta dto) {
+    public void cadastrarConsulta(AgendarConsultaDTO dto) {
         Consulta consulta = new Consulta(dto);
         repositorio.save(consulta);
     }

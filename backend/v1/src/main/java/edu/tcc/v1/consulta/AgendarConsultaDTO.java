@@ -4,7 +4,7 @@ import jakarta.validation.constraints.NotBlank;
 
 import java.time.LocalDateTime;
 
-public record AgendarConsulta(
+public record AgendarConsultaDTO(
         @NotBlank
         LocalDateTime dataAgendamento
 ) {
