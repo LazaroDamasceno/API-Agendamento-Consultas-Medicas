@@ -1,9 +1,11 @@
 package edu.tcc.v1.cliente;
 
+import edu.tcc.v1.agendamedica.AgendaMedica;
 import edu.tcc.v1.agendamedica.AgendaMedicaServicoImp;
 import edu.tcc.v1.consulta.AgendarConsulta;
 import edu.tcc.v1.consulta.Consulta;
 import edu.tcc.v1.consulta.ConsultaServicoImp;
+import edu.tcc.v1.medico.Medico;
 import edu.tcc.v1.usuario.Usuario;
 import edu.tcc.v1.usuario.UsuarioServicoImp;
 import lombok.AllArgsConstructor;
@@ -47,7 +49,15 @@ public class ClienteServicoImp implements ClienteServico {
 
     @Override
     public ResponseEntity<Void> cadastrarConsulta(String cpf, AgendarConsulta dto) {
-        return null;
+        Cliente cliente = exibirClientePeloCPF(cpf);
+        AgendaMedica am = amServico.exibirAgendaMedicaPelaDataDisponivel(dto.dataAgendamento());
+        Medico medico = am.getMedico();
+        Consulta consulta = consultaServico.exibirConsultaPelaDataDeAgendamento(dto.dataAgendamento());
+        consulta.setCliente(cliente);
+        consulta.setMedico(medico);
+        consultaServico.atualizar(consulta);
+        amServico.associarConsulta(dto.dataAgendamento(), consulta);
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     @Override
