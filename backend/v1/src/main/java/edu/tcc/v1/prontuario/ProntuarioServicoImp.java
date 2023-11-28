@@ -3,6 +3,7 @@ package edu.tcc.v1.prontuario;
 import edu.tcc.v1.cliente.Cliente;
 import edu.tcc.v1.cliente.ClienteServicoImp;
 import edu.tcc.v1.consulta.Consulta;
+import edu.tcc.v1.medico.Medico;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -16,11 +17,6 @@ public class ProntuarioServicoImp implements ProntuarioServico {
 
     private ProntuarioRepositorio repositorio;
     private ClienteServicoImp clienteServico;
-
-    @Override
-    public void atualizar(Prontuario prontuario) {
-        repositorio.saveAndFlush(prontuario);
-    }
 
     @Override
     public void cadastrarProntuario(String cpf) {
@@ -54,6 +50,13 @@ public class ProntuarioServicoImp implements ProntuarioServico {
     public void adicionarConsulta(String cpf, Consulta consulta) {
         Prontuario prontuario = exibirProntuarioPeloCliente(cpf);
         prontuario.getConsultas().add(consulta);
+        repositorio.saveAndFlush(prontuario);
+    }
+
+    @Override
+    public void associarMedico(String cpf, Medico medico) {
+        Prontuario prontuario = exibirProntuarioPeloCliente(cpf);
+        prontuario.setMedico(medico);
         repositorio.saveAndFlush(prontuario);
     }
 
