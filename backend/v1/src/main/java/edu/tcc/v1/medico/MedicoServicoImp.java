@@ -248,6 +248,17 @@ public class MedicoServicoImp implements MedicoServico {
     }
 
     @Override
+    public ResponseEntity<List<Prontuario>> exibirTodosOsProntuarios(String crm) {
+        Medico medico = exibirMedicoPeloCRM(crm);
+        List<Prontuario> prontuarios = prontuarioServico
+                .exibirTodosOsProntuarios()
+                .stream()
+                .filter(e -> e.getMedico().equals(medico))
+                .toList();
+        return ResponseEntity.ok().body(prontuarios);
+    }
+
+    @Override
     public ResponseEntity<List<Prontuario>> exibirProntuariosEntreDatas(String crm, LocalDateTime dataInicial, LocalDateTime dataFinal) {
         Medico medico = exibirMedicoPeloCRM(crm);
         List<Prontuario> prontuarios = prontuarioServico

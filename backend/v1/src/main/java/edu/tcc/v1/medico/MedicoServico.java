@@ -34,6 +34,7 @@ public interface MedicoServico {
     ResponseEntity<List<Consulta>> exibirConsultasCanceladasEntreDatasPeloNomeDoCliente(String crm, String nomeCliente, LocalDateTime dataInicial, LocalDateTime dataFinal);
     ResponseEntity<Void> cadastrarProntuario(String crm, String cpf);
     ResponseEntity<Prontuario> exibirProntuarioPeloCliente(String crm, String cpf);
+    ResponseEntity<List<Prontuario>> exibirTodosOsProntuarios(String crm);
     ResponseEntity<List<Prontuario>> exibirProntuariosEntreDatas(String crm, LocalDateTime dataInicial, LocalDateTime dataFinal);
 
 }
