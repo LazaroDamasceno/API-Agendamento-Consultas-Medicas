@@ -7,6 +7,7 @@ import edu.tcc.v1.consulta.ConsultaServicoImp;
 import edu.tcc.v1.usuario.Usuario;
 import edu.tcc.v1.usuario.UsuarioServicoImp;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -24,12 +25,6 @@ public class ClienteServicoImp implements ClienteServico {
     private AgendaMedicaServicoImp amServico;
 
     @Override
-    public void cadastrarCliente(CadastrarClienteDTO dto) {
-        Cliente cliente = new Cliente(dto);
-        repository.save(cliente);
-    }
-
-    @Override
     public List<Cliente> exibirTodosOsClientes() {
         return repository.findAll();
     }
@@ -41,6 +36,13 @@ public class ClienteServicoImp implements ClienteServico {
         Optional<Cliente> clienteOptional = repository.findByUsuario(usuario);
         if (clienteOptional.isPresent()) cliente = clienteOptional.get();
         return cliente;
+    }
+
+    @Override
+    public ResponseEntity<Void> cadastrarCliente(CadastrarClienteDTO dto) {
+        Cliente cliente = new Cliente(dto);
+        repository.save(cliente);
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     @Override

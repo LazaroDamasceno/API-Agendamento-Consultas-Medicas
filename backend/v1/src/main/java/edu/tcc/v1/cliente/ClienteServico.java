@@ -9,10 +9,9 @@ import java.util.List;
 
 public interface ClienteServico {
 
-    void cadastrarCliente(CadastrarClienteDTO dto);
     List<Cliente> exibirTodosOsClientes();
     Cliente exibirClientePeloCPF(String cpf);
-
+    ResponseEntity<Void> cadastrarCliente(CadastrarClienteDTO dto);
     ResponseEntity<Void> cadastrarConsulta(String cpf, AgendarConsulta dto);
     ResponseEntity<Void> cancelarConsulta(String cpf, LocalDateTime dataAgendamento);
     ResponseEntity<List<Consulta>> exibirTodasAsConsultas(String cpf);
