@@ -46,6 +46,11 @@ public class ProntuarioServicoImp implements ProntuarioServico {
     }
 
     @Override
+    public List<Prontuario> exibirTodosOsProntuarios() {
+        return repositorio.findAll();
+    }
+
+    @Override
     public void adicionarConsulta(String cpf, Consulta consulta) {
         Prontuario prontuario = exibirProntuarioPeloCliente(cpf);
         prontuario.getConsultas().add(consulta);

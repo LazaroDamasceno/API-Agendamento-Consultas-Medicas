@@ -11,6 +11,7 @@ public interface ProntuarioServico {
     void cadastrarProntuario(String cpf);
     Prontuario exibirProntuarioPeloCliente(String cpf);
     List<Prontuario> exibirProntuariosEntreDatas(LocalDateTime dataInicial, LocalDateTime dataFinal);
+    List<Prontuario> exibirTodosOsProntuarios();
     void adicionarConsulta(String cpf, Consulta consulta);
 
 }
