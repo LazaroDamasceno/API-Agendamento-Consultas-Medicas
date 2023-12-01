@@ -2,7 +2,7 @@ package edu.tcc.v1.medico;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import edu.tcc.v1.usuario.Usuario;
-import edu.tcc.v1.usuario.UsuarioServicoImp;
+import edu.tcc.v1.usuario.UsuarioServicoImpl;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -42,7 +42,7 @@ public class Medico {
         this.dataAdmissao = LocalDateTime.now();
         this.crm = dto.crm();
         this.cnpj = dto.cnpj();
-        this.usuario = UsuarioServicoImp.instanciar(dto.usuario());
+        this.usuario = UsuarioServicoImpl.instanciar(dto.usuario());
     }
 
 }
