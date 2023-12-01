@@ -6,8 +6,6 @@ import edu.tcc.v1.consulta.AgendarConsultaDTO;
 import edu.tcc.v1.consulta.Consulta;
 import edu.tcc.v1.consulta.ConsultaServicoImpl;
 import edu.tcc.v1.medico.Medico;
-import edu.tcc.v1.telegrambot.InstanciarTelegramBot;
-import edu.tcc.v1.update.CriarUpdateImpl;
 import edu.tcc.v1.usuario.Usuario;
 import edu.tcc.v1.usuario.UsuarioServicoImpl;
 import lombok.AllArgsConstructor;
@@ -27,7 +25,6 @@ public class ClienteServicoImpl implements ClienteServico {
     private UsuarioServicoImpl usuarioServico;
     private ConsultaServicoImpl consultaServico;
     private AgendaMedicaServicoImpl amServico;
-    private CriarUpdateImpl criarUpdate;
 
     @Override
     public List<Cliente> exibirTodosOsClientes() {
@@ -60,7 +57,6 @@ public class ClienteServicoImpl implements ClienteServico {
         consulta.setMedico(medico);
         consultaServico.atualizar(consulta);
         amServico.associarConsulta(dto.dataAgendamento(), consulta);
-        InstanciarTelegramBot.instanciar().onUpdateReceived(criarUpdate.criarUpdate(dto.dataAgendamento()));
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
