@@ -2,7 +2,7 @@ package edu.tcc.v1.cliente;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import edu.tcc.v1.usuario.Usuario;
-import edu.tcc.v1.usuario.UsuarioServicoImp;
+import edu.tcc.v1.usuario.UsuarioServicoImpl;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -51,7 +51,7 @@ public class Cliente {
         this.cidade = dto.cidade();
         this.uf = dto.uf();
         this.dataCadastramento = LocalDateTime.now();
-        this.usuario = UsuarioServicoImp.instanciar(dto.usuario());
+        this.usuario = UsuarioServicoImpl.instanciar(dto.usuario());
     }
 
 }
