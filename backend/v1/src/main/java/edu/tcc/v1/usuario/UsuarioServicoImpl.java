@@ -7,7 +7,7 @@ import java.util.Optional;
 
 @Service
 @AllArgsConstructor
-public class UsuarioServicoImp implements UsuarioServico {
+public class UsuarioServicoImpl implements UsuarioServico {
 
     private UsuarioRepositorio repositorio;
 

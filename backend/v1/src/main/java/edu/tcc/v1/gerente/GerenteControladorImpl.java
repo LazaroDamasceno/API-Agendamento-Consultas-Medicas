@@ -12,9 +12,9 @@ import java.util.List;
 @RestController
 @RequestMapping("api/v1/gerente")
 @AllArgsConstructor
-public class GerenteControladorImp implements GerenteControlador {
+public class GerenteControladorImpl implements GerenteControlador {
 
-    private GerenteServicoImp servico;
+    private GerenteServicoImpl servico;
 
     @Override
     @PostMapping("cadastrar/medico")

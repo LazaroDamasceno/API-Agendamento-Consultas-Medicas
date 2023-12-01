@@ -1,12 +1,12 @@
 package edu.tcc.v1.medico;
 
 import edu.tcc.v1.agendamedica.AgendaMedica;
-import edu.tcc.v1.agendamedica.AgendaMedicaServicoImp;
+import edu.tcc.v1.agendamedica.AgendaMedicaServicoImpl;
 import edu.tcc.v1.agendamedica.CadastrarAgendaMedicaDTO;
 import edu.tcc.v1.consulta.Consulta;
-import edu.tcc.v1.consulta.ConsultaServicoImp;
+import edu.tcc.v1.consulta.ConsultaServicoImpl;
 import edu.tcc.v1.prontuario.Prontuario;
-import edu.tcc.v1.prontuario.ProntuarioServicoImp;
+import edu.tcc.v1.prontuario.ProntuarioServicoImpl;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,12 +17,12 @@ import java.util.List;
 
 @Service
 @AllArgsConstructor
-public class MedicoServicoImp implements MedicoServico {
+public class MedicoServicoImpl implements MedicoServico {
 
     private MedicoRepositorio repositorio;
-    private AgendaMedicaServicoImp amServico;
-    private ConsultaServicoImp consultaServico;
-    private ProntuarioServicoImp prontuarioServico;
+    private AgendaMedicaServicoImpl amServico;
+    private ConsultaServicoImpl consultaServico;
+    private ProntuarioServicoImpl prontuarioServico;
 
     @Override
     public Medico exibirMedicoPeloCRM(String crm) {

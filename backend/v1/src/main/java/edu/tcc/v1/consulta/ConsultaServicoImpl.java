@@ -11,7 +11,7 @@ import java.util.Optional;
 
 @Service
 @AllArgsConstructor
-public class ConsultaServicoImp implements ConsultaServico {
+public class ConsultaServicoImpl implements ConsultaServico {
 
     private ConsultaRepositorio repositorio;
 

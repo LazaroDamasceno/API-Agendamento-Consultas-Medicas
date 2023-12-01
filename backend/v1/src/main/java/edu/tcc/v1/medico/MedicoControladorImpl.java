@@ -13,9 +13,9 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1/medicos")
 @AllArgsConstructor
-public class MedicoControladorImp implements MedicoControlador {
+public class MedicoControladorImpl implements MedicoControlador {
 
-    private MedicoServicoImp servico;
+    private MedicoServicoImpl servico;
 
     @Override
     @GetMapping("exibir/agendasmedicas/{crm}")

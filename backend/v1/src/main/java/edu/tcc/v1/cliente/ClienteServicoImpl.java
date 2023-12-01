@@ -1,13 +1,13 @@
 package edu.tcc.v1.cliente;
 
 import edu.tcc.v1.agendamedica.AgendaMedica;
-import edu.tcc.v1.agendamedica.AgendaMedicaServicoImp;
+import edu.tcc.v1.agendamedica.AgendaMedicaServicoImpl;
 import edu.tcc.v1.consulta.AgendarConsultaDTO;
 import edu.tcc.v1.consulta.Consulta;
-import edu.tcc.v1.consulta.ConsultaServicoImp;
+import edu.tcc.v1.consulta.ConsultaServicoImpl;
 import edu.tcc.v1.medico.Medico;
 import edu.tcc.v1.usuario.Usuario;
-import edu.tcc.v1.usuario.UsuarioServicoImp;
+import edu.tcc.v1.usuario.UsuarioServicoImpl;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,12 +19,12 @@ import java.util.Optional;
 
 @Service
 @AllArgsConstructor
-public class ClienteServicoImp implements ClienteServico {
+public class ClienteServicoImpl implements ClienteServico {
 
     private ClienteRepository repository;
-    private UsuarioServicoImp usuarioServico;
-    private ConsultaServicoImp consultaServico;
-    private AgendaMedicaServicoImp amServico;
+    private UsuarioServicoImpl usuarioServico;
+    private ConsultaServicoImpl consultaServico;
+    private AgendaMedicaServicoImpl amServico;
 
     @Override
     public List<Cliente> exibirTodosOsClientes() {

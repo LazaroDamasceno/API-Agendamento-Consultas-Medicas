@@ -1,10 +1,10 @@
 package edu.tcc.v1.gerente;
 
 import edu.tcc.v1.cliente.Cliente;
-import edu.tcc.v1.cliente.ClienteServicoImp;
+import edu.tcc.v1.cliente.ClienteServicoImpl;
 import edu.tcc.v1.medico.CadastrarMedicoDTO;
 import edu.tcc.v1.medico.Medico;
-import edu.tcc.v1.medico.MedicoServicoImp;
+import edu.tcc.v1.medico.MedicoServicoImpl;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,10 +14,10 @@ import java.util.List;
 
 @Service
 @AllArgsConstructor
-public class GerenteServicoImp implements GerenteServico {
+public class GerenteServicoImpl implements GerenteServico {
 
-    private MedicoServicoImp medicoServico;
-    private ClienteServicoImp clienteServico;
+    private MedicoServicoImpl medicoServico;
+    private ClienteServicoImpl clienteServico;
 
     @Override
     public ResponseEntity<Void> cadastrarMedico(CadastrarMedicoDTO dto) {

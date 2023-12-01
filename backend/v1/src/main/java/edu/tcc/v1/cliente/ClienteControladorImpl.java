@@ -11,9 +11,9 @@ import java.util.List;
 @RestController
 @RequestMapping("api/v1/clientes")
 @AllArgsConstructor
-public class ClienteControladorImp implements ClienteControlador {
+public class ClienteControladorImpl implements ClienteControlador {
 
-    private ClienteServicoImp servico;
+    private ClienteServicoImpl servico;
 
     @Override
     public ResponseEntity<Void> cadastrarCliente(@RequestBody CadastrarClienteDTO dto) {

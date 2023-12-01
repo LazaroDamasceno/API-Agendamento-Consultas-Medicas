@@ -1,7 +1,7 @@
 package edu.tcc.v1.prontuario;
 
 import edu.tcc.v1.cliente.Cliente;
-import edu.tcc.v1.cliente.ClienteServicoImp;
+import edu.tcc.v1.cliente.ClienteServicoImpl;
 import edu.tcc.v1.consulta.Consulta;
 import edu.tcc.v1.medico.Medico;
 import lombok.AllArgsConstructor;
@@ -13,10 +13,10 @@ import java.util.Optional;
 
 @Service
 @AllArgsConstructor
-public class ProntuarioServicoImp implements ProntuarioServico {
+public class ProntuarioServicoImpl implements ProntuarioServico {
 
     private ProntuarioRepositorio repositorio;
-    private ClienteServicoImp clienteServico;
+    private ClienteServicoImpl clienteServico;
 
     @Override
     public void cadastrarProntuario(String cpf) {

@@ -11,7 +11,7 @@ import java.util.Optional;
 
 @Service
 @AllArgsConstructor
-public class AgendaMedicaServicoImp implements AgendaMedicaServico {
+public class AgendaMedicaServicoImpl implements AgendaMedicaServico {
 
     private AgendaMedicaRepositorio repositorio;
 
