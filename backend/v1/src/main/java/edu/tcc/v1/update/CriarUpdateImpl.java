@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
 import java.time.LocalDateTime;
-import java.util.UUID;
 
 @Service
 public class CriarUpdateImpl implements CriarUpdate {
