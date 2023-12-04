@@ -154,7 +154,7 @@ public class MedicoServicoImpl implements MedicoServico {
     public ResponseEntity<List<Consulta>> exibirConsultasCanceladasEntreDatas(String crm, String dataInicial, String dataFinal) {
         Medico medico = exibirMedicoPeloCRM(crm);
         List<Consulta> consultas = consultaServico
-                .exibirConsultasAgendadasEntreDatas(LocalDateTime.parse(dataInicial), LocalDateTime.parse(dataFinal))
+                .exibirConsultasCanceladasEntreDatas(LocalDateTime.parse(dataInicial), LocalDateTime.parse(dataFinal))
                 .stream()
                 .filter(e -> e.getMedico().equals(medico))
                 .toList();

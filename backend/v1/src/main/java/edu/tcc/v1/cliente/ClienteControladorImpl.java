@@ -16,6 +16,7 @@ public class ClienteControladorImpl implements ClienteControlador {
     private ClienteServicoImpl servico;
 
     @Override
+    @PostMapping("cadastrar/cliente")
     public ResponseEntity<Void> cadastrarCliente(@RequestBody CadastrarClienteDTO dto) {
         return servico.cadastrarCliente(dto);
     }

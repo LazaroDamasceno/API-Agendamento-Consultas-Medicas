@@ -21,6 +21,7 @@ public class GerenteServicoImpl implements GerenteServico {
 
     @Override
     public ResponseEntity<Void> cadastrarMedico(CadastrarMedicoDTO dto) {
+        medicoServico.cadastrarMedico(dto);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
