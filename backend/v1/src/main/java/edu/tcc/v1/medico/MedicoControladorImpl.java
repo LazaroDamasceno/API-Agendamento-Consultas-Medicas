@@ -3,6 +3,7 @@ package edu.tcc.v1.medico;
 import edu.tcc.v1.agendamedica.AgendaMedica;
 import edu.tcc.v1.agendamedica.CadastrarAgendaMedicaDTO;
 import edu.tcc.v1.consulta.Consulta;
+import edu.tcc.v1.consulta.ObservacoesMedicasDTO;
 import edu.tcc.v1.prontuario.Prontuario;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -162,6 +163,14 @@ public class MedicoControladorImpl implements MedicoControlador {
                                                             @PathVariable String cpf, 
                                                             @PathVariable String dataAgendamento) {
         return servico.adicionarConsultaAoProntuario(crm, cpf, dataAgendamento);
+    }
+
+    @Override
+    @PatchMapping("adicionar/consulta/obervacoes/{crm}/{dataAgendamento}")
+    public ResponseEntity<Void> adicionarObservacoesMedicas(@PathVariable String crm, 
+                                                            @PathVariable String dataAgendamento,
+                                                            @RequestBody ObservacoesMedicasDTO dto) {
+        return servico.adicionarObservacoesMedicas(crm, dataAgendamento, dto);
     }
 
 }

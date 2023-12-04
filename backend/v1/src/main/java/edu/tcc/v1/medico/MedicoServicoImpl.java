@@ -5,6 +5,7 @@ import edu.tcc.v1.agendamedica.AgendaMedicaServicoImpl;
 import edu.tcc.v1.agendamedica.CadastrarAgendaMedicaDTO;
 import edu.tcc.v1.consulta.Consulta;
 import edu.tcc.v1.consulta.ConsultaServicoImpl;
+import edu.tcc.v1.consulta.ObservacoesMedicasDTO;
 import edu.tcc.v1.prontuario.Prontuario;
 import edu.tcc.v1.prontuario.ProntuarioServicoImpl;
 import lombok.AllArgsConstructor;
@@ -272,6 +273,15 @@ public class MedicoServicoImpl implements MedicoServico {
         if (!consulta.getMedico().equals(medico)) return ResponseEntity.badRequest().build();
         prontuarioServico.adicionarConsulta(cpf, consulta);
         return ResponseEntity.noContent().build();
+    }
+
+    @Override
+    public ResponseEntity<Void> adicionarObservacoesMedicas(String crm, String dataAgendamento, ObservacoesMedicasDTO dto) {
+        Medico medico = exibirMedicoPeloCRM(crm);
+        Consulta consulta = consultaServico.exibirConsultaPelaDataDeAgendamento(LocalDateTime.parse(dataAgendamento));
+        if (!consulta.getMedico().equals(medico)) return ResponseEntity.badRequest().build();
+        consultaServico.adicionarObservacoesMedicas(LocalDateTime.parse(dataAgendamento), dto.observacoes());
+        return ResponseEntity.noContent().build(); 
     }
 
 }

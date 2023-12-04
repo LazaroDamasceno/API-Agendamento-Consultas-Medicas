@@ -12,6 +12,7 @@ public interface ConsultaServico {
     void associarMedico(LocalDateTime dataAgendamento, Medico medico);
     void cadastrarConsulta(AgendarConsultaDTO dto);
     void cancelarConsulta(LocalDateTime dataAgendamento);
+    void adicionarObservacoesMedicas(LocalDateTime dataAgendamento, String observacoes);
     Consulta exibirConsultaPelaDataDeAgendamento(LocalDateTime dataAgendamento);
     List<Consulta> exibirTodasAsConsultas();
     List<Consulta> exibirConsultasAgendadas();

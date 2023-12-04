@@ -115,4 +115,11 @@ public class ConsultaServicoImpl implements ConsultaServico {
         return repositorio.exibirConsultasCanceladasEntreDatasPeloNomeDoCliente(nomeCliente, dataInicial, dataFinal);
     }
 
+    @Override
+    public void adicionarObservacoesMedicas(LocalDateTime dataAgendamento, String observacoes) {
+        Consulta consulta = exibirConsultaPelaDataDeAgendamento(dataAgendamento);
+        consulta.setObservacoesMedicas(observacoes);
+        repositorio.saveAndFlush(consulta);
+    }
+
 }
