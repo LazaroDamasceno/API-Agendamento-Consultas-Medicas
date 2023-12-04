@@ -16,11 +16,6 @@ public class ConsultaServicoImpl implements ConsultaServico {
     private ConsultaRepositorio repositorio;
 
     @Override
-    public void atualizar(Consulta consulta) {
-        repositorio.saveAndFlush(consulta);
-    }
-
-    @Override
     public void associarCliente(LocalDateTime dataAgendamento, Cliente cliente) {
         Consulta consulta = exibirConsultaPelaDataDeAgendamento(dataAgendamento);
         consulta.setCliente(cliente);

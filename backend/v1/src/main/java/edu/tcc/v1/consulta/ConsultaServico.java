@@ -8,7 +8,6 @@ import java.util.List;
 
 public interface ConsultaServico {
 
-    public void atualizar(Consulta consulta);
     void associarCliente(LocalDateTime dataAgendamento, Cliente cliente);
     void associarMedico(LocalDateTime dataAgendamento, Medico medico);
     void cadastrarConsulta(AgendarConsultaDTO dto);

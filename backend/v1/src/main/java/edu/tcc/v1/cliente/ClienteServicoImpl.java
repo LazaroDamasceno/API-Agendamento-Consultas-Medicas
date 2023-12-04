@@ -52,10 +52,10 @@ public class ClienteServicoImpl implements ClienteServico {
         Cliente cliente = exibirClientePeloCPF(cpf);
         AgendaMedica am = amServico.exibirAgendaMedicaPelaDataDisponivel(dto.dataAgendamento());
         Medico medico = am.getMedico();
+        consultaServico.cadastrarConsulta(dto);
         Consulta consulta = consultaServico.exibirConsultaPelaDataDeAgendamento(dto.dataAgendamento());
-        consulta.setCliente(cliente);
-        consulta.setMedico(medico);
-        consultaServico.atualizar(consulta);
+        consultaServico.associarCliente(dto.dataAgendamento(), cliente);
+        consultaServico.associarMedico(dto.dataAgendamento(), medico);
         amServico.associarConsulta(dto.dataAgendamento(), consulta);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }

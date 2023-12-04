@@ -129,7 +129,7 @@ public class MedicoControladorImpl implements MedicoControlador {
     }
 
     @Override
-    @PostMapping("cadastrar/prontuario/{crm}")
+    @PostMapping("cadastrar/prontuario/{crm}/{cpf}")
     public ResponseEntity<Void> cadastrarProntuario(@PathVariable String crm, 
                                                     @PathVariable String cpf) {
         return servico.cadastrarProntuario(crm, cpf);
@@ -143,7 +143,7 @@ public class MedicoControladorImpl implements MedicoControlador {
     }
 
     @Override
-    @GetMapping("exibir/prontuarios/{crm}/{cpf}")
+    @GetMapping("exibir/prontuarios/{crm}")
     public ResponseEntity<List<Prontuario>> exibirTodosOsProntuarios(@PathVariable String crm) {
         return servico.exibirTodosOsProntuarios(crm);
     }
@@ -158,8 +158,10 @@ public class MedicoControladorImpl implements MedicoControlador {
 
     @Override
     @PatchMapping("adicionar/consulta/prontuario/{crm}/{cpf}/{dataAgendamento}")
-    public ResponseEntity<Void> adicionarConsultaAoProntuario(String crm, String cpf, String dataAgendamento) {
-        return null;
+    public ResponseEntity<Void> adicionarConsultaAoProntuario(@PathVariable String crm, 
+                                                            @PathVariable String cpf, 
+                                                            @PathVariable String dataAgendamento) {
+        return servico.adicionarConsultaAoProntuario(crm, cpf, dataAgendamento);
     }
 
 }

@@ -29,7 +29,6 @@ public class Consulta {
     @JsonFormat(pattern = "dd-MM-YYYY HH:mm:ss")
     private LocalDateTime dataCancelamento;
 
-    @Column(nullable = false)
     private String observacoesMedicas;
 
     @ManyToOne(cascade = CascadeType.ALL)
