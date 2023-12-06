@@ -3,6 +3,8 @@ package edu.tcc.v1.consulta;
 import edu.tcc.v1.cliente.Cliente;
 import edu.tcc.v1.medico.Medico;
 import lombok.AllArgsConstructor;
+
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -16,14 +18,18 @@ public class ConsultaServicoImpl implements ConsultaServico {
     private ConsultaRepositorio repositorio;
 
     @Override
-    public void associarCliente(LocalDateTime dataAgendamento, Cliente cliente) {
+    public void associarCliente(@DateTimeFormat(pattern = "dd-MM-yyyy HH:mm:ss") LocalDateTime dataAgendamento, 
+                                Cliente cliente) 
+    {
         Consulta consulta = exibirConsultaPelaDataDeAgendamento(dataAgendamento);
         consulta.setCliente(cliente);
         repositorio.saveAndFlush(consulta);
     }
 
     @Override
-    public void associarMedico(LocalDateTime dataAgendamento, Medico medico) {
+    public void associarMedico(@DateTimeFormat(pattern = "dd-MM-yyyy HH:mm:ss") LocalDateTime dataAgendamento, 
+                            Medico medico)
+    {
         Consulta consulta = exibirConsultaPelaDataDeAgendamento(dataAgendamento);
         consulta.setMedico(medico);
         repositorio.saveAndFlush(consulta);
@@ -36,14 +42,15 @@ public class ConsultaServicoImpl implements ConsultaServico {
     }
 
     @Override
-    public void cancelarConsulta(LocalDateTime dataAgendamento) {
+    public void cancelarConsulta(@DateTimeFormat(pattern = "dd-MM-yyyy HH:mm:ss") LocalDateTime dataAgendamento) {
         Consulta consulta = exibirConsultaPelaDataDeAgendamento(dataAgendamento);
         consulta.setDataCancelamento(LocalDateTime.now());
         repositorio.saveAndFlush(consulta);
     }
 
     @Override
-    public Consulta exibirConsultaPelaDataDeAgendamento(LocalDateTime dataAgendamento) {
+    public Consulta exibirConsultaPelaDataDeAgendamento(@DateTimeFormat(pattern = "dd-MM-yyyy HH:mm:ss") LocalDateTime dataAgendamento) 
+    {
         Consulta consulta = null;
         Optional<Consulta> consultaOptional = repositorio.findByDataAgendamento(dataAgendamento);
         if (consultaOptional.isPresent()) consulta = consultaOptional.get();
@@ -66,17 +73,23 @@ public class ConsultaServicoImpl implements ConsultaServico {
     }
 
     @Override
-    public List<Consulta> exibirConsultasEntreDatas(LocalDateTime dataInicial, LocalDateTime dataFinal) {
+    public List<Consulta> exibirConsultasEntreDatas(@DateTimeFormat(pattern = "dd-MM-yyyy HH:mm:ss") LocalDateTime dataInicial, 
+                                                    @DateTimeFormat(pattern = "dd-MM-yyyy HH:mm:ss") LocalDateTime dataFinal) 
+    {
         return repositorio.exibirConsultasEntreDatas(dataInicial, dataFinal);
     }
 
     @Override
-    public List<Consulta> exibirConsultasAgendadasEntreDatas(LocalDateTime dataInicial, LocalDateTime dataFinal) {
+    public List<Consulta> exibirConsultasAgendadasEntreDatas(@DateTimeFormat(pattern = "dd-MM-yyyy HH:mm:ss") LocalDateTime dataInicial, 
+                                                            @DateTimeFormat(pattern = "dd-MM-yyyy HH:mm:ss") LocalDateTime dataFinal) 
+    {
         return repositorio.exibirConsultasAgendadasEntreDatas(dataInicial, dataFinal);
     }
 
     @Override
-    public List<Consulta> exibirConsultasCanceladasEntreDatas(LocalDateTime dataInicial, LocalDateTime dataFinal) {
+    public List<Consulta> exibirConsultasCanceladasEntreDatas(@DateTimeFormat(pattern = "dd-MM-yyyy HH:mm:ss") LocalDateTime dataInicial, 
+                                                            @DateTimeFormat(pattern = "dd-MM-yyyy HH:mm:ss") LocalDateTime dataFinal) 
+    {
         return repositorio.exibirConsultasCanceladasEntreDatas(dataInicial, dataFinal);
     }
 
@@ -101,22 +114,33 @@ public class ConsultaServicoImpl implements ConsultaServico {
     }
 
     @Override
-    public List<Consulta> exibirConsultasEntreDatasPeloNomeDoCliente(String nomeCliente, LocalDateTime dataInicial, LocalDateTime dataFinal) {
+    public List<Consulta> exibirConsultasEntreDatasPeloNomeDoCliente(String nomeCliente, 
+                                                                    @DateTimeFormat(pattern = "dd-MM-yyyy HH:mm:ss") LocalDateTime dataInicial, 
+                                                                    @DateTimeFormat(pattern = "dd-MM-yyyy HH:mm:ss") LocalDateTime dataFinal) 
+    {
         return repositorio.exibirConsultasEntreDatasPeloNomeDoCliente(nomeCliente, dataInicial, dataFinal);
     }
 
     @Override
-    public List<Consulta> exibirConsultasAgendadasEntreDatasPeloNomeDoCliente(String nomeCliente, LocalDateTime dataInicial, LocalDateTime dataFinal) {
+    public List<Consulta> exibirConsultasAgendadasEntreDatasPeloNomeDoCliente(String nomeCliente, 
+                                                                            @DateTimeFormat(pattern = "dd-MM-yyyy HH:mm:ss") LocalDateTime dataInicial, 
+                                                                            @DateTimeFormat(pattern = "dd-MM-yyyy HH:mm:ss") LocalDateTime dataFinal) 
+    {
         return repositorio.exibirConsultasAgendadasEntreDatasPeloNomeDoCliente(nomeCliente, dataInicial, dataFinal);
     }
 
     @Override
-    public List<Consulta> exibirConsultasCanceladasEntreDatasPeloNomeDoCliente(String nomeCliente, LocalDateTime dataInicial, LocalDateTime dataFinal) {
+    public List<Consulta> exibirConsultasCanceladasEntreDatasPeloNomeDoCliente(String nomeCliente, 
+    @DateTimeFormat(pattern = "dd-MM-yyyy HH:mm:ss") LocalDateTime dataInicial, 
+    @DateTimeFormat(pattern = "dd-MM-yyyy HH:mm:ss") LocalDateTime dataFinal) 
+    {
         return repositorio.exibirConsultasCanceladasEntreDatasPeloNomeDoCliente(nomeCliente, dataInicial, dataFinal);
     }
 
     @Override
-    public void adicionarObservacoesMedicas(LocalDateTime dataAgendamento, String observacoes) {
+    public void adicionarObservacoesMedicas(@DateTimeFormat(pattern = "dd-MM-yyyy HH:mm:ss") LocalDateTime dataAgendamento, 
+                                            String observacoes) 
+    {
         Consulta consulta = exibirConsultaPelaDataDeAgendamento(dataAgendamento);
         consulta.setObservacoesMedicas(observacoes);
         repositorio.saveAndFlush(consulta);

@@ -5,6 +5,8 @@ import edu.tcc.v1.cliente.ClienteServicoImpl;
 import edu.tcc.v1.consulta.Consulta;
 import edu.tcc.v1.medico.Medico;
 import lombok.AllArgsConstructor;
+
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -37,7 +39,9 @@ public class ProntuarioServicoImpl implements ProntuarioServico {
     }
 
     @Override
-    public List<Prontuario> exibirProntuariosEntreDatas(LocalDateTime dataInicial, LocalDateTime dataFinal) {
+    public List<Prontuario> exibirProntuariosEntreDatas(@DateTimeFormat(pattern = "dd-MM-yyyy HH:mm:ss") LocalDateTime dataInicial, 
+                                                    @DateTimeFormat(pattern = "dd-MM-yyyy HH:mm:ss") LocalDateTime dataFinal) 
+    {
         return repositorio.exibirProntuariosEntreDatas(dataInicial, dataFinal);
     }
 

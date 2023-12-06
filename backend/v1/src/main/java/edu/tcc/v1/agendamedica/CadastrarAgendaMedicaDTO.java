@@ -4,7 +4,11 @@ import jakarta.validation.constraints.NotBlank;
 
 import java.time.LocalDateTime;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 public record CadastrarAgendaMedicaDTO(
-        @NotBlank LocalDateTime dataDisponivel
+        @NotBlank 
+        @DateTimeFormat(pattern = "dd-MM-yyyy HH:mm:ss")
+        LocalDateTime dataDisponivel
 ) {
 }
