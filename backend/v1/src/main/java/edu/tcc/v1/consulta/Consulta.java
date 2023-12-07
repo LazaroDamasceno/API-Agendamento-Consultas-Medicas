@@ -34,11 +34,11 @@ public class Consulta implements Serializable {
 
     private String observacoesMedicas;
 
-    @OneToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "medico_id")
     private Medico medico;
 
-    @OneToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;
 

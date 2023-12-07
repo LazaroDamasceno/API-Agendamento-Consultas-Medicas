@@ -29,7 +29,7 @@ public class AgendaMedica implements Serializable {
     @JsonFormat(pattern = "dd-MM-YYYY HH:mm:ss")
     private LocalDateTime dataDisponivel;
 
-    @OneToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "medico_id")
     private Medico medico;
 

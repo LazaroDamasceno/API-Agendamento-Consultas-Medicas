@@ -31,15 +31,15 @@ public class Prontuario  implements Serializable {
     @JsonFormat(pattern = "dd-MM-YYYY HH:mm:ss")
     private LocalDateTime dataCriacao;
 
-    @OneToOne(cascade = CascadeType.PERSIST)
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "consultas_id")
     private List<Consulta> consultas = new ArrayList<>();
 
-    @OneToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "medico_id")
     private Medico medico;
 
-    @OneToOne(cascade = CascadeType.PERSIST)
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;
 
