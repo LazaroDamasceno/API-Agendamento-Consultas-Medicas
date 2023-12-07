@@ -6,6 +6,7 @@ import edu.tcc.v1.agendamedica.CadastrarAgendaMedicaDTO;
 import edu.tcc.v1.consulta.Consulta;
 import edu.tcc.v1.consulta.ConsultaServicoImpl;
 import edu.tcc.v1.consulta.ObservacoesMedicasDTO;
+import edu.tcc.v1.conversor.dataHora.ConversorDataHora;
 import edu.tcc.v1.prontuario.Prontuario;
 import edu.tcc.v1.prontuario.ProntuarioServicoImpl;
 import lombok.AllArgsConstructor;
@@ -81,7 +82,7 @@ public class MedicoServicoImpl implements MedicoServico {
     public ResponseEntity<List<AgendaMedica>> exibirAgendasMedicasEntreDatas(String crm, String dataInicial, String dataFinal) {
         Medico medico = exibirMedicoPeloCRM(crm);
         List<AgendaMedica> am = amServico
-                .exibirAgendasMedicasEntreDatas(LocalDateTime.parse(dataInicial), LocalDateTime.parse(dataFinal))
+                .exibirAgendasMedicasEntreDatas(ConversorDataHora.conversor(dataInicial), ConversorDataHora.conversor(dataFinal))
                 .stream()
                 .filter(e -> e.getMedico().equals(medico))
                 .toList();
@@ -92,7 +93,7 @@ public class MedicoServicoImpl implements MedicoServico {
     public ResponseEntity<Void> cadastrarAgendaMedica(String crm, CadastrarAgendaMedicaDTO dto) {
         Medico medico = exibirMedicoPeloCRM(crm);
         amServico.cadastrarAgendaMedica(dto);
-        amServico.associarMedico(dto.dataDisponivel(), medico);
+        amServico.associarMedico(ConversorDataHora.conversor(dto.dataDisponivel()), medico);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
@@ -133,7 +134,7 @@ public class MedicoServicoImpl implements MedicoServico {
     public ResponseEntity<List<Consulta>> exibirConsultasEntreDatas(String crm, String dataInicial, String dataFinal) {
         Medico medico = exibirMedicoPeloCRM(crm);
         List<Consulta> consultas = consultaServico
-                .exibirConsultasEntreDatas(LocalDateTime.parse(dataInicial), LocalDateTime.parse(dataFinal))
+                .exibirConsultasEntreDatas(ConversorDataHora.conversor(dataInicial), ConversorDataHora.conversor(dataFinal))
                 .stream()
                 .filter(e -> e.getMedico().equals(medico))
                 .toList();
@@ -144,7 +145,7 @@ public class MedicoServicoImpl implements MedicoServico {
     public ResponseEntity<List<Consulta>> exibirConsultasAgendadasEntreDatas(String crm, String dataInicial, String dataFinal) {
         Medico medico = exibirMedicoPeloCRM(crm);
         List<Consulta> consultas = consultaServico
-                .exibirConsultasAgendadasEntreDatas(LocalDateTime.parse(dataInicial), LocalDateTime.parse(dataFinal))
+                .exibirConsultasAgendadasEntreDatas(ConversorDataHora.conversor(dataInicial), ConversorDataHora.conversor(dataFinal))
                 .stream()
                 .filter(e -> e.getMedico().equals(medico))
                 .toList();
@@ -155,7 +156,7 @@ public class MedicoServicoImpl implements MedicoServico {
     public ResponseEntity<List<Consulta>> exibirConsultasCanceladasEntreDatas(String crm, String dataInicial, String dataFinal) {
         Medico medico = exibirMedicoPeloCRM(crm);
         List<Consulta> consultas = consultaServico
-                .exibirConsultasCanceladasEntreDatas(LocalDateTime.parse(dataInicial), LocalDateTime.parse(dataFinal))
+                .exibirConsultasCanceladasEntreDatas(ConversorDataHora.conversor(dataInicial), ConversorDataHora.conversor(dataFinal))
                 .stream()
                 .filter(e -> e.getMedico().equals(medico))
                 .toList();
@@ -199,7 +200,7 @@ public class MedicoServicoImpl implements MedicoServico {
     public ResponseEntity<List<Consulta>> exibirConsultasEntreDatasPeloNomeDoCliente(String crm, String nomeCliente, String dataInicial, String dataFinal) {
         Medico medico = exibirMedicoPeloCRM(crm);
         List<Consulta> consultas = consultaServico
-                .exibirConsultasEntreDatasPeloNomeDoCliente(nomeCliente, LocalDateTime.parse(dataInicial), LocalDateTime.parse(dataFinal))
+                .exibirConsultasEntreDatasPeloNomeDoCliente(nomeCliente, ConversorDataHora.conversor(dataInicial), ConversorDataHora.conversor(dataFinal))
                 .stream()
                 .filter(e -> e.getMedico().equals(medico))
                 .toList();
@@ -210,7 +211,7 @@ public class MedicoServicoImpl implements MedicoServico {
     public ResponseEntity<List<Consulta>> exibirConsultasAgendadasEntreDatasPeloNomeDoCliente(String crm, String nomeCliente, String dataInicial, String dataFinal) {
         Medico medico = exibirMedicoPeloCRM(crm);
         List<Consulta> consultas = consultaServico
-                .exibirConsultasAgendadasEntreDatasPeloNomeDoCliente(nomeCliente, LocalDateTime.parse(dataInicial), LocalDateTime.parse(dataFinal))
+                .exibirConsultasAgendadasEntreDatasPeloNomeDoCliente(nomeCliente, ConversorDataHora.conversor(dataInicial), ConversorDataHora.conversor(dataFinal))
                 .stream()
                 .filter(e -> e.getMedico().equals(medico))
                 .toList();
@@ -221,7 +222,7 @@ public class MedicoServicoImpl implements MedicoServico {
     public ResponseEntity<List<Consulta>> exibirConsultasCanceladasEntreDatasPeloNomeDoCliente(String crm, String nomeCliente, String dataInicial, String dataFinal) {
         Medico medico = exibirMedicoPeloCRM(crm);
         List<Consulta> consultas = consultaServico
-                .exibirConsultasCanceladasEntreDatasPeloNomeDoCliente(nomeCliente, LocalDateTime.parse(dataInicial), LocalDateTime.parse(dataFinal))
+                .exibirConsultasCanceladasEntreDatasPeloNomeDoCliente(nomeCliente, ConversorDataHora.conversor(dataInicial), ConversorDataHora.conversor(dataFinal))
                 .stream()
                 .filter(e -> e.getMedico().equals(medico))
                 .toList();
@@ -259,7 +260,7 @@ public class MedicoServicoImpl implements MedicoServico {
     public ResponseEntity<List<Prontuario>> exibirProntuariosEntreDatas(String crm, String dataInicial, String dataFinal) {
         Medico medico = exibirMedicoPeloCRM(crm);
         List<Prontuario> prontuarios = prontuarioServico
-                .exibirProntuariosEntreDatas(LocalDateTime.parse(dataInicial), LocalDateTime.parse(dataFinal))
+                .exibirProntuariosEntreDatas(ConversorDataHora.conversor(dataInicial), ConversorDataHora.conversor(dataFinal))
                 .stream()
                 .filter(e -> e.getMedico().equals(medico))
                 .toList();
@@ -269,7 +270,7 @@ public class MedicoServicoImpl implements MedicoServico {
     @Override
     public ResponseEntity<Void> adicionarConsultaAoProntuario(String crm, String cpf, String dataAgendamento) {
         Medico medico = exibirMedicoPeloCRM(crm);
-        Consulta consulta = consultaServico.exibirConsultaPelaDataDeAgendamento(LocalDateTime.parse(dataAgendamento));
+        Consulta consulta = consultaServico.exibirConsultaPelaDataDeAgendamento(ConversorDataHora.conversor(dataAgendamento));
         if (!consulta.getMedico().equals(medico)) return ResponseEntity.badRequest().build();
         prontuarioServico.adicionarConsulta(cpf, consulta);
         return ResponseEntity.noContent().build();
@@ -278,9 +279,9 @@ public class MedicoServicoImpl implements MedicoServico {
     @Override
     public ResponseEntity<Void> adicionarObservacoesMedicas(String crm, String dataAgendamento, ObservacoesMedicasDTO dto) {
         Medico medico = exibirMedicoPeloCRM(crm);
-        Consulta consulta = consultaServico.exibirConsultaPelaDataDeAgendamento(LocalDateTime.parse(dataAgendamento));
+        Consulta consulta = consultaServico.exibirConsultaPelaDataDeAgendamento(ConversorDataHora.conversor(dataAgendamento));
         if (!consulta.getMedico().equals(medico)) return ResponseEntity.badRequest().build();
-        consultaServico.adicionarObservacoesMedicas(LocalDateTime.parse(dataAgendamento), dto.observacoes());
+        consultaServico.adicionarObservacoesMedicas(ConversorDataHora.conversor(dataAgendamento), dto.observacoes());
         return ResponseEntity.noContent().build(); 
     }
 

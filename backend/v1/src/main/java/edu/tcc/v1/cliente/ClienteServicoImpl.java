@@ -5,6 +5,7 @@ import edu.tcc.v1.agendamedica.AgendaMedicaServicoImpl;
 import edu.tcc.v1.consulta.AgendarConsultaDTO;
 import edu.tcc.v1.consulta.Consulta;
 import edu.tcc.v1.consulta.ConsultaServicoImpl;
+import edu.tcc.v1.conversor.dataHora.ConversorDataHora;
 import edu.tcc.v1.medico.Medico;
 import edu.tcc.v1.usuario.Usuario;
 import edu.tcc.v1.usuario.UsuarioServicoImpl;
@@ -50,13 +51,13 @@ public class ClienteServicoImpl implements ClienteServico {
     @Override
     public ResponseEntity<Void> cadastrarConsulta(String cpf, AgendarConsultaDTO dto) {
         Cliente cliente = exibirClientePeloCPF(cpf);
-        AgendaMedica am = amServico.exibirAgendaMedicaPelaDataDisponivel(dto.dataAgendamento());
+        AgendaMedica am = amServico.exibirAgendaMedicaPelaDataDisponivel(ConversorDataHora.conversor(dto.dataAgendamento()));
         Medico medico = am.getMedico();
         consultaServico.cadastrarConsulta(dto);
-        Consulta consulta = consultaServico.exibirConsultaPelaDataDeAgendamento(dto.dataAgendamento());
-        consultaServico.associarCliente(dto.dataAgendamento(), cliente);
-        consultaServico.associarMedico(dto.dataAgendamento(), medico);
-        amServico.associarConsulta(dto.dataAgendamento(), consulta);
+        Consulta consulta = consultaServico.exibirConsultaPelaDataDeAgendamento(ConversorDataHora.conversor(dto.dataAgendamento()));
+        consultaServico.associarCliente(ConversorDataHora.conversor(dto.dataAgendamento()), cliente);
+        consultaServico.associarMedico(ConversorDataHora.conversor(dto.dataAgendamento()), medico);
+        amServico.associarConsulta(ConversorDataHora.conversor(dto.dataAgendamento()), consulta);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
@@ -106,7 +107,7 @@ public class ClienteServicoImpl implements ClienteServico {
     public ResponseEntity<List<Consulta>> exibirConsultasEntreDatas(String cpf, String dataInicial, String dataFinal) {
         Cliente cliente = exibirClientePeloCPF(cpf);
         List<Consulta> consultas = consultaServico
-                .exibirConsultasEntreDatas(LocalDateTime.parse(dataFinal), LocalDateTime.parse(dataFinal))
+                .exibirConsultasEntreDatas(ConversorDataHora.conversor(dataInicial), ConversorDataHora.conversor(dataFinal))
                 .stream()
                 .filter(e -> e.getCliente().equals(cliente))
                 .toList();
@@ -117,7 +118,7 @@ public class ClienteServicoImpl implements ClienteServico {
     public ResponseEntity<List<Consulta>> exibirConsultasAgendadasEntreDatas(String cpf, String dataInicial, String dataFinal) {
         Cliente cliente = exibirClientePeloCPF(cpf);
         List<Consulta> consultas = consultaServico
-                .exibirConsultasAgendadasEntreDatas(LocalDateTime.parse(dataFinal), LocalDateTime.parse(dataFinal))
+                .exibirConsultasAgendadasEntreDatas(ConversorDataHora.conversor(dataInicial), ConversorDataHora.conversor(dataFinal))
                 .stream()
                 .filter(e -> e.getCliente().equals(cliente))
                 .toList();
@@ -128,7 +129,7 @@ public class ClienteServicoImpl implements ClienteServico {
     public ResponseEntity<List<Consulta>> exibirConsultasCanceladasEntreDatas(String cpf, String dataInicial, String dataFinal) {
         Cliente cliente = exibirClientePeloCPF(cpf);
         List<Consulta> consultas = consultaServico
-                .exibirConsultasCanceladasEntreDatas(LocalDateTime.parse(dataFinal), LocalDateTime.parse(dataFinal))
+                .exibirConsultasCanceladasEntreDatas(ConversorDataHora.conversor(dataInicial), ConversorDataHora.conversor(dataFinal))
                 .stream()
                 .filter(e -> e.getCliente().equals(cliente))
                 .toList();
