@@ -6,8 +6,6 @@ import jakarta.validation.constraints.Size;
 
 import java.time.LocalDate;
 
-import org.springframework.format.annotation.DateTimeFormat;
-
 public record CadastrarUsuarioDTO(
         @NotBlank
         String nome,
@@ -17,7 +15,6 @@ public record CadastrarUsuarioDTO(
         String cpf,
 
         @NotBlank
-        @DateTimeFormat(pattern = "dd-MM-yyyy")
         LocalDate dataNascimento,
 
         @NotBlank

@@ -3,7 +3,6 @@ package edu.tcc.v1.consulta;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
@@ -12,7 +11,7 @@ import java.util.List;
 
 public interface ConsultaRepositorio extends JpaRepository<Consulta, UUID> {
 
-    Optional<Consulta> findByDataAgendamento(@DateTimeFormat(pattern = "dd-MM-yyyy HH:mm:ss") LocalDateTime dataAgendamento);
+    Optional<Consulta> findByDataAgendamento(LocalDateTime dataAgendamento);
 
     @Query("""
         select c from Consulta c
@@ -31,8 +30,8 @@ public interface ConsultaRepositorio extends JpaRepository<Consulta, UUID> {
         where c.dataAgendamento >= :dataInicial
         and c.dataAgendamento <= :dataFinal
     """)
-    List<Consulta> exibirConsultasEntreDatas(@Param("dataInicial") @DateTimeFormat(pattern = "dd-MM-yyyy HH:mm:ss") LocalDateTime dataInicial,
-                                             @Param("dataFinal") @DateTimeFormat(pattern = "dd-MM-yyyy HH:mm:ss") LocalDateTime dataFinal);
+    List<Consulta> exibirConsultasEntreDatas(@Param("dataInicial") LocalDateTime dataInicial,
+                                             @Param("dataFinal") LocalDateTime dataFinal);
 
     @Query("""
         select c from Consulta c
@@ -40,12 +39,8 @@ public interface ConsultaRepositorio extends JpaRepository<Consulta, UUID> {
         and c.dataAgendamento <= :dataFinal
         and c.dataCancelamento is null
     """)
-    List<Consulta> exibirConsultasAgendadasEntreDatas(@Param("dataInicial") 
-                                                    @DateTimeFormat(pattern = "dd-MM-yyyy HH:mm:ss") 
-                                                    LocalDateTime dataInicial,
-                                                    @Param("dataFinal") 
-                                                    @DateTimeFormat(pattern = "dd-MM-yyyy HH:mm:ss") 
-                                                    LocalDateTime dataFinal);
+    List<Consulta> exibirConsultasAgendadasEntreDatas(@Param("dataInicial") LocalDateTime dataInicial,
+                                                      @Param("dataFinal") LocalDateTime dataFinal);
 
     @Query("""
         select c from Consulta c
@@ -53,12 +48,8 @@ public interface ConsultaRepositorio extends JpaRepository<Consulta, UUID> {
         and c.dataAgendamento <= :dataFinal
         and c.dataCancelamento is not null
     """)
-    List<Consulta> exibirConsultasCanceladasEntreDatas(@Param("dataInicial") 
-                                                    @DateTimeFormat(pattern = "dd-MM-yyyy HH:mm:ss") 
-                                                    LocalDateTime dataInicial,
-                                                    @Param("dataFinal") 
-                                                    @DateTimeFormat(pattern = "dd-MM-yyyy HH:mm:ss") 
-                                                    LocalDateTime dataFinal);
+    List<Consulta> exibirConsultasCanceladasEntreDatas(@Param("dataInicial") LocalDateTime dataInicial,
+                                                       @Param("dataFinal") LocalDateTime dataFinal);
 
     @Query("""
         select c from Consulta c
@@ -93,8 +84,8 @@ public interface ConsultaRepositorio extends JpaRepository<Consulta, UUID> {
         and c.cliente.usuario.nome = :nomeCliente
     """)
     List<Consulta> exibirConsultasEntreDatasPeloNomeDoCliente(@Param("nomeCliente") String nomeCliente,
-                                                              @Param("dataInicial") @DateTimeFormat(pattern = "dd-MM-yyyy HH:mm:ss") LocalDateTime dataInicial,
-                                                              @Param("dataFinal") @DateTimeFormat(pattern = "dd-MM-yyyy HH:mm:ss") LocalDateTime dataFinal);
+                                                              @Param("dataInicial") LocalDateTime dataInicial,
+                                                              @Param("dataFinal") LocalDateTime dataFinal);
 
     @Query("""
         select c from Consulta c
@@ -104,12 +95,8 @@ public interface ConsultaRepositorio extends JpaRepository<Consulta, UUID> {
         and c.cliente.usuario.nome = :nomeCliente
     """)
     List<Consulta> exibirConsultasAgendadasEntreDatasPeloNomeDoCliente(@Param("nomeCliente") String nomeCliente,
-                                                                    @Param("dataInicial") 
-                                                                    @DateTimeFormat(pattern = "dd-MM-yyyy HH:mm:ss") 
-                                                                    LocalDateTime dataInicial,
-                                                                    @Param("dataFinal") 
-                                                                    @DateTimeFormat(pattern = "dd-MM-yyyy HH:mm:ss") 
-                                                                    LocalDateTime dataFinal);
+                                                                       @Param("dataInicial") LocalDateTime dataInicial,
+                                                                       @Param("dataFinal") LocalDateTime dataFinal);
 
     @Query("""
         select c from Consulta c
@@ -119,11 +106,7 @@ public interface ConsultaRepositorio extends JpaRepository<Consulta, UUID> {
         and c.cliente.usuario.nome = :nomeCliente
     """)
     List<Consulta> exibirConsultasCanceladasEntreDatasPeloNomeDoCliente(@Param("nomeCliente") String nomeCliente,
-                                                                        @Param("dataInicial") 
-                                                                        @DateTimeFormat(pattern = "dd-MM-yyyy HH:mm:ss") 
-                                                                        LocalDateTime dataInicial,
-                                                                        @Param("dataFinal") 
-                                                                        @DateTimeFormat(pattern = "dd-MM-yyyy HH:mm:ss") 
-                                                                        LocalDateTime dataFinal);
+                                                                        @Param("dataInicial") LocalDateTime dataInicial,
+                                                                        @Param("dataFinal") LocalDateTime dataFinal);
 
 }
