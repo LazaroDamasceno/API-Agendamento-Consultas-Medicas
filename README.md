@@ -47,6 +47,16 @@ Há outra forma, caso o sistema operacional for Windows, vá na pasta `executor`
 
 Para parar, caso o sistema operacional for Windows, pressiona `CRTL + SHIFT + ESC`. Assim, será aberto o Gerenciador de Tarefas. Depois, procure por `OpenJDK Binary Platform`. Pr fim, quando for achado, selecione-o e aperte o botão `Finalizar tarefa`.
 
-## Entrada e saída de dados
+## Como inserir ou exibir dados
+
+Foi adicionado a aplicação o Swagger UI. 
+
+Por este motivo, recomanda-se o uso do Swagger após a execução. 
+
+Para tanto, deve ser digitado na barra de navegadores `http://localhost:8080/swagger-ui/index.html`.
 
 ## Banco de dados
+
+O banco de dados usado foi o PostgreSQL na sua versão online presente no site [elephantSQL](https://www.elephantsql.com/).
+
+O sistema de gerenciamento de banco de dados escolhido o [DBeaver Community](https://dbeaver.io/download/). 
