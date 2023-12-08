@@ -1,15 +1,52 @@
 # API de Gerenciamento de Consultas
 
-## 1. Introdução
+## Introdução
 
-## 2. Tecnologias usadas
+Esta API foi desenvolvida como a parte prática da monografia API de Gerenciamento de Consultas.
 
-## 3. Configurações básicas
+## Tecnologias usadas
 
-## 4. Como baixar
+|Tecnologia|Versão|
+|:-:|:-:|
+|Java|21|
+|Spring Boot|3.2.0|
 
-## 5. Como executar
+## Configurações básicas
 
-## 6. Entrada de dados
+A versão usada para o desenvolvimento desta API é a Amazon Corretto. Para ter acesso ao Java da Amazon, [clique aqui](https://docs.aws.amazon.com/corretto/latest/corretto-21-ug/downloads-list.html).
 
-## 7. Banco de dados
+A partir da versão 3, a versão mínima do Java é a 17.
+
+## Como baixar
+
+### Via download
+
+Vá no botão `Code` e presione `Download ZIP`. Um arquivo ZIP será gerado. Extraia o conteúdo.
+
+### Via git
+
+Caso o git não esteja instalada, [clique aqui](https://git-scm.com/downloads).
+
+Abra o CMD e digite `git clone https://github.com/LazaroDamasceno/API-Gerenciamento-Consultas.git`.
+
+## Como executar e parar
+
+### Via comando do Maven
+
+Abre o CMD e digite `cd backend` e em seguida `cd v1`. Por fim, digite, caso o sistema operacional seja Windows, `./mvnw clean spring-boot:run`.
+
+Para parar, pressione no CMD `CRTL + C`.
+
+### Via arquivo executável
+
+Abre o CMD e digite `cd executor` e, por fim, `java -jar api_gerenciamento_consultas-v1.jar`. 
+
+Para parar, pressione no CMD `CRTL + C`.
+
+Há outra forma, caso o sistema operacional for Windows, vá na pasta `executor` e pressione o dente direito do mouse e escolha `abrir com`. Finalmente, escolha a opção `OpenJDK Binary Platform`. Com esta opção, para rodar, bastar pressionar o arquivo executável.
+
+Para parar, caso o sistema operacional for Windows, pressiona `CRTL + SHIFT + ESC`. Assim, será aberto o Gerenciador de Tarefas. Depois, procure por `OpenJDK Binary Platform`. Pr fim, quando for achado, selecione-o e aperte o botão `Finalizar tarefa`.
+
+## Entrada e saída de dados
+
+## Banco de dados
