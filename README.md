@@ -45,7 +45,7 @@ Para parar, pressione no CMD `CRTL + C`.
 
 Há outra forma, caso o sistema operacional for Windows, vá na pasta `executor` e pressione o dente direito do mouse e escolha `abrir com`. Finalmente, escolha a opção `OpenJDK Binary Platform`. Com esta opção, para rodar, bastar pressionar o arquivo executável.
 
-Para parar, caso o sistema operacional for Windows, pressiona `CRTL + SHIFT + ESC`. Assim, será aberto o Gerenciador de Tarefas. Depois, procure por `OpenJDK Binary Platform`. Pr fim, quando for achado, selecione-o e aperte o botão `Finalizar tarefa`.
+Para parar, caso o sistema operacional for Windows, pressiona `CRTL + SHIFT + ESC`. Assim, será aberto o Gerenciador de Tarefas. Depois, procure por `OpenJDK Binary Platform`. Por fim, quando for achado, selecione-o e aperte o botão `Finalizar tarefa`.
 
 ## Como inserir ou exibir dados
 
