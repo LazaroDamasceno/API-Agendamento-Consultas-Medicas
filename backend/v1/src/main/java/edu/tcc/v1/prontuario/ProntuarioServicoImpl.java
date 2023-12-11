@@ -1,7 +1,6 @@
 package edu.tcc.v1.prontuario;
 
 import edu.tcc.v1.cliente.Cliente;
-import edu.tcc.v1.cliente.ClienteServicoImpl;
 import edu.tcc.v1.consulta.Consulta;
 import edu.tcc.v1.medico.Medico;
 import lombok.AllArgsConstructor;
@@ -15,49 +14,48 @@ import java.util.Optional;
 @AllArgsConstructor
 public class ProntuarioServicoImpl implements ProntuarioServico {
 
-    private ProntuarioRepositorio repositorio;
-    private ClienteServicoImpl clienteServico;
+    private ProntuarioServicosFacade servicos;
 
     @Override
     public void cadastrarProntuario(String cpf) {
         Prontuario prontuario = new Prontuario();
         prontuario.setDataCriacao(LocalDateTime.now());
-        Cliente cliente = clienteServico.exibirClientePeloCPF(cpf);
+        Cliente cliente = servicos.getClienteServico().exibirClientePeloCPF(cpf);
         prontuario.setCliente(cliente);
-        repositorio.save(prontuario);
+        servicos.getRepositorio().save(prontuario);
     }
 
     @Override
     public Prontuario exibirProntuarioPeloCliente(String cpf) {
         Prontuario prontuario = null;
-        Cliente cliente = clienteServico.exibirClientePeloCPF(cpf);
-        Optional<Prontuario> prontuarioOptional = repositorio.findByCliente(cliente);
+        Cliente cliente = servicos.getClienteServico().exibirClientePeloCPF(cpf);
+        Optional<Prontuario> prontuarioOptional = servicos.getRepositorio().findByCliente(cliente);
         if (prontuarioOptional.isPresent()) prontuario = prontuarioOptional.get();
         return prontuario;
     }
 
     @Override
     public List<Prontuario> exibirProntuariosEntreDatas(LocalDateTime dataInicial, LocalDateTime dataFinal) {
-        return repositorio.exibirProntuariosEntreDatas(dataInicial, dataFinal);
+        return servicos.getRepositorio().exibirProntuariosEntreDatas(dataInicial, dataFinal);
     }
 
     @Override
     public List<Prontuario> exibirTodosOsProntuarios() {
-        return repositorio.findAll();
+        return servicos.getRepositorio().findAll();
     }
 
     @Override
     public void adicionarConsulta(String cpf, Consulta consulta) {
         Prontuario prontuario = exibirProntuarioPeloCliente(cpf);
         prontuario.getConsultas().add(consulta);
-        repositorio.saveAndFlush(prontuario);
+        servicos.getRepositorio().saveAndFlush(prontuario);
     }
 
     @Override
     public void associarMedico(String cpf, Medico medico) {
         Prontuario prontuario = exibirProntuarioPeloCliente(cpf);
         prontuario.setMedico(medico);
-        repositorio.saveAndFlush(prontuario);
+        servicos.getRepositorio().saveAndFlush(prontuario);
     }
 
 }
