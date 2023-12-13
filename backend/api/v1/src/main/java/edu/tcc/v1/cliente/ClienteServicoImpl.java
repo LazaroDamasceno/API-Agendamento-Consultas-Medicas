@@ -43,7 +43,7 @@ public class ClienteServicoImpl implements ClienteServico {
     }
 
     @Override
-    public ResponseEntity<Void> cadastrarConsulta(String cpf, AgendarConsultaDTO dto) {
+    public ResponseEntity<Void> agendarConsulta(String cpf, AgendarConsultaDTO dto) {
         Cliente cliente = exibirClientePeloCPF(cpf);
         AgendaMedica am = servicos.getAmServico().exibirAgendaMedicaPelaDataDisponivel(ConversorDataHora.conversor(dto.dataAgendamento()));
         Medico medico = am.getMedico();

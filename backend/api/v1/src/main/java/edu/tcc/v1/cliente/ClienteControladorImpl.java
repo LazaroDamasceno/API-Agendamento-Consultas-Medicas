@@ -22,10 +22,10 @@ public class ClienteControladorImpl implements ClienteControlador {
     }
 
     @Override
-    @PostMapping("cadastrar/consulta/{cpf}")
-    public ResponseEntity<Void> cadastrarConsulta(@PathVariable String cpf,
+    @PostMapping("agendar/consulta/{cpf}")
+    public ResponseEntity<Void> agendarConsulta(@PathVariable String cpf,
                                                   @RequestBody AgendarConsultaDTO dto) {
-        return servico.cadastrarConsulta(cpf, dto);
+        return servico.agendarConsulta(cpf, dto);
     }
 
     @Override

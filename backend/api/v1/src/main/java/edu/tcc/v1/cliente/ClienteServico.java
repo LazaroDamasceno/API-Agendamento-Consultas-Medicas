@@ -11,7 +11,7 @@ public interface ClienteServico {
     List<Cliente> exibirTodosOsClientes();
     Cliente exibirClientePeloCPF(String cpf);
     ResponseEntity<Void> cadastrarCliente(CadastrarClienteDTO dto);
-    ResponseEntity<Void> cadastrarConsulta(String cpf, AgendarConsultaDTO dto);
+    ResponseEntity<Void> agendarConsulta(String cpf, AgendarConsultaDTO dto);
     ResponseEntity<Void> cancelarConsulta(String cpf, String dataAgendamento);
     ResponseEntity<List<Consulta>> exibirTodasAsConsultas(String cpf);
     ResponseEntity<List<Consulta>> exibirConsultasAgendadas(String cpf);
