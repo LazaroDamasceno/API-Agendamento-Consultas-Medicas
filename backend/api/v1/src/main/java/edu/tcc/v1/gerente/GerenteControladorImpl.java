@@ -40,4 +40,10 @@ public class GerenteControladorImpl implements GerenteControlador {
         return servico.exibirListaDosClientes();
     }
 
+    @Override
+    @PatchMapping("demitir/medico/{crm}")
+    public ResponseEntity<Void> demitirMedico(@PathVariable String crm) {
+        return servico.demitirMedico(crm);    
+    }
+
 }

@@ -1,8 +1,9 @@
 package edu.tcc.v1.agendamedica;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+
+import edu.tcc.v1.auxiliares.ConversorDataHora;
 import edu.tcc.v1.consulta.Consulta;
-import edu.tcc.v1.conversor.dataHora.ConversorDataHora;
 import edu.tcc.v1.medico.Medico;
 import jakarta.persistence.*;
 import lombok.Getter;

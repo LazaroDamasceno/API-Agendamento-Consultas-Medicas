@@ -10,6 +10,7 @@ import java.util.List;
 public interface GerenteServico {
 
     ResponseEntity<Void> cadastrarMedico(CadastrarMedicoDTO dto);
+    ResponseEntity<Void> demitirMedico(String crm);
     ResponseEntity<List<Medico>> exibirListaDosMedicos();
     ResponseEntity<Medico> exibirMedicoPeloCRM(String crm);
     ResponseEntity<List<Cliente>> exibirListaDosClientes();

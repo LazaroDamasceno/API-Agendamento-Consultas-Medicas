@@ -37,4 +37,10 @@ public class GerenteServicoImpl implements GerenteServico {
         return ResponseEntity.ok().body(servicos.getClienteServico().exibirTodosOsClientes());
     }
 
+    @Override
+    public ResponseEntity<Void> demitirMedico(String crm) {
+        servicos.getMedicoServico().demitirMedico(crm);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
 }
