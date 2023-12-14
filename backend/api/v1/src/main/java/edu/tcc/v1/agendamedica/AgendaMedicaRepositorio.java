@@ -1,24 +1,34 @@
 package edu.tcc.v1.agendamedica;
 
+import edu.tcc.v1.medico.Medico;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 public interface AgendaMedicaRepositorio extends JpaRepository<AgendaMedica, UUID> {
 
-    Optional<AgendaMedica> findByDataDisponivel(LocalDateTime dataDisponivel);
+    static AgendaMedica instanciar(CadastrarAgendaMedicaDTO dto) {
+        return new AgendaMedica(dto);
+    }
 
     @Query("""
         select am from AgendaMedica am
-        where am.dataDisponivel >= :dataInicial
+        where am.medico = :medico
+    """)
+    List<AgendaMedica> buscarTodasAsAgendasMedicas(@Param("medico") Medico medico);
+
+    @Query("""
+        select am from AgendaMedica am
+        where am.medico = :medico
+        and am.dataDisponivel >= :dataInicial
         and am.dataDisponivel <= :dataFinal
     """)
-    List<AgendaMedica> exibirAgendasMedicasEntreDatas(@Param("dataInicial") LocalDateTime dataInicial,
-                                                      @Param("dataFinal") LocalDateTime dataFinal);
+    List<AgendaMedica> buscarAgendasMedicasEntreDatas(@Param("dataInicial") LocalDateTime dataInicial,
+                                                      @Param("dataFinal") LocalDateTime dataFinal,
+                                                      @Param("medico") Medico medico);
 
 }

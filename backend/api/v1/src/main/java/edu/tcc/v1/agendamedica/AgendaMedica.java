@@ -27,7 +27,7 @@ public class AgendaMedica implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false)
     @JsonFormat(pattern = "dd-MM-YYYY HH:mm:ss")
     private LocalDateTime dataDisponivel;
 
@@ -40,7 +40,7 @@ public class AgendaMedica implements Serializable {
     private Consulta consulta;
 
     AgendaMedica(CadastrarAgendaMedicaDTO dto) {
-        this.dataDisponivel = ConversorDataHora.conversor(dto.dataDisponivel());
+        this.dataDisponivel = ConversorDataHora.conversorDataHora(dto.dataDisponivel());
     }
 
 }

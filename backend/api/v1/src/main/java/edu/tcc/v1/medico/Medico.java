@@ -45,7 +45,7 @@ public class Medico implements Serializable {
         this.dataAdmissao = LocalDateTime.now();
         this.crm = dto.crm();
         this.cnpj = dto.cnpj();
-        this.usuario = UsuarioServicoImpl.instanciar(dto.usuario());
+        this.usuario = UsuarioRepositorio.criarInstanciar(dto.usuario());
     }
 
 }

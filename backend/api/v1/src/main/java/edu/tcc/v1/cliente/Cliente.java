@@ -2,7 +2,7 @@ package edu.tcc.v1.cliente;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import edu.tcc.v1.usuario.Usuario;
-import edu.tcc.v1.usuario.UsuarioServicoImpl;
+import edu.tcc.v1.usuario.UsuarioRepositorio;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -54,7 +54,7 @@ public class Cliente implements Serializable {
         this.cidade = dto.cidade();
         this.uf = dto.uf();
         this.dataCadastramento = LocalDateTime.now();
-        this.usuario = UsuarioServicoImpl.instanciar(dto.usuario());
+        this.usuario = UsuarioRepositorio.criarInstanciar(dto.usuario());
     }
 
 }

@@ -2,7 +2,7 @@ package edu.tcc.v1.usuario;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-import edu.tcc.v1.auxiliares.conversor.ConversorData;
+import edu.tcc.v1.auxiliares.ConversorDataHora;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
@@ -50,7 +50,7 @@ public class Usuario implements Serializable {
     Usuario(CadastrarUsuarioDTO dto) {
         this.nome = dto.nome();
         this.cpf = dto.cpf();
-        this.dataNascimento = ConversorData.conversor(dto.dataNascimento());
+        this.dataNascimento = ConversorDataHora.conversorData(dto.dataNascimento());
         this.email = dto.email();
         this.telefone = dto.telefone();
         this.genero = dto.genero();

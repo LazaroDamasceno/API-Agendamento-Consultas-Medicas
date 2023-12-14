@@ -27,7 +27,7 @@ public class Consulta implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false)
     @JsonFormat(pattern = "dd-MM-YYYY HH:mm:ss")
     private LocalDateTime dataAgendamento;
 
@@ -45,7 +45,7 @@ public class Consulta implements Serializable {
     private Cliente cliente;
 
     Consulta(AgendarConsultaDTO dto) {
-        this.dataAgendamento = ConversorDataHora.conversor(dto.dataAgendamento());
+        this.dataAgendamento = ConversorDataHora.conversorDataHora(dto.dataAgendamento());
     }
 
 }
