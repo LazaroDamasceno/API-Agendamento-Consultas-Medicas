@@ -3,7 +3,7 @@ package edu.tcc.v1.medico;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import edu.tcc.v1.usuario.Usuario;
 import edu.tcc.v1.usuario.UsuarioRepositorio;
-import edu.tcc.v1.usuario.UsuarioServicoImpl;
+
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
