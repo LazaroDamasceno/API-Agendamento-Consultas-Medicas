@@ -2,6 +2,7 @@ package edu.tcc.v1.medico;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import edu.tcc.v1.usuario.Usuario;
+import edu.tcc.v1.usuario.UsuarioRepositorio;
 import edu.tcc.v1.usuario.UsuarioServicoImpl;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -45,7 +46,7 @@ public class Medico implements Serializable {
         this.dataAdmissao = LocalDateTime.now();
         this.crm = dto.crm();
         this.cnpj = dto.cnpj();
-        this.usuario = UsuarioRepositorio.criarInstanciar(dto.usuario());
+        this.usuario = UsuarioRepositorio.instanciar(dto.usuario());
     }
 
 }
