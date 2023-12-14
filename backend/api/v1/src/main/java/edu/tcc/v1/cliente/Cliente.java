@@ -54,7 +54,7 @@ public class Cliente implements Serializable {
         this.cidade = dto.cidade();
         this.uf = dto.uf();
         this.dataCadastramento = LocalDateTime.now();
-        this.usuario = UsuarioRepositorio.criarInstanciar(dto.usuario());
+        this.usuario = UsuarioRepositorio.instanciar(dto.usuario());
     }
 
 }
