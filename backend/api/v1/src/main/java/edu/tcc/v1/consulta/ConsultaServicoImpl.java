@@ -14,9 +14,9 @@ import java.util.Optional;
 @AllArgsConstructor
 public class ConsultaServicoImpl implements ConsultaServico {
 
-    private ConsultaRepositorio repositorio;
+    private static ConsultaRepositorio repositorio;
 
-    public ResponseEntity<Consulta> buscarConsultaPeloMedico(LocalDateTime dataHora, Medico medico) {
+    public static ResponseEntity<Consulta> buscarConsultaPeloMedico(LocalDateTime dataHora, Medico medico) {
         Optional<Consulta> consulta = repositorio
                 .findAll()
                 .stream()
@@ -28,7 +28,7 @@ public class ConsultaServicoImpl implements ConsultaServico {
         return consulta.isPresent() ? ResponseEntity.ok(consulta.get()) : ResponseEntity.badRequest().build();
     }
 
-    public ResponseEntity<Consulta> buscarConsultaPeloCliente(LocalDateTime dataHora, Cliente cliente) {
+    public static ResponseEntity<Consulta> buscarConsultaPeloCliente(LocalDateTime dataHora, Cliente cliente) {
         Optional<Consulta> consulta = repositorio
                 .findAll()
                 .stream()
