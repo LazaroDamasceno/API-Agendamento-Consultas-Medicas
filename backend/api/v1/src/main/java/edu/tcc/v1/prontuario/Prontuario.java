@@ -20,7 +20,7 @@ import java.util.UUID;
 @Getter
 @Setter
 @NoArgsConstructor
-public class Prontuario  implements Serializable {
+class Prontuario  implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -42,5 +42,15 @@ public class Prontuario  implements Serializable {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;
+
+    Prontuario(Medico medico, Cliente cliente) {
+        this.dataCriacao = LocalDateTime.now();
+        this.medico = medico;
+        this.cliente = cliente;
+    }
+
+    public void adicionarConsultaAoProntuario(Consulta consulta) {
+        consultas.add(consulta);
+    }
 
 }
