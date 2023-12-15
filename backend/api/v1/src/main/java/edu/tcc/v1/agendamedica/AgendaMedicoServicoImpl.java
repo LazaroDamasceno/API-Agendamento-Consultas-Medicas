@@ -29,8 +29,7 @@ public class AgendaMedicoServicoImpl implements AgendaMedicoServico {
 
     @Override
     public void cadastrarAgendaMedica(CadastrarAgendaMedicaDTO dto, Medico medico) {
-        AgendaMedica agendaMedica = AgendaMedicaRepositorio.instanciar(dto);
-        agendaMedica.setMedico(medico);
+        AgendaMedica agendaMedica = AgendaMedicaRepositorio.instanciar(dto, medico);
         repositorio.save(agendaMedica);
     }
 

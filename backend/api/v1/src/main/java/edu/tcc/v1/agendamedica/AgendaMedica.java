@@ -39,8 +39,9 @@ public class AgendaMedica implements Serializable {
     @JoinColumn(name = "consulta_id")
     private Consulta consulta;
 
-    AgendaMedica(CadastrarAgendaMedicaDTO dto) {
+    AgendaMedica(CadastrarAgendaMedicaDTO dto, Medico medico) {
         this.dataDisponivel = ConversorDataHora.conversorDataHora(dto.dataDisponivel());
+        this.medico = medico;
     }
 
 }

@@ -11,8 +11,8 @@ import java.util.UUID;
 
 public interface AgendaMedicaRepositorio extends JpaRepository<AgendaMedica, UUID> {
 
-    static AgendaMedica instanciar(CadastrarAgendaMedicaDTO dto) {
-        return new AgendaMedica(dto);
+    static AgendaMedica instanciar(CadastrarAgendaMedicaDTO dto, Medico medico) {
+        return new AgendaMedica(dto, medico);
     }
 
     @Query("""
