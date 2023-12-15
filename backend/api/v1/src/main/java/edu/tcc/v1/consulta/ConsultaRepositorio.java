@@ -1,5 +1,7 @@
 package edu.tcc.v1.consulta;
 
+import edu.tcc.v1.cliente.Cliente;
+import edu.tcc.v1.medico.Medico;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -10,8 +12,8 @@ import java.util.UUID;
 
 public interface ConsultaRepositorio extends JpaRepository<Consulta, UUID> {
 
-    static Consulta instanciar(AgendarConsultaDTO dto) {
-        return new Consulta(dto);
+    static Consulta instanciar(AgendarConsultaDTO dto, Cliente cliente, Medico medico) {
+        return new Consulta(dto, cliente, medico);
     }
 
     @Query("""

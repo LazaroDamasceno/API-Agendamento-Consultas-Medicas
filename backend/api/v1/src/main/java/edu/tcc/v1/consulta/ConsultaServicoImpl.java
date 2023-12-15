@@ -42,9 +42,7 @@ public class ConsultaServicoImpl implements ConsultaServico {
 
     @Override
     public void agendarConsulta(AgendarConsultaDTO dto, Cliente cliente, Medico medico) {
-        Consulta consulta = ConsultaRepositorio.instanciar(dto);
-        consulta.setCliente(cliente);
-        consulta.setMedico(medico);
+        Consulta consulta = ConsultaRepositorio.instanciar(dto, cliente, medico);
         repositorio.save(consulta);
     }
 

@@ -44,8 +44,10 @@ public class Consulta implements Serializable {
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;
 
-    Consulta(AgendarConsultaDTO dto) {
+    Consulta(AgendarConsultaDTO dto, Cliente cliente, Medico medico) {
         this.dataAgendamento = ConversorDataHora.conversorDataHora(dto.dataAgendamento());
+        this.cliente = cliente;
+        this.medico = medico;
     }
 
 }
