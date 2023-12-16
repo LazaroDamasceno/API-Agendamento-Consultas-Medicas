@@ -54,6 +54,13 @@ public class ConsultaServicoImpl implements ConsultaServico {
     }
 
     @Override
+    public void adicionarObservacoesMedicasAConsulta(Medico medico, LocalDateTime dataAgendamento, String observacoes) {
+        Consulta consulta = buscarConsultaPeloMedico(dataAgendamento, medico).getBody();
+        consulta.setObservacoesMedicas(observacoes);
+        repositorio.saveAndFlush(consulta);
+    }
+
+    @Override
     public List<Consulta> buscarConsultas() {
         return repositorio.buscarConsultasAgendadas();
     }
