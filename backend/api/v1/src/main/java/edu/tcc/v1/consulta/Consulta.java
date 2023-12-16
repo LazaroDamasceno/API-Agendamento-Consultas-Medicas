@@ -10,6 +10,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -21,6 +22,7 @@ import java.util.UUID;
 @NoArgsConstructor
 public class Consulta implements Serializable {
 
+    @Serial
     private static final long serialVersionUID = 1L;
     
     @Id
@@ -28,10 +30,10 @@ public class Consulta implements Serializable {
     private UUID id;
 
     @Column(nullable = false)
-    @JsonFormat(pattern = "dd-MM-YYYY HH:mm:ss")
+    @JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss")
     private LocalDateTime dataAgendamento;
 
-    @JsonFormat(pattern = "dd-MM-YYYY HH:mm:ss")
+    @JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss")
     private LocalDateTime dataCancelamento;
 
     private String observacoesMedicas;

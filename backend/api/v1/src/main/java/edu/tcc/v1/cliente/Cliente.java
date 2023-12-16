@@ -8,6 +8,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -19,6 +20,7 @@ import java.util.UUID;
 @NoArgsConstructor
 public class Cliente implements Serializable {
 
+    @Serial
     private static final long serialVersionUID = 1L;
 
     @Id
@@ -40,7 +42,7 @@ public class Cliente implements Serializable {
     @Column(nullable = false)
     private String uf;
 
-    @JsonFormat(pattern = "dd-MM-YYYY HH:mm:ss")
+    @JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss")
     private LocalDateTime dataCadastramento;
 
     @OneToOne(cascade = CascadeType.PERSIST)
