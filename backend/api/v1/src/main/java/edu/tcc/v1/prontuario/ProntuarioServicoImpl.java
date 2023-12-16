@@ -18,7 +18,7 @@ public class ProntuarioServicoImpl implements ProntuarioServico {
     public static ResponseEntity<Prontuario> buscarProntuarioPorCliente(Cliente cliente) {
         return repositorio
                 .findByCliente(cliente)
-                .map(e -> ResponseEntity.ok(e))
+                .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.badRequest().build());
     }
 
