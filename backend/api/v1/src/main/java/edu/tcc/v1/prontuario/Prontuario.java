@@ -20,7 +20,7 @@ import java.util.UUID;
 @Getter
 @Setter
 @NoArgsConstructor
-class Prontuario  implements Serializable {
+public class Prontuario  implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
