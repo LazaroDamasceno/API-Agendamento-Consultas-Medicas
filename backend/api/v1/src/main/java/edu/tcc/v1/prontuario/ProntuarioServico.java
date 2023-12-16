@@ -10,7 +10,7 @@ import java.util.List;
 public interface ProntuarioServico {
 
     void criarProntuario(Medico medico, Cliente cliente);
-    void adicionarConsultaAoProntuario(Cliente cliente, Consulta consulta);
+    void adicionarConsultaAoProntuario(Medico medico, Cliente cliente, Consulta consulta);
     List<Prontuario> buscarProntuariosPorMedico(Medico medico);
 
 }

@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -15,11 +16,12 @@ public class ProntuarioServicoImpl implements ProntuarioServico {
 
     private static ProntuarioRepositorio repositorio;
 
-    public static ResponseEntity<Prontuario> buscarProntuarioPorCliente(Cliente cliente) {
-        return repositorio
-                .findByCliente(cliente)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.badRequest().build());
+    public static ResponseEntity<Prontuario> buscarProntuarioPorCliente(Medico medico, Cliente cliente) {
+        Optional<Prontuario> prontuario = repositorio.findByCliente(cliente);
+        if (prontuario.isEmpty() && !prontuario.get().getMedico().equals(medico)) {
+            return ResponseEntity.badRequest().build();
+        }
+        return ResponseEntity.ok(prontuario.get());
     }
 
     @Override
@@ -29,8 +31,8 @@ public class ProntuarioServicoImpl implements ProntuarioServico {
     }
 
     @Override
-    public void adicionarConsultaAoProntuario(Cliente cliente, Consulta consulta) {
-        Prontuario prontuario = buscarProntuarioPorCliente(cliente).getBody();
+    public void adicionarConsultaAoProntuario(Medico medico, Cliente cliente, Consulta consulta) {
+        Prontuario prontuario = buscarProntuarioPorCliente(medico, cliente).getBody();
         prontuario.adicionarConsultaAoProntuario(consulta);
         repositorio.saveAndFlush(prontuario);
     }
