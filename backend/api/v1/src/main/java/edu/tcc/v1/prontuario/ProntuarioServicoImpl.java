@@ -18,7 +18,7 @@ public class ProntuarioServicoImpl implements ProntuarioServico {
 
     public static ResponseEntity<Prontuario> buscarProntuarioPorCliente(Medico medico, Cliente cliente) {
         Optional<Prontuario> prontuario = repositorio.findByCliente(cliente);
-        if (prontuario.isEmpty() && !prontuario.get().getMedico().equals(medico)) {
+        if (prontuario.isEmpty() || !prontuario.get().getMedico().equals(medico)) {
             return ResponseEntity.badRequest().build();
         }
         return ResponseEntity.ok(prontuario.get());
