@@ -9,7 +9,7 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class UsuarioServico {
     
-    private static UsuarioRepositorio repositorio;
+    static UsuarioRepositorio repositorio;
 
     public static ResponseEntity<Usuario> buscarUsuarioPeloCPF(String cpf) {
         return repositorio

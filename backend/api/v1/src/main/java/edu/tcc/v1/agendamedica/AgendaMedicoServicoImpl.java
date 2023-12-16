@@ -14,7 +14,7 @@ import java.util.Optional;
 @AllArgsConstructor
 public class AgendaMedicoServicoImpl implements AgendaMedicoServico {
 
-    private static AgendaMedicaRepositorio repositorio;
+    static AgendaMedicaRepositorio repositorio;
 
     public static ResponseEntity<AgendaMedica> buscarAgendaMedica(LocalDateTime dataDisponivel, Medico medico) {
         Optional<AgendaMedica> agendaMedica = repositorio
@@ -24,7 +24,7 @@ public class AgendaMedicoServicoImpl implements AgendaMedicoServico {
                         e -> e.getDataDisponivel().equals(dataDisponivel)
                         && e.getMedico().equals(medico)
                 ).findFirst();
-        return agendaMedica.isPresent() ? ResponseEntity.ok(agendaMedica.get()) : ResponseEntity.badRequest().build();
+        return agendaMedica.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.badRequest().build());
     }
 
     @Override

@@ -14,7 +14,7 @@ import java.util.Optional;
 @AllArgsConstructor
 public class ProntuarioServicoImpl implements ProntuarioServico {
 
-    private static ProntuarioRepositorio repositorio;
+    static ProntuarioRepositorio repositorio;
 
     public static ResponseEntity<Prontuario> buscarProntuarioPorCliente(Medico medico, Cliente cliente) {
         Optional<Prontuario> prontuario = repositorio.findByCliente(cliente);

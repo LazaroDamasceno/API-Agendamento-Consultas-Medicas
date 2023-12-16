@@ -14,7 +14,7 @@ import java.util.Optional;
 @AllArgsConstructor
 public class ConsultaServicoImpl implements ConsultaServico {
 
-    private static ConsultaRepositorio repositorio;
+    static ConsultaRepositorio repositorio;
 
     public static ResponseEntity<Consulta> buscarConsultaPeloMedico(LocalDateTime dataHora, Medico medico) {
         Optional<Consulta> consulta = repositorio
