@@ -14,7 +14,7 @@ public class UsuarioServico {
     public static ResponseEntity<Usuario> buscarUsuarioPeloCPF(String cpf) {
         return repositorio
                 .findByCpf(cpf)
-                .map(e -> ResponseEntity.ok(e))
+                .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.badRequest().build());
     }
 
