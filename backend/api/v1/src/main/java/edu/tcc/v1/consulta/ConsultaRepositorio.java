@@ -19,7 +19,7 @@ public interface ConsultaRepositorio extends JpaRepository<Consulta, UUID> {
     @Query("""
         select c from Consulta c
     """)
-    List<Consulta> buscarTodasAsConsultas();
+    List<Consulta> buscarConsultas();
 
     @Query("""
         select c from Consulta c

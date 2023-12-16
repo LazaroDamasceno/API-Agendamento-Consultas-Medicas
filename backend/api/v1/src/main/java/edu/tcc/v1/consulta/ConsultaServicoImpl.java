@@ -54,7 +54,7 @@ public class ConsultaServicoImpl implements ConsultaServico {
     }
 
     @Override
-    public List<Consulta> buscarTodasAsConsultas() {
+    public List<Consulta> buscarConsultas() {
         return repositorio.buscarConsultasAgendadas();
     }
 

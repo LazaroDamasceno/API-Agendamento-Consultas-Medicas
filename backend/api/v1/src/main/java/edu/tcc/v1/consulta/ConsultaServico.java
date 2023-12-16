@@ -11,7 +11,7 @@ public interface ConsultaServico {
     
     void agendarConsulta(AgendarConsultaDTO dto, Cliente cliente, Medico medico);
     void cancelarConsulta(LocalDateTime dataAgendamento, Cliente cliente);
-    List<Consulta> buscarTodasAsConsultas();
+    List<Consulta> buscarConsultas();
     List<Consulta> buscarConsultasEntreDatas(LocalDateTime dataInicial, LocalDateTime dataFinal);
     List<Consulta> buscarConsultasAgendadas();
     List<Consulta> buscarConsultasAgendadasEntreDatas(LocalDateTime dataInicial, LocalDateTime dataFinal);
