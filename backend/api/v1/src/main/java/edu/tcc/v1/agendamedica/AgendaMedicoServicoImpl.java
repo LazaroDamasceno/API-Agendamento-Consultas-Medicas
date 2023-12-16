@@ -48,8 +48,8 @@ public class AgendaMedicoServicoImpl implements AgendaMedicoServico {
     }
 
     @Override
-    public List<AgendaMedica> buscarTodasAsAgendasMedicas(Medico medico) {
-        return repositorio.buscarTodasAsAgendasMedicas(medico);
+    public List<AgendaMedica> buscarAgendasMedicas(Medico medico) {
+        return repositorio.buscarAgendasMedicas(medico);
     }
 
     @Override

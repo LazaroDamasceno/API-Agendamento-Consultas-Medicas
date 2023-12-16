@@ -19,7 +19,7 @@ public interface AgendaMedicaRepositorio extends JpaRepository<AgendaMedica, UUI
         select am from AgendaMedica am
         where am.medico = :medico
     """)
-    List<AgendaMedica> buscarTodasAsAgendasMedicas(@Param("medico") Medico medico);
+    List<AgendaMedica> buscarAgendasMedicas(@Param("medico") Medico medico);
 
     @Query("""
         select am from AgendaMedica am
