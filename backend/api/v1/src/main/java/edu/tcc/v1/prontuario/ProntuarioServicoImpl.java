@@ -4,6 +4,7 @@ import edu.tcc.v1.cliente.Cliente;
 import edu.tcc.v1.consulta.Consulta;
 import edu.tcc.v1.medico.Medico;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -25,21 +26,23 @@ public class ProntuarioServicoImpl implements ProntuarioServico {
     }
 
     @Override
-    public void criarProntuario(Medico medico, Cliente cliente) {
+    public ResponseEntity<Void> criarProntuario(Medico medico, Cliente cliente) {
         Prontuario prontuario = ProntuarioRepositorio.instanciar(medico, cliente);
         repositorio.save(prontuario);
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     @Override
-    public void adicionarConsultaAoProntuario(Medico medico, Cliente cliente, Consulta consulta) {
+    public ResponseEntity<Void> adicionarConsultaAoProntuario(Medico medico, Cliente cliente, Consulta consulta) {
         Prontuario prontuario = buscarProntuarioPorCliente(medico, cliente).getBody();
         prontuario.adicionarConsultaAoProntuario(consulta);
         repositorio.saveAndFlush(prontuario);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     @Override
-    public List<Prontuario> buscarProntuariosPorMedico(Medico medico) {
-        return repositorio.buscarProntuariosPorMedico(medico);
+    public ResponseEntity<List<Prontuario>> buscarProntuariosPorMedico(Medico medico) {
+        return new ResponseEntity<>(repositorio.buscarProntuariosPorMedico(medico), HttpStatus.OK);
     }
 
 }

@@ -32,6 +32,11 @@ public class ClienteServicoImp implements ClienteServico {
     }
 
     @Override
+    public ResponseEntity<List<Cliente>> exibirClientes() {
+        return ResponseEntity.ok(repositorio.findAll());
+    }
+
+    @Override
     public ResponseEntity<Void> cadastrarCliente(CadastrarClienteDTO dto) {
         Cliente cliente = ClienteRepositorio.instaciar(dto);
         repositorio.save(cliente);

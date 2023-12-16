@@ -9,8 +9,8 @@ import java.util.List;
 
 public interface ProntuarioServico {
 
-    void criarProntuario(Medico medico, Cliente cliente);
-    void adicionarConsultaAoProntuario(Medico medico, Cliente cliente, Consulta consulta);
-    List<Prontuario> buscarProntuariosPorMedico(Medico medico);
+    ResponseEntity<Void> criarProntuario(Medico medico, Cliente cliente);
+    ResponseEntity<Void> adicionarConsultaAoProntuario(Medico medico, Cliente cliente, Consulta consulta);
+    ResponseEntity<List<Prontuario>> buscarProntuariosPorMedico(Medico medico);
 
 }

@@ -33,6 +33,25 @@ public class MedicoServicoImpl implements MedicoServico {
     }
 
     @Override
+    public ResponseEntity<Void> cadastrarMedico(CadastrarMedicoDTO dto) {
+        Medico medico = new Medico(dto);
+        repositorio.save(medico);
+        return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
+    @Override
+    public ResponseEntity<Void> demitirMedico(Medico medico) {
+        medico.setDataDemissao(LocalDateTime.now());
+        repositorio.saveAndFlush(medico);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @Override
+    public ResponseEntity<List<Medico>> buscarMedicos() {
+        return ResponseEntity.ok(repositorio.findAll());
+    }
+
+    @Override
     public ResponseEntity<Void> cadastrarAgendaMedica(CadastrarAgendaMedicaDTO dto, String crm) {
         Medico medico = buscarMedicoPeloCRM(crm).getBody();
         agendaMedicoServico.cadastrarAgendaMedica(dto, medico);
@@ -134,7 +153,7 @@ public class MedicoServicoImpl implements MedicoServico {
     }
 
     @Override
-    public ResponseEntity<List<Consulta>> buscarConsultasEntreDatasPeloNomeDoMedico(String crm, String cpf, String dataInicial, String dataFinal) {
+    public ResponseEntity<List<Consulta>> buscarConsultasEntreDatasPeloNomeDoCliente(String crm, String cpf, String dataInicial, String dataFinal) {
         LocalDateTime di = ConversorDataHora.conversorDataHora(dataInicial);
         LocalDateTime df = ConversorDataHora.conversorDataHora(dataFinal);
         List<Consulta> consultas = consultaServico
@@ -146,7 +165,7 @@ public class MedicoServicoImpl implements MedicoServico {
     }
 
     @Override
-    public ResponseEntity<List<Consulta>> buscarConsultasAgendadasEntreDatasPeloNomeDoMedico(String crm, String cpf, String dataInicial, String dataFinal) {
+    public ResponseEntity<List<Consulta>> buscarConsultasAgendadasEntreDatasPeloNomeDoCliente(String crm, String cpf, String dataInicial, String dataFinal) {
         Medico medico = buscarMedicoPeloCRM(crm).getBody();
         LocalDateTime di = ConversorDataHora.conversorDataHora(dataInicial);
         LocalDateTime df = ConversorDataHora.conversorDataHora(dataFinal);
@@ -159,7 +178,7 @@ public class MedicoServicoImpl implements MedicoServico {
     }
 
     @Override
-    public ResponseEntity<List<Consulta>> buscarConsultasCanceladasEntreDatasPeloNomeDoMedico(String crm, String cpf, String dataInicial, String dataFinal) {
+    public ResponseEntity<List<Consulta>> buscarConsultasCanceladasEntreDatasPeloNomeDoCliente(String crm, String cpf, String dataInicial, String dataFinal) {
         Medico medico = buscarMedicoPeloCRM(crm).getBody();
         LocalDateTime di = ConversorDataHora.conversorDataHora(dataInicial);
         LocalDateTime df = ConversorDataHora.conversorDataHora(dataFinal);
@@ -172,7 +191,7 @@ public class MedicoServicoImpl implements MedicoServico {
     }
 
     @Override
-    public ResponseEntity<List<Consulta>> buscarConsultasPeloNomeDoMedico(String crm, String cpf) {
+    public ResponseEntity<List<Consulta>> buscarConsultasPeloNomeDoCliente(String crm, String cpf) {
         Medico medico = buscarMedicoPeloCRM(crm).getBody();
         List<Consulta> consultas = consultaServico
                 .buscarConsultas()
@@ -183,7 +202,7 @@ public class MedicoServicoImpl implements MedicoServico {
     }
 
     @Override
-    public ResponseEntity<List<Consulta>> buscarConsultasAgendadasPeloNomeDoMedico(String crm, String cpf) {
+    public ResponseEntity<List<Consulta>> buscarConsultasAgendadasPeloNomeDoCliente(String crm, String cpf) {
         Medico medico = buscarMedicoPeloCRM(crm).getBody();
         List<Consulta> consultas = consultaServico
                 .buscarConsultasAgendadas()
@@ -194,7 +213,7 @@ public class MedicoServicoImpl implements MedicoServico {
     }
 
     @Override
-    public ResponseEntity<List<Consulta>> buscarConsultasCanceladasPeloNomeDoMedico(String crm, String cpf) {
+    public ResponseEntity<List<Consulta>> buscarConsultasCanceladasPeloNomeDoCliente(String crm, String cpf) {
         Medico medico = buscarMedicoPeloCRM(crm).getBody();
         List<Consulta> consultas = consultaServico
                 .buscarConsultasCanceladas()

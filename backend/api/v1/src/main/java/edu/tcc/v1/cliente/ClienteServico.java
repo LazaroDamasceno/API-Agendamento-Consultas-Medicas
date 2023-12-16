@@ -8,6 +8,7 @@ import java.util.List;
 
 public interface ClienteServico {
 
+    ResponseEntity<List<Cliente>> exibirClientes();
     ResponseEntity<Void> cadastrarCliente(CadastrarClienteDTO dto);
     ResponseEntity<Void> agendarConsulta(AgendarConsultaDTO dto, String crm, String cpf);
     ResponseEntity<List<Consulta>> buscarConsultas(String cpf);
