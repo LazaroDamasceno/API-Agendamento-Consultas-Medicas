@@ -61,8 +61,7 @@ public class MedicoServicoImpl implements MedicoServico {
     @Override
     public ResponseEntity<List<AgendaMedica>> buscarAgendasMedicas(String crm) {
         Medico medico = buscarMedicoPeloCRM(crm).getBody();
-        List<AgendaMedica> agendasMedicas = agendaMedicoServico.buscarAgendasMedicas(medico);
-        return ResponseEntity.ok(agendasMedicas);
+        return agendaMedicoServico.buscarAgendasMedicas(medico);
     }
 
     @Override
@@ -70,8 +69,7 @@ public class MedicoServicoImpl implements MedicoServico {
         Medico medico = buscarMedicoPeloCRM(crm).getBody();
         LocalDateTime di = ConversorDataHora.conversorDataHora(dataInicial);
         LocalDateTime df = ConversorDataHora.conversorDataHora(dataFinal);
-        List<AgendaMedica> agendasMedicas = agendaMedicoServico.buscarAgendasMedicasEntreDatas(di, df, medico);
-        return ResponseEntity.ok(agendasMedicas);
+        return agendaMedicoServico.buscarAgendasMedicasEntreDatas(di, df, medico);
     }
 
     @Override
