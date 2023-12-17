@@ -31,9 +31,9 @@ public class ClienteControladorImpl implements ClienteControlador {
 
     @Override
     @PatchMapping("cancelar/consulta/{cpf}/{dataAgendamento}")
-    ResponseEntity<Void> cancelarConsulta(@PathVariable(name = "crm") String cpf,
+    public ResponseEntity<Void> cancelarConsulta(@PathVariable(name = "cpf") String cpf,
                                           @PathVariable(name = "dataAgendamento") String dataAgendamento) {
-        return servico.cancelarConsulta(crm, dataAgendamento);
+        return servico.cancelarConsulta(cpf, dataAgendamento);
     }
 
     @Override
