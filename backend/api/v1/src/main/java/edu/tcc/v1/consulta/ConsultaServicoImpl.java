@@ -3,9 +3,7 @@ package edu.tcc.v1.consulta;
 import edu.tcc.v1.cliente.Cliente;
 import edu.tcc.v1.medico.Medico;
 import lombok.AllArgsConstructor;
-import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -28,7 +26,7 @@ public class ConsultaServicoImpl implements ConsultaServico {
                         && e.getDataCancelamento() == null
                         && e.getMedico().equals(medico)
                 ).findFirst();
-        return consulta.isPresent() ? ResponseEntity.ok(consulta.get()) : ResponseEntity.badRequest().build();
+        return consulta.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.badRequest().build());
     }
 
     public static ResponseEntity<Consulta> buscarConsultaPeloCliente(LocalDateTime dataHora, Cliente cliente) {
@@ -40,7 +38,7 @@ public class ConsultaServicoImpl implements ConsultaServico {
                                 && e.getDataCancelamento() == null
                                 && e.getCliente().equals(cliente)
                 ).findFirst();
-        return consulta.isPresent() ? ResponseEntity.ok(consulta.get()) : ResponseEntity.badRequest().build();
+        return consulta.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.badRequest().build());
     }
 
     @Override
@@ -53,6 +51,7 @@ public class ConsultaServicoImpl implements ConsultaServico {
     @Override
     public ResponseEntity<Void> cancelarConsulta(LocalDateTime dataAgendamento, Cliente cliente) {
         Consulta consulta = buscarConsultaPeloCliente(dataAgendamento, cliente).getBody();
+        if (consulta == null) return ResponseEntity.badRequest().build();
         consulta.setDataCancelamento(LocalDateTime.now());
         repositorio.save(consulta);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -61,6 +60,7 @@ public class ConsultaServicoImpl implements ConsultaServico {
     @Override
     public ResponseEntity<Void> adicionarObservacoesMedicasAConsulta(Medico medico, LocalDateTime dataAgendamento, String observacoes) {
         Consulta consulta = buscarConsultaPeloMedico(dataAgendamento, medico).getBody();
+        if (consulta == null) return ResponseEntity.badRequest().build();
         consulta.setObservacoesMedicas(observacoes);
         repositorio.saveAndFlush(consulta);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
