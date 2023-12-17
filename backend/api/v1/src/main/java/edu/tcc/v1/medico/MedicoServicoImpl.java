@@ -3,7 +3,7 @@ package edu.tcc.v1.medico;
 import edu.tcc.v1.agendamedica.*;
 import edu.tcc.v1.consulta.BuscarConsulta;
 import edu.tcc.v1.conversor.ConversorDataHora;
-import edu.tcc.v1.cliente.BuscarClientePeloCPF;
+import edu.tcc.v1.cliente.BuscarCliente;
 import edu.tcc.v1.cliente.Cliente;
 import edu.tcc.v1.consulta.Consulta;
 import edu.tcc.v1.consulta.ConsultaServicoImpl;
@@ -225,7 +225,7 @@ public class MedicoServicoImpl implements MedicoServico {
     @Override
     public ResponseEntity<Void> criarProntuario(String crm, String cpf) {
         Medico medico = new BuscarMedico().buscar(crm).getBody();
-        Cliente cliente = new BuscarClientePeloCPF().buscar(cpf).getBody();
+        Cliente cliente = new BuscarCliente().buscar(cpf).getBody();
         prontuarioServico.criarProntuario(medico, cliente);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
@@ -233,7 +233,7 @@ public class MedicoServicoImpl implements MedicoServico {
     @Override
     public ResponseEntity<Void> adicionarConsultaAoProntuario(String crm, String cpf, String dataAgendamento) {
         Medico medico = new BuscarMedico().buscar(crm).getBody();
-        Cliente cliente = new BuscarClientePeloCPF().buscar(cpf).getBody();
+        Cliente cliente = new BuscarCliente().buscar(cpf).getBody();
         LocalDateTime da = ConversorDataHora.conversorDataHora(dataAgendamento);
         Consulta consulta = new BuscarConsulta().buscarConsultaPeloMedico(da, medico).getBody();
         prontuarioServico.adicionarConsultaAoProntuario(medico, cliente, consulta);
@@ -243,7 +243,7 @@ public class MedicoServicoImpl implements MedicoServico {
     @Override
     public ResponseEntity<Prontuario> buscarProntuarioDeCliente(String crm, String cpf) {
         Medico medico = new BuscarMedico().buscar(crm).getBody();
-        Cliente cliente = new BuscarClientePeloCPF().buscar(cpf).getBody();
+        Cliente cliente = new BuscarCliente().buscar(cpf).getBody();
         return new BuscarProntuario().buscarPorCliente(medico, cliente);
     }
 
