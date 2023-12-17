@@ -35,6 +35,7 @@ public class ProntuarioServicoImpl implements ProntuarioServico {
     @Override
     public ResponseEntity<Void> adicionarConsultaAoProntuario(Medico medico, Cliente cliente, Consulta consulta) {
         Prontuario prontuario = buscarProntuarioPorCliente(medico, cliente).getBody();
+        if (prontuario == null) return ResponseEntity.badRequest().build();
         prontuario.adicionarConsultaAoProntuario(consulta);
         repositorio.saveAndFlush(prontuario);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);

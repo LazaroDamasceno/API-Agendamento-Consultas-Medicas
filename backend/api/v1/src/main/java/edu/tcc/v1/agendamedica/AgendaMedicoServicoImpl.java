@@ -38,6 +38,7 @@ public class AgendaMedicoServicoImpl implements AgendaMedicoServico {
     @Override
     public ResponseEntity<Void> associarConsulta(LocalDateTime dataDisponivel, Medico medico, Consulta consulta) {
         AgendaMedica agendaMedica = buscarAgendaMedica(dataDisponivel, medico).getBody();
+        if (agendaMedica == null) return ResponseEntity.badRequest().build();
         agendaMedica.setConsulta(consulta);
         repositorio.save(agendaMedica);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -46,6 +47,7 @@ public class AgendaMedicoServicoImpl implements AgendaMedicoServico {
     @Override
     public ResponseEntity<Void> desassociarConsulta(LocalDateTime dataDisponivel, Medico medico) {
         AgendaMedica agendaMedica = buscarAgendaMedica(dataDisponivel, medico).getBody();
+        if (agendaMedica == null) return ResponseEntity.badRequest().build();
         agendaMedica.setConsulta(null);
         repositorio.save(agendaMedica);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
