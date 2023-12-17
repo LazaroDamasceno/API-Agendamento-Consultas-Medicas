@@ -30,6 +30,13 @@ public class ClienteControladorImpl implements ClienteControlador {
     }
 
     @Override
+    @PatchMapping("cancelar/consulta/{cpf}/{dataAgendamento}")
+    ResponseEntity<Void> cancelarConsulta(@PathVariable(name = "crm") String cpf,
+                                          @PathVariable(name = "dataAgendamento") String dataAgendamento) {
+        return servico.cancelarConsulta(crm, dataAgendamento);
+    }
+
+    @Override
     @GetMapping("buscar/consultas/{cpf}")
     public ResponseEntity<List<Consulta>> buscarConsultas(@PathVariable(name = "cpf") String cpf) {
         return servico.buscarConsultas(cpf);

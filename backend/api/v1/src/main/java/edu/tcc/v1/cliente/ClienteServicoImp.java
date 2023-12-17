@@ -51,6 +51,14 @@ public class ClienteServicoImp implements ClienteServico {
     }
 
     @Override
+    public ResponseEntity<Void> cancelarConsulta(String cpf, String dataAgendamento) {
+        Cliente cliente = buscarClientePeloCPF(cpf).getBody();
+        LocalDateTime da = ConversorDataHora.conversorDataHora(dataAgendamento);    
+        consultaServico.cancelarConsulta(da, cliente);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @Override
     public ResponseEntity<List<Consulta>> buscarConsultas(String cpf) {
         Cliente cliente = buscarClientePeloCPF(cpf).getBody();
         List<Consulta> consultas = consultaServico

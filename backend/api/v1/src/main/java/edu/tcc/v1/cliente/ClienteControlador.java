@@ -10,6 +10,7 @@ public interface ClienteControlador {
 
     ResponseEntity<Void> cadastrarCliente(CadastrarClienteDTO dto);
     ResponseEntity<Void> agendarConsulta(AgendarConsultaDTO dto, String crm, String cpf);
+    ResponseEntity<Void> cancelarConsulta(String cpf, String dataAgendamento);
     ResponseEntity<List<Consulta>> buscarConsultas(String cpf);
     ResponseEntity<List<Consulta>> buscarConsultasAgendadas(String cpf);
     ResponseEntity<List<Consulta>> buscarConsultasCanceladas(String cpf);
