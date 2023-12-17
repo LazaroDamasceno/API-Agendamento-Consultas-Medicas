@@ -123,8 +123,7 @@ public class ClienteServicoImp implements ClienteServico {
     }
 
     @Override
-    public ResponseEntity<List<Consulta>> buscarConsultasEntreDatasPeloNomeDoMedico(String cpf, String crm, String dataInicial, String dataFinal) {
-        Medico medico = MedicoServicoImpl.buscarMedicoPeloCRM(crm).getBody();
+    public ResponseEntity<List<Consulta>> buscarConsultasEntreDatasPeloNomeDoMedico(String cpf, String nome, String dataInicial, String dataFinal) {
         LocalDateTime di = ConversorDataHora.conversorDataHora(dataInicial);
         LocalDateTime df = ConversorDataHora.conversorDataHora(dataFinal);
         List<Consulta> consultas = consultaServico
@@ -132,14 +131,13 @@ public class ClienteServicoImp implements ClienteServico {
                 .stream()
                 .filter(
                         e -> e.getCliente().equals(buscarClientePeloCPF(cpf).getBody())
-                       && e.getMedico().equals(medico)
+                       && e.getMedico().getUsuario().getNome().contains(nome)
                 ).toList();
         return ResponseEntity.ok(consultas);
     }
 
     @Override
-    public ResponseEntity<List<Consulta>> buscarConsultasAgendadasEntreDatasPeloNomeDoMedico(String cpf, String crm, String dataInicial, String dataFinal) {
-        Medico medico = MedicoServicoImpl.buscarMedicoPeloCRM(crm).getBody();
+    public ResponseEntity<List<Consulta>> buscarConsultasAgendadasEntreDatasPeloNomeDoMedico(String cpf, String nome, String dataInicial, String dataFinal) {
         LocalDateTime di = ConversorDataHora.conversorDataHora(dataInicial);
         LocalDateTime df = ConversorDataHora.conversorDataHora(dataFinal);
         List<Consulta> consultas = consultaServico
@@ -147,14 +145,13 @@ public class ClienteServicoImp implements ClienteServico {
                 .stream()
                 .filter(
                         e -> e.getCliente().equals(buscarClientePeloCPF(cpf).getBody())
-                                && e.getMedico().equals(medico)
+                        && e.getMedico().getUsuario().getNome().contains(nome)
                 ).toList();
         return ResponseEntity.ok(consultas);
     }
 
     @Override
-    public ResponseEntity<List<Consulta>> buscarConsultasCanceladasEntreDatasPeloNomeDoMedico(String cpf, String crm, String dataInicial, String dataFinal) {
-        Medico medico = MedicoServicoImpl.buscarMedicoPeloCRM(crm).getBody();
+    public ResponseEntity<List<Consulta>> buscarConsultasCanceladasEntreDatasPeloNomeDoMedico(String cpf, String nome, String dataInicial, String dataFinal) {
         LocalDateTime di = ConversorDataHora.conversorDataHora(dataInicial);
         LocalDateTime df = ConversorDataHora.conversorDataHora(dataFinal);
         List<Consulta> consultas = consultaServico
@@ -162,40 +159,37 @@ public class ClienteServicoImp implements ClienteServico {
                 .stream()
                 .filter(
                         e -> e.getCliente().equals(buscarClientePeloCPF(cpf).getBody())
-                                && e.getMedico().equals(medico)
+                        && e.getMedico().getUsuario().getNome().contains(nome)
                 ).toList();
         return ResponseEntity.ok(consultas);
     }
 
     @Override
-    public ResponseEntity<List<Consulta>> buscarConsultasPeloNomeDoMedico(String cpf, String crm) {
-        Medico medico = MedicoServicoImpl.buscarMedicoPeloCRM(crm).getBody();
+    public ResponseEntity<List<Consulta>> buscarConsultasPeloNomeDoMedico(String cpf, String nome) {
         List<Consulta> consultas = consultaServico
                 .buscarConsultas()
                 .stream()
-                .filter(e -> e.getMedico().equals(medico))
+                .filter(e -> e.getMedico().getUsuario().getNome().contains(nome))
                 .toList();
         return ResponseEntity.ok(consultas);
     }
 
     @Override
-    public ResponseEntity<List<Consulta>> buscarConsultasAgendadasPeloNomeDoMedico(String cpf, String crm) {
-        Medico medico = MedicoServicoImpl.buscarMedicoPeloCRM(crm).getBody();
+    public ResponseEntity<List<Consulta>> buscarConsultasAgendadasPeloNomeDoMedico(String cpf, String nome) {
         List<Consulta> consultas = consultaServico
                 .buscarConsultasAgendadas()
                 .stream()
-                .filter(e -> e.getMedico().equals(medico))
+                .filter(e -> e.getMedico().getUsuario().getNome().contains(nome))
                 .toList();
         return ResponseEntity.ok(consultas);
     }
 
     @Override
-    public ResponseEntity<List<Consulta>> buscarConsultasCanceladasPeloNomeDoMedico(String cpf, String crm) {
-        Medico medico = MedicoServicoImpl.buscarMedicoPeloCRM(crm).getBody();
+    public ResponseEntity<List<Consulta>> buscarConsultasCanceladasPeloNomeDoMedico(String cpf, String nome) {
         List<Consulta> consultas = consultaServico
                 .buscarConsultasCanceladas()
                 .stream()
-                .filter(e -> e.getMedico().equals(medico))
+                .filter(e -> e.getMedico().getUsuario().getNome().contains(nome))
                 .toList();
         return ResponseEntity.ok(consultas);
     }

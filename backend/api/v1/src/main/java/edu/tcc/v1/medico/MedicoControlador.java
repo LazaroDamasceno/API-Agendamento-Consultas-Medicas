@@ -20,12 +20,12 @@ public interface MedicoControlador {
     ResponseEntity<List<Consulta>> buscarConsultasEntreDatas(String crm, String dataInicial, String dataFinal);
     ResponseEntity<List<Consulta>> buscarConsultasAgendadasEntreDatas(String crm, String dataInicial, String dataFinal);
     ResponseEntity<List<Consulta>> buscarConsultasCanceladasEntreDatas(String crm, String dataInicial, String dataFinal);
-    ResponseEntity<List<Consulta>> buscarConsultasEntreDatasPeloNomeDoCliente(String crm, String cpf, String dataInicial, String dataFinal);
-    ResponseEntity<List<Consulta>> buscarConsultasAgendadasEntreDatasPeloNomeDoCliente(String crm, String cpf, String dataInicial, String dataFinal);
-    ResponseEntity<List<Consulta>> buscarConsultasCanceladasEntreDatasPeloNomeDoCliente(String crm, String cpf, String dataInicial, String dataFinal);
-    ResponseEntity<List<Consulta>> buscarConsultasPeloNomeDoCliente(String crm, String cpf);
-    ResponseEntity<List<Consulta>> buscarConsultasAgendadasPeloNomeDoCliente(String crm, String cpf);
-    ResponseEntity<List<Consulta>> buscarConsultasCanceladasPeloNomeDoCliente(String crm, String cpf);
+    ResponseEntity<List<Consulta>> buscarConsultasEntreDatasPeloNomeDoCliente(String crm, String nome, String dataInicial, String dataFinal);
+    ResponseEntity<List<Consulta>> buscarConsultasAgendadasEntreDatasPeloNomeDoCliente(String crm, String nome, String dataInicial, String dataFinal);
+    ResponseEntity<List<Consulta>> buscarConsultasCanceladasEntreDatasPeloNomeDoCliente(String crm, String nome, String dataInicial, String dataFinal);
+    ResponseEntity<List<Consulta>> buscarConsultasPeloNomeDoCliente(String crm, String nome);
+    ResponseEntity<List<Consulta>> buscarConsultasAgendadasPeloNomeDoCliente(String crm, String nome);
+    ResponseEntity<List<Consulta>> buscarConsultasCanceladasPeloNomeDoCliente(String crm, String nome);
     ResponseEntity<Void> criarProntuario(String crm, String cpf);
     ResponseEntity<Void> adicionarConsultaAoProntuario(String crm, String cpf, String dataAgendamento);
     ResponseEntity<Prontuario> buscarProntuarioDeCliente(String crm, String cpf);
