@@ -37,13 +37,13 @@ public class ClienteServicoImpl implements ClienteServico {
     @Override
     public ResponseEntity<Void> agendarConsulta(AgendarConsultaDTO dto, String crm, String cpf) {
         Medico medico = new BuscarMedico().buscar(crm).getBody();
-        consultaServico.agendarConsulta(dto, new BuscarClientePeloCPF().buscar(cpf).getBody(), medico);
+        consultaServico.agendarConsulta(dto, new BuscarCliente().buscar(cpf).getBody(), medico);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     @Override
     public ResponseEntity<Void> cancelarConsulta(String cpf, String dataAgendamento) {
-        Cliente cliente = new BuscarClientePeloCPF().buscar(cpf).getBody();
+        Cliente cliente = new BuscarCliente().buscar(cpf).getBody();
         LocalDateTime da = ConversorDataHora.conversorDataHora(dataAgendamento);    
         consultaServico.cancelarConsulta(da, cliente);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -51,7 +51,7 @@ public class ClienteServicoImpl implements ClienteServico {
 
     @Override
     public ResponseEntity<List<Consulta>> buscarConsultas(String cpf) {
-        Cliente cliente = new BuscarClientePeloCPF().buscar(cpf).getBody();
+        Cliente cliente = new BuscarCliente().buscar(cpf).getBody();
         List<Consulta> consultas = consultaServico
                 .buscarConsultas()
                 .stream()
@@ -62,7 +62,7 @@ public class ClienteServicoImpl implements ClienteServico {
 
     @Override
     public ResponseEntity<List<Consulta>> buscarConsultasAgendadas(String cpf) {
-        Cliente cliente = new BuscarClientePeloCPF().buscar(cpf).getBody();
+        Cliente cliente = new BuscarCliente().buscar(cpf).getBody();
         List<Consulta> consultas = consultaServico
                 .buscarConsultasAgendadas()
                 .stream()
@@ -73,7 +73,7 @@ public class ClienteServicoImpl implements ClienteServico {
 
     @Override
     public ResponseEntity<List<Consulta>> buscarConsultasCanceladas(String cpf) {
-        Cliente cliente = new BuscarClientePeloCPF().buscar(cpf).getBody();
+        Cliente cliente = new BuscarCliente().buscar(cpf).getBody();
         List<Consulta> consultas = consultaServico
                 .buscarConsultasCanceladas()
                 .stream()
@@ -84,7 +84,7 @@ public class ClienteServicoImpl implements ClienteServico {
 
     @Override
     public ResponseEntity<List<Consulta>> buscarConsultasEntreDatas(String cpf, String dataInicial, String dataFinal) {
-        Cliente cliente = new BuscarClientePeloCPF().buscar(cpf).getBody();
+        Cliente cliente = new BuscarCliente().buscar(cpf).getBody();
         LocalDateTime dataInicial2 = ConversorDataHora.conversorDataHora(dataInicial);
         LocalDateTime dataFinal2 = ConversorDataHora.conversorDataHora(dataFinal);
         List<Consulta> consultas = consultaServico
@@ -97,7 +97,7 @@ public class ClienteServicoImpl implements ClienteServico {
 
     @Override
     public ResponseEntity<List<Consulta>> buscarConsultasAgendadasEntreDatas(String cpf, String dataInicial, String dataFinal) {
-        Cliente cliente = new BuscarClientePeloCPF().buscar(cpf).getBody();
+        Cliente cliente = new BuscarCliente().buscar(cpf).getBody();
         LocalDateTime di = ConversorDataHora.conversorDataHora(dataInicial);
         LocalDateTime df = ConversorDataHora.conversorDataHora(dataFinal);
         List<Consulta> consultas = consultaServico
@@ -110,7 +110,7 @@ public class ClienteServicoImpl implements ClienteServico {
 
     @Override
     public ResponseEntity<List<Consulta>> buscarConsultasCanceladasEntreDatas(String cpf, String dataInicial, String dataFinal) {
-        Cliente cliente = new BuscarClientePeloCPF().buscar(cpf).getBody();
+        Cliente cliente = new BuscarCliente().buscar(cpf).getBody();
         LocalDateTime dataInicial2 = ConversorDataHora.conversorDataHora(dataInicial);
         LocalDateTime dataFinal2 = ConversorDataHora.conversorDataHora(dataFinal);
         List<Consulta> consultas = consultaServico
@@ -129,7 +129,7 @@ public class ClienteServicoImpl implements ClienteServico {
                 .buscarConsultasEntreDatas(di, df)
                 .stream()
                 .filter(
-                        e -> e.getCliente().equals(new BuscarClientePeloCPF().buscar(cpf).getBody())
+                        e -> e.getCliente().equals(new BuscarCliente().buscar(cpf).getBody())
                        && e.getMedico().getUsuario().getNome().contains(nome)
                 ).toList();
         return ResponseEntity.ok(consultas);
@@ -143,7 +143,7 @@ public class ClienteServicoImpl implements ClienteServico {
                 .buscarConsultasAgendadasEntreDatas(di, df)
                 .stream()
                 .filter(
-                        e -> e.getCliente().equals(new BuscarClientePeloCPF().buscar(cpf).getBody())
+                        e -> e.getCliente().equals(new BuscarCliente().buscar(cpf).getBody())
                         && e.getMedico().getUsuario().getNome().contains(nome)
                 ).toList();
         return ResponseEntity.ok(consultas);
@@ -157,7 +157,7 @@ public class ClienteServicoImpl implements ClienteServico {
                 .buscarConsultasCanceladasEntreDatas(di, df)
                 .stream()
                 .filter(
-                        e -> e.getCliente().equals(new BuscarClientePeloCPF().buscar(cpf).getBody())
+                        e -> e.getCliente().equals(new BuscarCliente().buscar(cpf).getBody())
                         && e.getMedico().getUsuario().getNome().contains(nome)
                 ).toList();
         return ResponseEntity.ok(consultas);

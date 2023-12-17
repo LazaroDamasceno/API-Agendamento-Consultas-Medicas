@@ -4,7 +4,7 @@ import edu.tcc.v1.usuario.BuscarUsuario;
 import edu.tcc.v1.usuario.Usuario;
 import org.springframework.http.ResponseEntity;
 
-public class BuscarClientePeloCPF {
+public class BuscarCliente {
 
     ClienteRepositorio repositorio;
 
