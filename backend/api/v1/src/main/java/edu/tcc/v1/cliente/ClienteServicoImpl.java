@@ -4,7 +4,7 @@ import edu.tcc.v1.conversor.ConversorDataHora;
 import edu.tcc.v1.consulta.AgendarConsultaDTO;
 import edu.tcc.v1.consulta.Consulta;
 import edu.tcc.v1.consulta.ConsultaServicoImpl;
-import edu.tcc.v1.medico.BuscarMedicoPeloCRM;
+import edu.tcc.v1.medico.BuscarMedico;
 import edu.tcc.v1.medico.Medico;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -36,7 +36,7 @@ public class ClienteServicoImpl implements ClienteServico {
 
     @Override
     public ResponseEntity<Void> agendarConsulta(AgendarConsultaDTO dto, String crm, String cpf) {
-        Medico medico = new BuscarMedicoPeloCRM().buscar(crm).getBody();
+        Medico medico = new BuscarMedico().buscar(crm).getBody();
         consultaServico.agendarConsulta(dto, new BuscarClientePeloCPF().buscar(cpf).getBody(), medico);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }

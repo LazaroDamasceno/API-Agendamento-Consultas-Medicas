@@ -48,20 +48,20 @@ public class MedicoServicoImpl implements MedicoServico {
 
     @Override
     public ResponseEntity<Void> cadastrarAgendaMedica(CadastrarAgendaMedicaDTO dto, String crm) {
-        Medico medico = new BuscarMedicoPeloCRM().buscar(crm).getBody();
+        Medico medico = new BuscarMedico().buscar(crm).getBody();
         agendaMedicoServico.cadastrarAgendaMedica(dto, medico);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     @Override
     public ResponseEntity<List<AgendaMedica>> buscarAgendasMedicas(String crm) {
-        Medico medico = new BuscarMedicoPeloCRM().buscar(crm).getBody();
+        Medico medico = new BuscarMedico().buscar(crm).getBody();
         return agendaMedicoServico.buscarAgendasMedicas(medico);
     }
 
     @Override
     public ResponseEntity<List<AgendaMedica>> buscarAgendasMedicasEntreDatas(String crm, String dataInicial, String dataFinal) {
-        Medico medico = new BuscarMedicoPeloCRM().buscar(crm).getBody();
+        Medico medico = new BuscarMedico().buscar(crm).getBody();
         LocalDateTime di = ConversorDataHora.conversorDataHora(dataInicial);
         LocalDateTime df = ConversorDataHora.conversorDataHora(dataFinal);
         return agendaMedicoServico.buscarAgendasMedicasEntreDatas(di, df, medico);
@@ -69,7 +69,7 @@ public class MedicoServicoImpl implements MedicoServico {
 
     @Override
     public ResponseEntity<Void> adicionarObservacoesMedicasAConsulta(String crm, String dataAgendamento, String observacoes) {
-        Medico medico = new BuscarMedicoPeloCRM().buscar(crm).getBody();
+        Medico medico = new BuscarMedico().buscar(crm).getBody();
         LocalDateTime da = ConversorDataHora.conversorDataHora(dataAgendamento);
         consultaServico.adicionarObservacoesMedicasAConsulta(medico, da, observacoes);
         return ResponseEntity.noContent().build();
@@ -77,7 +77,7 @@ public class MedicoServicoImpl implements MedicoServico {
 
     @Override
     public ResponseEntity<List<Consulta>> buscarConsultas(String crm) {
-        Medico medico = new BuscarMedicoPeloCRM().buscar(crm).getBody();
+        Medico medico = new BuscarMedico().buscar(crm).getBody();
         List<Consulta> consultas = consultaServico
                 .buscarConsultas()
                 .stream()
@@ -88,7 +88,7 @@ public class MedicoServicoImpl implements MedicoServico {
 
     @Override
     public ResponseEntity<List<Consulta>> buscarConsultasAgendadas(String crm) {
-        Medico medico = new BuscarMedicoPeloCRM().buscar(crm).getBody();
+        Medico medico = new BuscarMedico().buscar(crm).getBody();
         List<Consulta> consultas = consultaServico
                 .buscarConsultasAgendadas()
                 .stream()
@@ -99,7 +99,7 @@ public class MedicoServicoImpl implements MedicoServico {
 
     @Override
     public ResponseEntity<List<Consulta>> buscarConsultasCanceladas(String crm) {
-        Medico medico = new BuscarMedicoPeloCRM().buscar(crm).getBody();
+        Medico medico = new BuscarMedico().buscar(crm).getBody();
         List<Consulta> consultas = consultaServico
                 .buscarConsultasCanceladas()
                 .stream()
@@ -110,7 +110,7 @@ public class MedicoServicoImpl implements MedicoServico {
 
     @Override
     public ResponseEntity<List<Consulta>> buscarConsultasEntreDatas(String crm, String dataInicial, String dataFinal) {
-        Medico medico = new BuscarMedicoPeloCRM().buscar(crm).getBody();
+        Medico medico = new BuscarMedico().buscar(crm).getBody();
         LocalDateTime di = ConversorDataHora.conversorDataHora(dataInicial);
         LocalDateTime df = ConversorDataHora.conversorDataHora(dataFinal);
         List<Consulta> consultas = consultaServico
@@ -128,7 +128,7 @@ public class MedicoServicoImpl implements MedicoServico {
         List<Consulta> consultas = consultaServico
                 .buscarConsultasAgendadasEntreDatas(di, df)
                 .stream()
-                .filter(e -> e.getMedico().equals(new BuscarMedicoPeloCRM().buscar(crm).getBody()))
+                .filter(e -> e.getMedico().equals(new BuscarMedico().buscar(crm).getBody()))
                 .toList();
         return ResponseEntity.ok(consultas);
     }
@@ -140,7 +140,7 @@ public class MedicoServicoImpl implements MedicoServico {
         List<Consulta> consultas = consultaServico
                 .buscarConsultasCanceladasEntreDatas(di, df)
                 .stream()
-                .filter(e -> e.getMedico().equals(new BuscarMedicoPeloCRM().buscar(crm).getBody()))
+                .filter(e -> e.getMedico().equals(new BuscarMedico().buscar(crm).getBody()))
                 .toList();
         return ResponseEntity.ok(consultas);
     }
@@ -153,7 +153,7 @@ public class MedicoServicoImpl implements MedicoServico {
                 .buscarConsultasEntreDatas(di, df)
                 .stream()
                 .filter(
-                        e -> e.getMedico().equals(new BuscarMedicoPeloCRM().buscar(crm).getBody())
+                        e -> e.getMedico().equals(new BuscarMedico().buscar(crm).getBody())
                         && e.getCliente().getUsuario().getNome().equals(nome)
                 ).toList();
         return ResponseEntity.ok(consultas);
@@ -167,7 +167,7 @@ public class MedicoServicoImpl implements MedicoServico {
                 .buscarConsultasAgendadasEntreDatas(di, df)
                 .stream()
                 .filter(
-                        e -> e.getMedico().equals(new BuscarMedicoPeloCRM().buscar(crm).getBody())
+                        e -> e.getMedico().equals(new BuscarMedico().buscar(crm).getBody())
                                 && e.getCliente().getUsuario().getNome().equals(nome)
                 ).toList();
         return ResponseEntity.ok(consultas);
@@ -181,7 +181,7 @@ public class MedicoServicoImpl implements MedicoServico {
                 .buscarConsultasCanceladasEntreDatas(di, df)
                 .stream()
                 .filter(
-                        e -> e.getMedico().equals(new BuscarMedicoPeloCRM().buscar(crm).getBody())                                && e.getCliente().getUsuario().getNome().equals(nome)
+                        e -> e.getMedico().equals(new BuscarMedico().buscar(crm).getBody())                                && e.getCliente().getUsuario().getNome().equals(nome)
                 ).toList();
         return ResponseEntity.ok(consultas);
     }
@@ -192,7 +192,7 @@ public class MedicoServicoImpl implements MedicoServico {
                 .buscarConsultas()
                 .stream()
                 .filter(
-                        e -> e.getMedico().equals(new BuscarMedicoPeloCRM().buscar(crm).getBody())
+                        e -> e.getMedico().equals(new BuscarMedico().buscar(crm).getBody())
                                 && e.getCliente().getUsuario().getNome().equals(nome)
                 ).toList();
         return ResponseEntity.ok(consultas);
@@ -204,7 +204,7 @@ public class MedicoServicoImpl implements MedicoServico {
                 .buscarConsultasAgendadas()
                 .stream()
                 .filter(
-                        e -> e.getMedico().equals(new BuscarMedicoPeloCRM().buscar(crm).getBody())
+                        e -> e.getMedico().equals(new BuscarMedico().buscar(crm).getBody())
                                 && e.getCliente().getUsuario().getNome().equals(nome)
                 ).toList();
         return ResponseEntity.ok(consultas);
@@ -216,7 +216,7 @@ public class MedicoServicoImpl implements MedicoServico {
                 .buscarConsultasCanceladas()
                 .stream()
                 .filter(
-                        e -> e.getMedico().equals(new BuscarMedicoPeloCRM().buscar(crm).getBody())
+                        e -> e.getMedico().equals(new BuscarMedico().buscar(crm).getBody())
                                 && e.getCliente().getUsuario().getNome().equals(nome)
                 ).toList();
         return ResponseEntity.ok(consultas);
@@ -224,7 +224,7 @@ public class MedicoServicoImpl implements MedicoServico {
 
     @Override
     public ResponseEntity<Void> criarProntuario(String crm, String cpf) {
-        Medico medico = new BuscarMedicoPeloCRM().buscar(crm).getBody();
+        Medico medico = new BuscarMedico().buscar(crm).getBody();
         Cliente cliente = new BuscarClientePeloCPF().buscar(cpf).getBody();
         prontuarioServico.criarProntuario(medico, cliente);
         return new ResponseEntity<>(HttpStatus.CREATED);
@@ -232,7 +232,7 @@ public class MedicoServicoImpl implements MedicoServico {
 
     @Override
     public ResponseEntity<Void> adicionarConsultaAoProntuario(String crm, String cpf, String dataAgendamento) {
-        Medico medico = new BuscarMedicoPeloCRM().buscar(crm).getBody();
+        Medico medico = new BuscarMedico().buscar(crm).getBody();
         Cliente cliente = new BuscarClientePeloCPF().buscar(cpf).getBody();
         LocalDateTime da = ConversorDataHora.conversorDataHora(dataAgendamento);
         Consulta consulta = new BuscarConsulta().buscarConsultaPeloMedico(da, medico).getBody();
@@ -242,7 +242,7 @@ public class MedicoServicoImpl implements MedicoServico {
 
     @Override
     public ResponseEntity<Prontuario> buscarProntuarioDeCliente(String crm, String cpf) {
-        Medico medico = new BuscarMedicoPeloCRM().buscar(crm).getBody();
+        Medico medico = new BuscarMedico().buscar(crm).getBody();
         Cliente cliente = new BuscarClientePeloCPF().buscar(cpf).getBody();
         return new BuscarProntuario().buscarPorCliente(medico, cliente);
     }

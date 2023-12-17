@@ -2,7 +2,7 @@ package edu.tcc.v1.usuario;
 
 import org.springframework.http.ResponseEntity;
 
-public class BuscarUsuarioImpl {
+public class BuscarUsuario {
 
     UsuarioRepositorio repositorio;
 

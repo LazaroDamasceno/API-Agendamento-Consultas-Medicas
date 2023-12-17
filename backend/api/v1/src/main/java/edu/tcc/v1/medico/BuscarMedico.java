@@ -2,7 +2,7 @@ package edu.tcc.v1.medico;
 
 import org.springframework.http.ResponseEntity;
 
-public class BuscarMedicoPeloCRM {
+public class BuscarMedico {
 
     private MedicoRepositorio repositorio;
 
