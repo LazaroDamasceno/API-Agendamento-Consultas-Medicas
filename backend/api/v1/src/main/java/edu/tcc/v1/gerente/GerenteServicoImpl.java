@@ -1,7 +1,8 @@
 package edu.tcc.v1.gerente;
 
 import edu.tcc.v1.cliente.Cliente;
-import edu.tcc.v1.cliente.ClienteServicoImp;
+import edu.tcc.v1.cliente.ClienteServicoImpl;
+import edu.tcc.v1.medico.BuscarMedicoPeloCRM;
 import edu.tcc.v1.medico.CadastrarMedicoDTO;
 import edu.tcc.v1.medico.Medico;
 import edu.tcc.v1.medico.MedicoServicoImpl;
@@ -17,7 +18,7 @@ import java.util.List;
 public class GerenteServicoImpl implements GerenteServico {
 
     private MedicoServicoImpl medicoServico;
-    private ClienteServicoImp clienteServicoImp;
+    private ClienteServicoImpl clienteServicoImp;
 
     @Override
     public ResponseEntity<Void> cadastrarMedico(CadastrarMedicoDTO dto) {
@@ -27,7 +28,7 @@ public class GerenteServicoImpl implements GerenteServico {
 
     @Override
     public ResponseEntity<Void> demitirMedico(String crm) {
-        Medico medico = MedicoServicoImpl.buscarMedicoPeloCRM(crm).getBody();
+        Medico medico = new BuscarMedicoPeloCRM().buscar(crm).getBody();
         if (medico == null) return ResponseEntity.badRequest().build();
         medicoServico.demitirMedico(medico);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -40,7 +41,7 @@ public class GerenteServicoImpl implements GerenteServico {
 
     @Override
     public ResponseEntity<Medico> buscarMedicoPeloCRM(String crm) {
-        return MedicoServicoImpl.buscarMedicoPeloCRM(crm);
+        return new BuscarMedicoPeloCRM().buscar(crm);
     }
 
     @Override

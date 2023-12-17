@@ -9,7 +9,7 @@ public record CadastrarUsuarioDTO(
         String nome,
 
         @NotBlank
-        @Size(min = 11, max = 12, message = "O CPF tem 11 dígitos.")
+        @Size(min = 11, max = 11, message = "O CPF tem 11 dígitos.")
         String cpf,
 
         @NotBlank
@@ -20,7 +20,7 @@ public record CadastrarUsuarioDTO(
         String email,
 
         @NotBlank
-        @Size(min = 11, max = 12, message = "O telefone tem 11 dígitos.")
+        @Size(min = 11, max = 11, message = "O telefone tem 11 dígitos.")
         String telefone,
 
         @NotBlank

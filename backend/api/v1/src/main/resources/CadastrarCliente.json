@@ -1,0 +1,15 @@
+{
+  "cep": "59056490",
+  "logradouro": "Rua Professor Antônio Nesi",
+  "bairro": "Nova Descoberta",
+  "cidade": "Natal",
+  "uf": "RN",
+  "usuario": {
+    "nome": "Guiltenberg Alves",
+    "cpf": "11143330420",
+    "dataNascimento": "12-02-1992 00:00:00",
+    "email": "guil.alves@gamil.com",
+    "telefone": "8491234567",
+    "genero": "masculino"
+  }
+}

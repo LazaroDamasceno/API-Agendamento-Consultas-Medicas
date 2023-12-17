@@ -2,7 +2,7 @@ package edu.tcc.v1.usuario;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-import edu.tcc.v1.auxiliares.ConversorDataHora;
+import edu.tcc.v1.conversor.ConversorDataHora;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
@@ -11,7 +11,7 @@ import lombok.Setter;
 
 import java.io.Serial;
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity
@@ -32,18 +32,18 @@ public class Usuario implements Serializable {
     private String nome;
 
     @Column(nullable = false, unique = true)
-    @Size(min = 11, max = 12, message = "O CPF tem 11 dígitos.")
+    @Size(min = 11, max = 11, message = "O CPF tem 11 dígitos.")
     private String cpf;
 
     @Column(nullable = false)
-    @JsonFormat(pattern = "dd-MM-yyyy")
-    private LocalDate dataNascimento;
+    @JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss")
+    private LocalDateTime dataNascimento;
 
     @Column(nullable = false, unique = true)
     private String email;
 
     @Column(nullable = false)
-    @Size(min = 11, max = 12, message = "O telefone tem 11 dígitos.")
+    @Size(min = 11, max = 11, message = "O telefone tem 11 dígitos.")
     private String telefone;
 
     @Column(nullable = false)
@@ -52,7 +52,7 @@ public class Usuario implements Serializable {
     Usuario(CadastrarUsuarioDTO dto) {
         this.nome = dto.nome();
         this.cpf = dto.cpf();
-        this.dataNascimento = ConversorDataHora.conversorData(dto.dataNascimento());
+        this.dataNascimento = ConversorDataHora.conversorDataHora(dto.dataNascimento());
         this.email = dto.email();
         this.telefone = dto.telefone();
         this.genero = dto.genero();

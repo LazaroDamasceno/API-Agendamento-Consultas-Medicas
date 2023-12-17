@@ -9,24 +9,12 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @AllArgsConstructor
 public class AgendaMedicoServicoImpl implements AgendaMedicoServico {
 
-    static AgendaMedicaRepositorio repositorio;
-
-    public static ResponseEntity<AgendaMedica> buscarAgendaMedica(LocalDateTime dataDisponivel, Medico medico) {
-        Optional<AgendaMedica> agendaMedica = repositorio
-                .findAll()
-                .stream()
-                .filter(
-                        e -> e.getDataDisponivel().equals(dataDisponivel)
-                        && e.getMedico().equals(medico)
-                ).findFirst();
-        return agendaMedica.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.badRequest().build());
-    }
+    private AgendaMedicaRepositorio repositorio;
 
     @Override
     public ResponseEntity<Void> cadastrarAgendaMedica(CadastrarAgendaMedicaDTO dto, Medico medico) {
@@ -37,7 +25,7 @@ public class AgendaMedicoServicoImpl implements AgendaMedicoServico {
 
     @Override
     public ResponseEntity<Void> associarConsulta(LocalDateTime dataDisponivel, Medico medico, Consulta consulta) {
-        AgendaMedica agendaMedica = buscarAgendaMedica(dataDisponivel, medico).getBody();
+        AgendaMedica agendaMedica = new BuscarAgendaMedica().buscar(dataDisponivel, medico).getBody();
         if (agendaMedica == null) return ResponseEntity.badRequest().build();
         agendaMedica.setConsulta(consulta);
         repositorio.save(agendaMedica);
@@ -46,7 +34,7 @@ public class AgendaMedicoServicoImpl implements AgendaMedicoServico {
 
     @Override
     public ResponseEntity<Void> desassociarConsulta(LocalDateTime dataDisponivel, Medico medico) {
-        AgendaMedica agendaMedica = buscarAgendaMedica(dataDisponivel, medico).getBody();
+        AgendaMedica agendaMedica = new BuscarAgendaMedica().buscar(dataDisponivel, medico).getBody();
         if (agendaMedica == null) return ResponseEntity.badRequest().build();
         agendaMedica.setConsulta(null);
         repositorio.save(agendaMedica);

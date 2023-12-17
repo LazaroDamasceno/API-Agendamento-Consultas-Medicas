@@ -9,37 +9,12 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @AllArgsConstructor
 public class ConsultaServicoImpl implements ConsultaServico {
 
-    static ConsultaRepositorio repositorio;
-
-    public static ResponseEntity<Consulta> buscarConsultaPeloMedico(LocalDateTime dataHora, Medico medico) {
-        Optional<Consulta> consulta = repositorio
-                .findAll()
-                .stream()
-                .filter(
-                        e -> e.getDataAgendamento().equals(dataHora)
-                        && e.getDataCancelamento() == null
-                        && e.getMedico().equals(medico)
-                ).findFirst();
-        return consulta.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.badRequest().build());
-    }
-
-    public static ResponseEntity<Consulta> buscarConsultaPeloCliente(LocalDateTime dataHora, Cliente cliente) {
-        Optional<Consulta> consulta = repositorio
-                .findAll()
-                .stream()
-                .filter(
-                        e -> e.getDataAgendamento().equals(dataHora)
-                                && e.getDataCancelamento() == null
-                                && e.getCliente().equals(cliente)
-                ).findFirst();
-        return consulta.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.badRequest().build());
-    }
+    private ConsultaRepositorio repositorio;
 
     @Override
     public ResponseEntity<Void> agendarConsulta(AgendarConsultaDTO dto, Cliente cliente, Medico medico) {
@@ -50,7 +25,7 @@ public class ConsultaServicoImpl implements ConsultaServico {
 
     @Override
     public ResponseEntity<Void> cancelarConsulta(LocalDateTime dataAgendamento, Cliente cliente) {
-        Consulta consulta = buscarConsultaPeloCliente(dataAgendamento, cliente).getBody();
+        Consulta consulta = new BuscarConsulta().buscarConsultaPeloCliente(dataAgendamento, cliente).getBody();
         if (consulta == null) return ResponseEntity.badRequest().build();
         consulta.setDataCancelamento(LocalDateTime.now());
         repositorio.save(consulta);
@@ -59,7 +34,7 @@ public class ConsultaServicoImpl implements ConsultaServico {
 
     @Override
     public ResponseEntity<Void> adicionarObservacoesMedicasAConsulta(Medico medico, LocalDateTime dataAgendamento, String observacoes) {
-        Consulta consulta = buscarConsultaPeloMedico(dataAgendamento, medico).getBody();
+        Consulta consulta = new BuscarConsulta().buscarConsultaPeloMedico(dataAgendamento, medico).getBody();
         if (consulta == null) return ResponseEntity.badRequest().build();
         consulta.setObservacoesMedicas(observacoes);
         repositorio.saveAndFlush(consulta);

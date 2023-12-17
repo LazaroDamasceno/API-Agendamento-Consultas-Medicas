@@ -13,7 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 public class ClienteControladorImpl implements ClienteControlador {
     
-    private ClienteServicoImp servico;
+    private ClienteServicoImpl servico;
     
     @Override
     @PostMapping("cadastrar/cliente")

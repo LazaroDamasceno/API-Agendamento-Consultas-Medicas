@@ -14,5 +14,4 @@ public interface ClienteRepositorio extends JpaRepository<Cliente, UUID> {
     static Cliente instaciar(CadastrarClienteDTO dto) {
         return new Cliente(dto);
     }
-
 }

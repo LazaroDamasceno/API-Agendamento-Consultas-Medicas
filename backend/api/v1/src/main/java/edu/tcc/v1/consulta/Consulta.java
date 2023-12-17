@@ -2,7 +2,7 @@ package edu.tcc.v1.consulta;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-import edu.tcc.v1.auxiliares.ConversorDataHora;
+import edu.tcc.v1.conversor.ConversorDataHora;
 import edu.tcc.v1.cliente.Cliente;
 import edu.tcc.v1.medico.Medico;
 import jakarta.persistence.*;
