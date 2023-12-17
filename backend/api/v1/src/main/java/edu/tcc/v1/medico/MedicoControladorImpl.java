@@ -25,13 +25,13 @@ public class MedicoControladorImpl implements MedicoControlador {
     }
 
     @Override
-    @PostMapping("buscar/agendas-medicas/{crm}")
+    @GetMapping("buscar/agendas-medicas/{crm}")
     public ResponseEntity<List<AgendaMedica>> buscarAgendasMedicas(@PathVariable(name = "crm") String crm) {
         return servico.buscarAgendasMedicas(crm);
     }
 
     @Override
-    @PostMapping("buscar/agendas-medicas/{crm}/{dataInicial}/{dataFinal}")
+    @GetMapping("buscar/agendas-medicas/{crm}/{dataInicial}/{dataFinal}")
     public ResponseEntity<List<AgendaMedica>> buscarAgendasMedicasEntreDatas(@PathVariable(name = "crm") String crm,
                                                                              @PathVariable(name = "dataInicial") String dataInicial,
                                                                              @PathVariable(name = "dataFinal") String dataFinal) {
