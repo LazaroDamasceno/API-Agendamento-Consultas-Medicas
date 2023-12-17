@@ -1,0 +1,12 @@
+{
+  "crm": "123456",
+  "cnpj": "65593506000105",
+  "usuario": {
+    "nome": "Gabriel Braga",
+    "cpf": "38461870034",
+    "dataNascimento": "12-02-1992 00:00:00",
+    "email": "gabriel@braga.med.br",
+    "telefone": "84912345678",
+    "genero": "masculino"
+  }
+}
