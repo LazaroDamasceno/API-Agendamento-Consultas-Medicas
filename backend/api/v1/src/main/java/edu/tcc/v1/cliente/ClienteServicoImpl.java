@@ -30,7 +30,6 @@ public class ClienteServicoImpl implements ClienteServico {
     @Override
     public ResponseEntity<Void> cadastrarCliente(CadastrarClienteDTO dto) {
         Cliente cliente = ClienteRepositorio.instaciar(dto);
-
         repositorio.save(cliente);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
