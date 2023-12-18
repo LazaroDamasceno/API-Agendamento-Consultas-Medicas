@@ -1,6 +1,6 @@
 package edu.tcc.v1.prontuario;
 
-import edu.tcc.v1.auxiliares.AuxliaresFacade;
+import edu.tcc.v1.auxiliares.AuxiliaresFacade;
 import edu.tcc.v1.cliente.Cliente;
 import edu.tcc.v1.consulta.Consulta;
 import edu.tcc.v1.medico.Medico;
@@ -16,7 +16,7 @@ import java.util.List;
 public class ProntuarioServicoImpl implements ProntuarioServico {
 
     private ProntuarioRepositorio repositorio;
-    private AuxliaresFacade auxiliaresFacade;
+    private AuxiliaresFacade auxiliaresFacade;
 
     @Override
     public ResponseEntity<Void> criarProntuario(Medico medico, Cliente cliente) {

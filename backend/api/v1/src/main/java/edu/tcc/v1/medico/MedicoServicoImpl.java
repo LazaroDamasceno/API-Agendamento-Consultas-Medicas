@@ -1,7 +1,7 @@
 package edu.tcc.v1.medico;
 
 import edu.tcc.v1.agendamedica.*;
-import edu.tcc.v1.auxiliares.AuxliaresFacade;
+import edu.tcc.v1.auxiliares.AuxiliaresFacade;
 import edu.tcc.v1.auxiliares.ConversorDataHora;
 import edu.tcc.v1.cliente.Cliente;
 import edu.tcc.v1.consulta.Consulta;
@@ -22,10 +22,10 @@ import java.util.List;
 public class MedicoServicoImpl implements MedicoServico {
 
     private MedicoRepositorio repositorio;
-    private AgendaMedicoServicoImpl agendaMedicoServico;
+    private AgendaMedicaServicoImpl agendaMedicoServico;
     private ConsultaServicoImpl consultaServico;
     private ProntuarioServicoImpl prontuarioServico;
-    private AuxliaresFacade auxiliaresFacade;
+    private AuxiliaresFacade auxiliaresFacade;
 
     @Override
     public ResponseEntity<Void> cadastrarMedico(CadastrarMedicoDTO dto) {

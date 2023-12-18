@@ -1,7 +1,7 @@
 package edu.tcc.v1.consulta;
 
-import edu.tcc.v1.auxiliares.AuxliaresFacade;
-import edu.tcc.v1.auxiliares.ConversorDataHora;
+import edu.tcc.v1.agendamedica.AgendaMedicaServicoImpl;
+import edu.tcc.v1.auxiliares.AuxiliaresFacade;
 import edu.tcc.v1.cliente.Cliente;
 import edu.tcc.v1.medico.Medico;
 import lombok.AllArgsConstructor;
@@ -17,13 +17,14 @@ import java.util.List;
 public class ConsultaServicoImpl implements ConsultaServico {
 
     private ConsultaRepositorio repositorio;
-    private AuxliaresFacade auxiliaresFacade;
+    private AgendaMedicaServicoImpl amServico;
+    private AuxiliaresFacade auxiliaresFacade;
 
     @Override
     public ResponseEntity<Void> agendarConsulta(AgendarConsultaDTO dto, Cliente cliente, Medico medico) {
         Consulta consulta = ConsultaRepositorio.instanciar(dto, cliente, medico);
         repositorio.save(consulta);
-        auxiliaresFacade.getAssociarConsulta().associar(ConversorDataHora.conversorDataHora(dto.dataAgendamento()), medico, consulta);
+        amServico.associarConsulta(null, medico, consulta);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
@@ -33,7 +34,7 @@ public class ConsultaServicoImpl implements ConsultaServico {
         if (consulta == null) return ResponseEntity.badRequest().build();
         consulta.setDataCancelamento(LocalDateTime.now());
         repositorio.save(consulta);
-        auxiliaresFacade.getDesassociarConsulta().desassociar(dataAgendamento, consulta.getMedico());
+        amServico.desassociarConsulta(dataAgendamento, consulta.getMedico());
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 

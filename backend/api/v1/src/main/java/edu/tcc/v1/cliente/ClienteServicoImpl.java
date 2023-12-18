@@ -1,7 +1,7 @@
 package edu.tcc.v1.cliente;
 
 import edu.tcc.v1.consulta.AgendarConsultaDTO;
-import edu.tcc.v1.auxiliares.AuxliaresFacade;
+import edu.tcc.v1.auxiliares.AuxiliaresFacade;
 import edu.tcc.v1.auxiliares.ConversorDataHora;
 import edu.tcc.v1.consulta.Consulta;
 import edu.tcc.v1.consulta.ConsultaServicoImpl;
@@ -20,7 +20,7 @@ public class ClienteServicoImpl implements ClienteServico {
 
     private ClienteRepositorio repositorio;
     private ConsultaServicoImpl consultaServico;
-    private AuxliaresFacade auxiliaresFacade;
+    private AuxiliaresFacade auxiliaresFacade;
 
     @Override
     public ResponseEntity<List<Cliente>> exibirClientes() {

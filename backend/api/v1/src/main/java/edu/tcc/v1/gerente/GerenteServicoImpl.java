@@ -2,7 +2,7 @@ package edu.tcc.v1.gerente;
 
 import edu.tcc.v1.cliente.Cliente;
 import edu.tcc.v1.cliente.ClienteServicoImpl;
-import edu.tcc.v1.auxiliares.AuxliaresFacade;
+import edu.tcc.v1.auxiliares.AuxiliaresFacade;
 import edu.tcc.v1.medico.CadastrarMedicoDTO;
 import edu.tcc.v1.medico.Medico;
 import edu.tcc.v1.medico.MedicoServicoImpl;
@@ -19,7 +19,7 @@ public class GerenteServicoImpl implements GerenteServico {
 
     private MedicoServicoImpl medicoServico;
     private ClienteServicoImpl clienteServicoImp;
-    private AuxliaresFacade auxiliaresFacade;
+    private AuxiliaresFacade auxiliaresFacade;
 
     @Override
     public ResponseEntity<Void> cadastrarMedico(CadastrarMedicoDTO dto) {
