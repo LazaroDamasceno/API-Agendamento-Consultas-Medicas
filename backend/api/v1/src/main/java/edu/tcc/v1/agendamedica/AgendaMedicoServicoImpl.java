@@ -1,5 +1,6 @@
 package edu.tcc.v1.agendamedica;
 
+import edu.tcc.v1.auxiliares.AuxliaresFacade;
 import edu.tcc.v1.consulta.Consulta;
 import edu.tcc.v1.medico.Medico;
 import lombok.AllArgsConstructor;
@@ -15,6 +16,7 @@ import java.util.List;
 public class AgendaMedicoServicoImpl implements AgendaMedicoServico {
 
     private AgendaMedicaRepositorio repositorio;
+    private AuxliaresFacade auxliaresFacade;
 
     @Override
     public ResponseEntity<Void> cadastrarAgendaMedica(CadastrarAgendaMedicaDTO dto, Medico medico) {
@@ -25,7 +27,7 @@ public class AgendaMedicoServicoImpl implements AgendaMedicoServico {
 
     @Override
     public ResponseEntity<Void> associarConsulta(LocalDateTime dataDisponivel, Medico medico, Consulta consulta) {
-        AgendaMedica agendaMedica = new BuscarAgendaMedica().buscar(dataDisponivel, medico).getBody();
+        AgendaMedica agendaMedica = auxliaresFacade.getAgendaMedica().buscar(dataDisponivel, medico).getBody();
         if (agendaMedica == null) return ResponseEntity.badRequest().build();
         agendaMedica.setConsulta(consulta);
         repositorio.save(agendaMedica);
@@ -34,7 +36,7 @@ public class AgendaMedicoServicoImpl implements AgendaMedicoServico {
 
     @Override
     public ResponseEntity<Void> desassociarConsulta(LocalDateTime dataDisponivel, Medico medico) {
-        AgendaMedica agendaMedica = new BuscarAgendaMedica().buscar(dataDisponivel, medico).getBody();
+        AgendaMedica agendaMedica = auxliaresFacade.getAgendaMedica().buscar(dataDisponivel, medico).getBody();
         if (agendaMedica == null) return ResponseEntity.badRequest().build();
         agendaMedica.setConsulta(null);
         repositorio.save(agendaMedica);

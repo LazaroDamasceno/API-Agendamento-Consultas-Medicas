@@ -1,14 +1,21 @@
-package edu.tcc.v1.agendamedica;
+package edu.tcc.v1.auxiliares;
 
+
+import edu.tcc.v1.agendamedica.AgendaMedica;
+import edu.tcc.v1.agendamedica.AgendaMedicaRepositorio;
 import edu.tcc.v1.medico.Medico;
+import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
 
+@Service
+@AllArgsConstructor
 public class BuscarAgendaMedica {
 
-    AgendaMedicaRepositorio repositorio;
+    private final AgendaMedicaRepositorio repositorio;
 
     public ResponseEntity<AgendaMedica> buscar(LocalDateTime dataDisponivel, Medico medico) {
         Optional<AgendaMedica> agendaMedica = repositorio

@@ -1,5 +1,6 @@
 package edu.tcc.v1.prontuario;
 
+import edu.tcc.v1.auxiliares.AuxliaresFacade;
 import edu.tcc.v1.cliente.Cliente;
 import edu.tcc.v1.consulta.Consulta;
 import edu.tcc.v1.medico.Medico;
@@ -15,6 +16,7 @@ import java.util.List;
 public class ProntuarioServicoImpl implements ProntuarioServico {
 
     private ProntuarioRepositorio repositorio;
+    private AuxliaresFacade auxiliaresFacade;
 
     @Override
     public ResponseEntity<Void> criarProntuario(Medico medico, Cliente cliente) {
@@ -25,7 +27,7 @@ public class ProntuarioServicoImpl implements ProntuarioServico {
 
     @Override
     public ResponseEntity<Void> adicionarConsultaAoProntuario(Medico medico, Cliente cliente, Consulta consulta) {
-        Prontuario prontuario = new BuscarProntuario().buscarPorCliente(medico, cliente).getBody();
+        Prontuario prontuario = auxiliaresFacade.getProntuario().buscarPorCliente(medico, cliente).getBody();
         if (prontuario == null) return ResponseEntity.badRequest().build();
         prontuario.adicionarConsultaAoProntuario(consulta);
         repositorio.saveAndFlush(prontuario);

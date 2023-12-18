@@ -1,14 +1,17 @@
-package edu.tcc.v1.medico;
+package edu.tcc.v1.auxiliares;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import edu.tcc.v1.medico.Medico;
+import edu.tcc.v1.medico.MedicoRepositorio;
+
 @Service
+@AllArgsConstructor
 public class BuscarMedico {
 
-    @Autowired
-    MedicoRepositorio repositorio;
+    private final MedicoRepositorio repositorio;
 
     public ResponseEntity<Medico> buscar(String crm) {
         return repositorio
