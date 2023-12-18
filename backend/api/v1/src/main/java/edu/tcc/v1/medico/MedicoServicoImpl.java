@@ -6,6 +6,7 @@ import edu.tcc.v1.conversor.ConversorDataHora;
 import edu.tcc.v1.cliente.Cliente;
 import edu.tcc.v1.consulta.Consulta;
 import edu.tcc.v1.consulta.ConsultaServicoImpl;
+import edu.tcc.v1.consulta.ObservacoesMedicasDTO;
 import edu.tcc.v1.prontuario.Prontuario;
 import edu.tcc.v1.prontuario.ProntuarioServicoImpl;
 import lombok.AllArgsConstructor;
@@ -67,10 +68,10 @@ public class MedicoServicoImpl implements MedicoServico {
     }
 
     @Override
-    public ResponseEntity<Void> adicionarObservacoesMedicasAConsulta(String crm, String dataAgendamento, String observacoes) {
+    public ResponseEntity<Void> adicionarObservacoesMedicasAConsulta(String crm, String dataAgendamento, ObservacoesMedicasDTO dto) {
         Medico medico = auxiliaresFacade.getMedico().buscar(crm).getBody();
         LocalDateTime da = ConversorDataHora.conversorDataHora(dataAgendamento);
-        consultaServico.adicionarObservacoesMedicasAConsulta(medico, da, observacoes);
+        consultaServico.adicionarObservacoesMedicasAConsulta(medico, da, dto.observacoes());
         return ResponseEntity.noContent().build();
     }
 
@@ -244,6 +245,12 @@ public class MedicoServicoImpl implements MedicoServico {
         Medico medico = auxiliaresFacade.getMedico().buscar(crm).getBody();
         Cliente cliente = auxiliaresFacade.getCliente().buscar(cpf).getBody();
         return auxiliaresFacade.getProntuario().buscarPorCliente(medico, cliente);
+    }
+
+    @Override
+    public ResponseEntity<List<Prontuario>> buscarProntuarios(String crm) {
+        Medico medico = auxiliaresFacade.getMedico().buscar(crm).getBody();
+        return prontuarioServico.buscarProntuariosPorMedico(medico);
     }
 
 }

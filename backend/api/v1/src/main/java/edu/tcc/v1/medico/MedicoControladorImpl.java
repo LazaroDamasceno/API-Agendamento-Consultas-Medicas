@@ -3,6 +3,7 @@ package edu.tcc.v1.medico;
 import edu.tcc.v1.agendamedica.AgendaMedica;
 import edu.tcc.v1.agendamedica.CadastrarAgendaMedicaDTO;
 import edu.tcc.v1.consulta.Consulta;
+import edu.tcc.v1.consulta.ObservacoesMedicasDTO;
 import edu.tcc.v1.prontuario.Prontuario;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -39,11 +40,11 @@ public class MedicoControladorImpl implements MedicoControlador {
     }
 
     @Override
-    @PatchMapping("adicionar/observacoes-medicas/consulta/{crm}/{dataAgendamento}/{observacoes}")
+    @PatchMapping("adicionar/observacoes-medicas/{crm}/{dataAgendamento}")
     public ResponseEntity<Void> adicionarObservacoesMedicasAConsulta(@PathVariable(name = "crm") String crm,
                                                                      @PathVariable(name = "dataAgendamento") String dataAgendamento,
-                                                                     @PathVariable(name = "observacoes") String observacoes) {
-        return servico.adicionarObservacoesMedicasAConsulta(crm, dataAgendamento, observacoes);
+                                                                     @RequestBody ObservacoesMedicasDTO dto) {
+        return servico.adicionarObservacoesMedicasAConsulta(crm, dataAgendamento, dto);
     }
 
     @Override
@@ -156,6 +157,12 @@ public class MedicoControladorImpl implements MedicoControlador {
     public ResponseEntity<Prontuario> buscarProntuarioDeCliente(@PathVariable(name = "crm") String crm,
                                                                 @PathVariable(name = "cpf") String cpf) {
         return servico.buscarProntuarioDeCliente(crm, cpf);
+    }
+
+    @Override
+    @GetMapping("buscar/prontuarios/{crm}")
+    public ResponseEntity<List<Prontuario>> buscarProntuarios(@PathVariable(name = "crm") String crm) {
+        return servico.buscarProntuarios(crm);
     }
 
 }

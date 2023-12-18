@@ -3,6 +3,7 @@ package edu.tcc.v1.medico;
 import edu.tcc.v1.agendamedica.AgendaMedica;
 import edu.tcc.v1.agendamedica.CadastrarAgendaMedicaDTO;
 import edu.tcc.v1.consulta.Consulta;
+import edu.tcc.v1.consulta.ObservacoesMedicasDTO;
 import edu.tcc.v1.prontuario.Prontuario;
 import org.springframework.http.ResponseEntity;
 
@@ -16,7 +17,7 @@ public interface MedicoServico {
     ResponseEntity<Void> cadastrarAgendaMedica(CadastrarAgendaMedicaDTO dto, String crm);
     ResponseEntity<List<AgendaMedica>> buscarAgendasMedicas(String crm);
     ResponseEntity<List<AgendaMedica>> buscarAgendasMedicasEntreDatas(String crm, String dataInicial, String dataFinal);
-    ResponseEntity<Void> adicionarObservacoesMedicasAConsulta(String crm,String dataAgendamento, String observacoes);
+    ResponseEntity<Void> adicionarObservacoesMedicasAConsulta(String crm,String dataAgendamento, ObservacoesMedicasDTO dto);
     ResponseEntity<List<Consulta>> buscarConsultas(String crm);
     ResponseEntity<List<Consulta>> buscarConsultasAgendadas(String crm);
     ResponseEntity<List<Consulta>> buscarConsultasCanceladas(String crm);
@@ -32,6 +33,6 @@ public interface MedicoServico {
     ResponseEntity<Void> criarProntuario(String crm, String cpf);
     ResponseEntity<Void> adicionarConsultaAoProntuario(String crm, String cpf, String dataAgendamento);
     ResponseEntity<Prontuario> buscarProntuarioDeCliente(String crm, String cpf);
-
+    ResponseEntity<List<Prontuario>> buscarProntuarios(String crm);   
 
 }
