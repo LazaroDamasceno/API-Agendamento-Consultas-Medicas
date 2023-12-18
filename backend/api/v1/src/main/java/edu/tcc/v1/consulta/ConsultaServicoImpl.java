@@ -2,6 +2,7 @@ package edu.tcc.v1.consulta;
 
 import edu.tcc.v1.auxiliares.AuxliaresFacade;
 import edu.tcc.v1.cliente.Cliente;
+import edu.tcc.v1.conversor.ConversorDataHora;
 import edu.tcc.v1.medico.Medico;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -22,6 +23,7 @@ public class ConsultaServicoImpl implements ConsultaServico {
     public ResponseEntity<Void> agendarConsulta(AgendarConsultaDTO dto, Cliente cliente, Medico medico) {
         Consulta consulta = ConsultaRepositorio.instanciar(dto, cliente, medico);
         repositorio.save(consulta);
+        auxiliaresFacade.getAssociarConsulta().associar(ConversorDataHora.conversorDataHora(dto.dataAgendamento()), medico, consulta);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
@@ -31,6 +33,7 @@ public class ConsultaServicoImpl implements ConsultaServico {
         if (consulta == null) return ResponseEntity.badRequest().build();
         consulta.setDataCancelamento(LocalDateTime.now());
         repositorio.save(consulta);
+        auxiliaresFacade.getDesassociarConsulta().desassociar(dataAgendamento, consulta.getMedico());
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 

@@ -16,5 +16,7 @@ public class AuxliaresFacade {
     private final BuscarMedico medico;
     private final BuscarProntuario prontuario;
     private final BuscarUsuario usuario;
+    private final AssociarConsulta associarConsulta;
+    private final DesassociarConsulta desassociarConsulta;
     
 }

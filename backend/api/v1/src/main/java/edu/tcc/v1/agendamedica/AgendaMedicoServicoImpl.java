@@ -1,7 +1,5 @@
 package edu.tcc.v1.agendamedica;
 
-import edu.tcc.v1.auxiliares.AuxliaresFacade;
-import edu.tcc.v1.consulta.Consulta;
 import edu.tcc.v1.medico.Medico;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -16,31 +14,12 @@ import java.util.List;
 public class AgendaMedicoServicoImpl implements AgendaMedicoServico {
 
     private AgendaMedicaRepositorio repositorio;
-    private AuxliaresFacade auxliaresFacade;
 
     @Override
     public ResponseEntity<Void> cadastrarAgendaMedica(CadastrarAgendaMedicaDTO dto, Medico medico) {
         AgendaMedica agendaMedica = AgendaMedicaRepositorio.instanciar(dto, medico);
         repositorio.save(agendaMedica);
         return new ResponseEntity<>(HttpStatus.CREATED);
-    }
-
-    @Override
-    public ResponseEntity<Void> associarConsulta(LocalDateTime dataDisponivel, Medico medico, Consulta consulta) {
-        AgendaMedica agendaMedica = auxliaresFacade.getAgendaMedica().buscar(dataDisponivel, medico).getBody();
-        if (agendaMedica == null) return ResponseEntity.badRequest().build();
-        agendaMedica.setConsulta(consulta);
-        repositorio.save(agendaMedica);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-    }
-
-    @Override
-    public ResponseEntity<Void> desassociarConsulta(LocalDateTime dataDisponivel, Medico medico) {
-        AgendaMedica agendaMedica = auxliaresFacade.getAgendaMedica().buscar(dataDisponivel, medico).getBody();
-        if (agendaMedica == null) return ResponseEntity.badRequest().build();
-        agendaMedica.setConsulta(null);
-        repositorio.save(agendaMedica);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     @Override
