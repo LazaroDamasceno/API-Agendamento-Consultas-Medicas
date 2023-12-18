@@ -2,7 +2,7 @@ package edu.tcc.v1.medico;
 
 import edu.tcc.v1.agendamedica.*;
 import edu.tcc.v1.auxiliares.AuxliaresFacade;
-import edu.tcc.v1.conversor.ConversorDataHora;
+import edu.tcc.v1.auxiliares.ConversorDataHora;
 import edu.tcc.v1.cliente.Cliente;
 import edu.tcc.v1.consulta.Consulta;
 import edu.tcc.v1.consulta.ConsultaServicoImpl;

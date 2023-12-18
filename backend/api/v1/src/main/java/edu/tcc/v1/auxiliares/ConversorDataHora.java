@@ -1,4 +1,4 @@
-package edu.tcc.v1.conversor;
+package edu.tcc.v1.auxiliares;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;

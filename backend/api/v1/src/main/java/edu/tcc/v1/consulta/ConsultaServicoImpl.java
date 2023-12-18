@@ -1,8 +1,8 @@
 package edu.tcc.v1.consulta;
 
 import edu.tcc.v1.auxiliares.AuxliaresFacade;
+import edu.tcc.v1.auxiliares.ConversorDataHora;
 import edu.tcc.v1.cliente.Cliente;
-import edu.tcc.v1.conversor.ConversorDataHora;
 import edu.tcc.v1.medico.Medico;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
