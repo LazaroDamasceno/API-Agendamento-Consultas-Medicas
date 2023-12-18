@@ -49,7 +49,7 @@ public class ConsultaServicoImpl implements ConsultaServico {
 
     @Override
     public List<Consulta> buscarConsultas() {
-        return repositorio.buscarConsultasAgendadas();
+        return repositorio.buscarConsultas();
     }
 
     @Override
