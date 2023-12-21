@@ -33,21 +33,19 @@ Abra o CMD e digite `git clone https://github.com/LazaroDamasceno/API-Gerenciame
 
 ## Como executar e parar
 
-### Via comando do Maven
+### Como executar
+
+#### Via comando do Maven
 
 Abre o CMD e digite `cd backend` e em seguida `cd v1`. Por fim, digite, caso o sistema operacional seja Windows, `./mvnw clean spring-boot:run`.
 
-Para parar, pressione no CMD `CRTL + C`.
-
-### Via arquivo executável
+#### Via arquivo executável
 
 Abre o CMD e digite `cd executor` e, por fim, `java -jar api_gerenciamento_consultas-v1.jar`. 
 
-Para parar, pressione no CMD `CRTL + C`.
+### Como parar
 
-Há outra forma, caso o sistema operacional for Windows, vá na pasta `executor` e pressione o dente direito do mouse e escolha `abrir com`. Finalmente, escolha a opção `OpenJDK Binary Platform`. Com esta opção, para rodar, bastar pressionar o arquivo executável.
-
-Para parar, caso o sistema operacional for Windows, pressiona `CRTL + SHIFT + ESC`. Assim, será aberto o Gerenciador de Tarefas. Depois, procure por `OpenJDK Binary Platform`. Por fim, quando for achado, selecione-o e aperte o botão `Finalizar tarefa`.
+Para parar, pressione no CMD `CRTL + C` ou feche o CMD.
 
 ## Como inserir ou exibir dados
 
