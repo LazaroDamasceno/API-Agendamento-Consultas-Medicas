@@ -43,7 +43,7 @@ Por fim, digite, caso o sistema operacional seja Windows, `./mvnw clean spring-b
 
 #### Via arquivo executável
 
-Abre o CMD e digite `cd executor` e, por fim, `java -jar api_gerenciamento_consultas-v1.jar`. 
+Abre o CMD e digite `java -jar api_gerenciamento_consultas-v1.jar`. 
 
 ### Como parar
 
