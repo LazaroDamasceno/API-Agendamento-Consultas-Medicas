@@ -36,8 +36,9 @@ public class ClienteServicoImpl implements ClienteServico {
 
     @Override
     public ResponseEntity<Void> agendarConsulta(AgendarConsultaDTO dto, String crm, String cpf) {
+        Cliente cliente = auxiliaresFacade.getCliente().buscar(cpf).getBody();
         Medico medico = auxiliaresFacade.getMedico().buscar(crm).getBody();
-        consultaServico.agendarConsulta(dto, auxiliaresFacade.getCliente().buscar(cpf).getBody(), medico);
+        consultaServico.agendarConsulta(dto, cliente, medico);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
