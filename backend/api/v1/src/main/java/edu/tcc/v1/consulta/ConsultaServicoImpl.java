@@ -2,6 +2,7 @@ package edu.tcc.v1.consulta;
 
 import edu.tcc.v1.agendamedica.AgendaMedicaServicoImpl;
 import edu.tcc.v1.auxiliares.AuxiliaresFacade;
+import edu.tcc.v1.auxiliares.ConversorDataHora;
 import edu.tcc.v1.cliente.Cliente;
 import edu.tcc.v1.medico.Medico;
 import lombok.AllArgsConstructor;
@@ -24,7 +25,7 @@ public class ConsultaServicoImpl implements ConsultaServico {
     public ResponseEntity<Void> agendarConsulta(AgendarConsultaDTO dto, Cliente cliente, Medico medico) {
         Consulta consulta = ConsultaRepositorio.instanciar(dto, cliente, medico);
         repositorio.save(consulta);
-        amServico.associarConsulta(null, medico, consulta);
+        amServico.associarConsulta(ConversorDataHora.conversorDataHora(dto.dataAgendamento()), medico, consulta);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
