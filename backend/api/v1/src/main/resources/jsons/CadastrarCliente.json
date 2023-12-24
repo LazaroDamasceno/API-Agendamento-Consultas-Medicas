@@ -4,7 +4,8 @@
   "bairro": "Tabuleiro do Martins",
   "cidade": "Maceió",
   "uf": "AL",
-  "usuario": {
+  "usuario": 
+  {
     "nome": "Guiltenberg Alves",
     "cpf": "12345678900",
     "dataNascimento": "12-02-1992 00:00:00",

@@ -1,7 +1,8 @@
 {
   "crm": "123456",
   "cnpj": "65593506000105",
-  "usuario": {
+  "usuario": 
+  {
     "nome": "Gabriel Braga",
     "cpf": "38461870034",
     "dataNascimento": "12-02-1992 00:00:00",
