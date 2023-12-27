@@ -33,17 +33,11 @@ Abra o CMD e digite `git clone https://github.com/LazaroDamasceno/API-Gerenciame
 
 ## Como executar e parar
 
-### Como executar
-
-#### Via comando do Maven
+### Como executar via comando do Maven
 
 Abre o CMD e digite `cd backend` e em seguida `cd v1`. 
 
 Por fim, digite, caso o sistema operacional seja Windows, `./mvnw clean spring-boot:run`.
-
-#### Via arquivo executável
-
-Abre o CMD e digite `java -jar api_gerenciamento_consultas-v1.jar`. 
 
 ### Como parar
 
