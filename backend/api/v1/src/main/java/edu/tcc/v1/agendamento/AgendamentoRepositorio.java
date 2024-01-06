@@ -16,13 +16,13 @@ public interface AgendamentoRepositorio extends JpaRepository<Agendamento, UUID>
     }
 
     @Query("""
-        select am from AgendaMedica am
+        select am from Agendamento am
         where am.medico = :medico
     """)
     List<Agendamento> buscarAgendasMedicas(@Param("medico") Medico medico);
 
     @Query("""
-        select am from AgendaMedica am
+        select am from Agendamento am
         where am.medico = :medico
         and am.dataDisponivel >= :dataInicial
         and am.dataDisponivel <= :dataFinal
