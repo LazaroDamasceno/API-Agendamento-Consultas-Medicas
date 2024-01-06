@@ -9,8 +9,8 @@ import org.springframework.data.repository.query.Param;
 public interface UsuarioRepositorio extends JpaRepository<Usuario, UUID> {
 
     @Query("""
-        select c from Cliente c
-        where c.cpf = :cpf        
+        select u from Usuario u
+        where u.cpf = :cpf   
     """)
     Usuario buscarUsuario(@Param("cpf") String cpf);
 
