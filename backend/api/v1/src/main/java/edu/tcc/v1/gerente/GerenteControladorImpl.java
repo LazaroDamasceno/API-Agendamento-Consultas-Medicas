@@ -17,31 +17,31 @@ public class GerenteControladorImpl implements GerenteServico {
     private GerenteServicoImpl servico;
 
     @Override
-    @PostMapping("cadastrar/medico")
+    @PostMapping("medico")
     public ResponseEntity<Void> cadastrarMedico(@RequestBody CadastrarMedicoDTO dto) {
         return servico.cadastrarMedico(dto);
     }
 
     @Override
-    @PatchMapping("demitir/medico/{crm}")
+    @PatchMapping("medico/{crm}")
     public ResponseEntity<Void> demitirMedico(@PathVariable(name = "crm") String crm) {
         return servico.demitirMedico(crm);
     }
 
     @Override
-    @GetMapping("buscar/medicos")
+    @GetMapping("medicos")
     public ResponseEntity<List<Medico>> buscarMedicos() {
         return servico.buscarMedicos();
     }
 
     @Override
-    @GetMapping("buscar/medico/crm/{crm}")
+    @GetMapping("medico/crm/{crm}")
     public ResponseEntity<Medico> buscarMedicoPeloCRM(@PathVariable(name = "crm") String crm) {
         return servico.buscarMedicoPeloCRM(crm);
     }
 
     @Override
-    @GetMapping("buscar/clientes")
+    @GetMapping("clientes")
     public ResponseEntity<List<Cliente>> buscarClientes() {
         return servico.buscarClientes();
     }
