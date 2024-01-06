@@ -1,4 +1,4 @@
-package edu.tcc.v1.agendamedica;
+package edu.tcc.v1.agendamento;
 
 import edu.tcc.v1.medico.Medico;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -9,17 +9,17 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
-public interface AgendaMedicaRepositorio extends JpaRepository<AgendaMedica, UUID> {
+public interface AgendamentoRepositorio extends JpaRepository<Agendamento, UUID> {
 
-    static AgendaMedica instanciar(CadastrarAgendaMedicaDTO dto, Medico medico) {
-        return new AgendaMedica(dto, medico);
+    static Agendamento instanciar(CadastrarAgendamentoDTO dto, Medico medico) {
+        return new Agendamento(dto, medico);
     }
 
     @Query("""
         select am from AgendaMedica am
         where am.medico = :medico
     """)
-    List<AgendaMedica> buscarAgendasMedicas(@Param("medico") Medico medico);
+    List<Agendamento> buscarAgendasMedicas(@Param("medico") Medico medico);
 
     @Query("""
         select am from AgendaMedica am
@@ -27,7 +27,7 @@ public interface AgendaMedicaRepositorio extends JpaRepository<AgendaMedica, UUI
         and am.dataDisponivel >= :dataInicial
         and am.dataDisponivel <= :dataFinal
     """)
-    List<AgendaMedica> buscarAgendasMedicasEntreDatas(@Param("dataInicial") LocalDateTime dataInicial,
+    List<Agendamento> buscarAgendasMedicasEntreDatas(@Param("dataInicial") LocalDateTime dataInicial,
                                                       @Param("dataFinal") LocalDateTime dataFinal,
                                                       @Param("medico") Medico medico);
 

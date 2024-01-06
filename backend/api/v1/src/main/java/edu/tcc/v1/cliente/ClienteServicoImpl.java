@@ -1,10 +1,10 @@
 package edu.tcc.v1.cliente;
 
 import edu.tcc.v1.consulta.AgendarConsultaDTO;
-import edu.tcc.v1.auxiliares.AuxiliaresFacade;
-import edu.tcc.v1.auxiliares.ConversorDataHora;
 import edu.tcc.v1.consulta.Consulta;
 import edu.tcc.v1.consulta.ConsultaServicoImpl;
+import edu.tcc.v1.facade.Facade;
+import edu.tcc.v1.facade.ConversorDataHora;
 import edu.tcc.v1.medico.Medico;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -20,7 +20,7 @@ public class ClienteServicoImpl implements ClienteServico {
 
     private ClienteRepositorio repositorio;
     private ConsultaServicoImpl consultaServico;
-    private AuxiliaresFacade auxiliaresFacade;
+    private Facade auxiliaresFacade;
 
     @Override
     public ResponseEntity<List<Cliente>> exibirClientes() {

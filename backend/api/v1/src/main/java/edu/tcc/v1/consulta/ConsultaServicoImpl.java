@@ -1,9 +1,9 @@
 package edu.tcc.v1.consulta;
 
-import edu.tcc.v1.agendamedica.AgendaMedicaServicoImpl;
-import edu.tcc.v1.auxiliares.AuxiliaresFacade;
-import edu.tcc.v1.auxiliares.ConversorDataHora;
+import edu.tcc.v1.agendamento.AgendamentoServicoImpl;
 import edu.tcc.v1.cliente.Cliente;
+import edu.tcc.v1.facade.Facade;
+import edu.tcc.v1.facade.ConversorDataHora;
 import edu.tcc.v1.medico.Medico;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -18,8 +18,8 @@ import java.util.List;
 public class ConsultaServicoImpl implements ConsultaServico {
 
     private ConsultaRepositorio repositorio;
-    private AgendaMedicaServicoImpl amServico;
-    private AuxiliaresFacade auxiliaresFacade;
+    private AgendamentoServicoImpl amServico;
+    private Facade auxiliaresFacade;
 
     @Override
     public ResponseEntity<Void> agendarConsulta(AgendarConsultaDTO dto, Cliente cliente, Medico medico) {

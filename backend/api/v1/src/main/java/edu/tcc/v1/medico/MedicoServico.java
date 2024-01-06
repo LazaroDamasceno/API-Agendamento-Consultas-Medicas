@@ -1,7 +1,7 @@
 package edu.tcc.v1.medico;
 
-import edu.tcc.v1.agendamedica.AgendaMedica;
-import edu.tcc.v1.agendamedica.CadastrarAgendaMedicaDTO;
+import edu.tcc.v1.agendamento.Agendamento;
+import edu.tcc.v1.agendamento.CadastrarAgendamentoDTO;
 import edu.tcc.v1.consulta.Consulta;
 import edu.tcc.v1.consulta.ObservacoesMedicasDTO;
 import edu.tcc.v1.prontuario.Prontuario;
@@ -14,9 +14,9 @@ public interface MedicoServico {
     ResponseEntity<Void> cadastrarMedico(CadastrarMedicoDTO dto);
     ResponseEntity<Void> demitirMedico(Medico medico);
     ResponseEntity<List<Medico>> buscarMedicos();
-    ResponseEntity<Void> cadastrarAgendaMedica(CadastrarAgendaMedicaDTO dto, String crm);
-    ResponseEntity<List<AgendaMedica>> buscarAgendasMedicas(String crm);
-    ResponseEntity<List<AgendaMedica>> buscarAgendasMedicasEntreDatas(String crm, String dataInicial, String dataFinal);
+    ResponseEntity<Void> cadastrarAgendaMedica(CadastrarAgendamentoDTO dto, String crm);
+    ResponseEntity<List<Agendamento>> buscarAgendasMedicas(String crm);
+    ResponseEntity<List<Agendamento>> buscarAgendasMedicasEntreDatas(String crm, String dataInicial, String dataFinal);
     ResponseEntity<Void> adicionarObservacoesMedicasAConsulta(String crm,String dataAgendamento, ObservacoesMedicasDTO dto);
     ResponseEntity<List<Consulta>> buscarConsultas(String crm);
     ResponseEntity<List<Consulta>> buscarConsultasAgendadas(String crm);

@@ -1,9 +1,9 @@
-package edu.tcc.v1.agendamedica;
+package edu.tcc.v1.agendamento;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-import edu.tcc.v1.auxiliares.ConversorDataHora;
 import edu.tcc.v1.consulta.Consulta;
+import edu.tcc.v1.facade.ConversorDataHora;
 import edu.tcc.v1.medico.Medico;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -20,7 +20,7 @@ import java.util.UUID;
 @Getter
 @Setter
 @NoArgsConstructor
-public class AgendaMedica implements Serializable {
+public class Agendamento implements Serializable {
 
     @Serial
     private static final long serialVersionUID = 1L;
@@ -41,7 +41,7 @@ public class AgendaMedica implements Serializable {
     @JoinColumn(name = "consulta_id")
     private Consulta consulta;
 
-    AgendaMedica(CadastrarAgendaMedicaDTO dto, Medico medico) {
+    Agendamento(CadastrarAgendamentoDTO dto, Medico medico) {
         this.dataDisponivel = ConversorDataHora.conversorDataHora(dto.dataDisponivel());
         this.medico = medico;
     }

@@ -1,7 +1,7 @@
 package edu.tcc.v1.medico;
 
-import edu.tcc.v1.agendamedica.AgendaMedica;
-import edu.tcc.v1.agendamedica.CadastrarAgendaMedicaDTO;
+import edu.tcc.v1.agendamento.Agendamento;
+import edu.tcc.v1.agendamento.CadastrarAgendamentoDTO;
 import edu.tcc.v1.consulta.Consulta;
 import edu.tcc.v1.consulta.ObservacoesMedicasDTO;
 import edu.tcc.v1.prontuario.Prontuario;
@@ -20,20 +20,20 @@ public class MedicoControladorImpl implements MedicoControlador {
 
     @Override
     @PostMapping("cadastrar/agenda-medica/{crm}")
-    public ResponseEntity<Void> cadastrarAgendaMedica(@RequestBody CadastrarAgendaMedicaDTO dto,
+    public ResponseEntity<Void> cadastrarAgendaMedica(@RequestBody CadastrarAgendamentoDTO dto,
                                                       @PathVariable(name = "crm") String crm) {
         return servico.cadastrarAgendaMedica(dto, crm);
     }
 
     @Override
     @GetMapping("buscar/agendas-medicas/{crm}")
-    public ResponseEntity<List<AgendaMedica>> buscarAgendasMedicas(@PathVariable(name = "crm") String crm) {
+    public ResponseEntity<List<Agendamento>> buscarAgendasMedicas(@PathVariable(name = "crm") String crm) {
         return servico.buscarAgendasMedicas(crm);
     }
 
     @Override
     @GetMapping("buscar/agendas-medicas/{crm}/{dataInicial}/{dataFinal}")
-    public ResponseEntity<List<AgendaMedica>> buscarAgendasMedicasEntreDatas(@PathVariable(name = "crm") String crm,
+    public ResponseEntity<List<Agendamento>> buscarAgendasMedicasEntreDatas(@PathVariable(name = "crm") String crm,
                                                                              @PathVariable(name = "dataInicial") String dataInicial,
                                                                              @PathVariable(name = "dataFinal") String dataFinal) {
         return servico.buscarAgendasMedicasEntreDatas(crm, dataInicial, dataFinal);

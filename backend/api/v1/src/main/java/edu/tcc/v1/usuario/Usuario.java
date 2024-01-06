@@ -2,7 +2,7 @@ package edu.tcc.v1.usuario;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-import edu.tcc.v1.auxiliares.ConversorDataHora;
+import edu.tcc.v1.facade.ConversorDataHora;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;

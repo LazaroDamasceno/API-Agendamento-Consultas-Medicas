@@ -1,12 +1,12 @@
 package edu.tcc.v1.medico;
 
-import edu.tcc.v1.agendamedica.*;
-import edu.tcc.v1.auxiliares.AuxiliaresFacade;
-import edu.tcc.v1.auxiliares.ConversorDataHora;
+import edu.tcc.v1.agendamento.*;
 import edu.tcc.v1.cliente.Cliente;
 import edu.tcc.v1.consulta.Consulta;
 import edu.tcc.v1.consulta.ConsultaServicoImpl;
 import edu.tcc.v1.consulta.ObservacoesMedicasDTO;
+import edu.tcc.v1.facade.Facade;
+import edu.tcc.v1.facade.ConversorDataHora;
 import edu.tcc.v1.prontuario.Prontuario;
 import edu.tcc.v1.prontuario.ProntuarioServicoImpl;
 import lombok.AllArgsConstructor;
@@ -22,10 +22,10 @@ import java.util.List;
 public class MedicoServicoImpl implements MedicoServico {
 
     private MedicoRepositorio repositorio;
-    private AgendaMedicaServicoImpl agendaMedicoServico;
+    private AgendamentoServicoImpl agendaMedicoServico;
     private ConsultaServicoImpl consultaServico;
     private ProntuarioServicoImpl prontuarioServico;
-    private AuxiliaresFacade auxiliaresFacade;
+    private Facade auxiliaresFacade;
 
     @Override
     public ResponseEntity<Void> cadastrarMedico(CadastrarMedicoDTO dto) {
@@ -47,20 +47,20 @@ public class MedicoServicoImpl implements MedicoServico {
     }
 
     @Override
-    public ResponseEntity<Void> cadastrarAgendaMedica(CadastrarAgendaMedicaDTO dto, String crm) {
+    public ResponseEntity<Void> cadastrarAgendaMedica(CadastrarAgendamentoDTO dto, String crm) {
         Medico medico = auxiliaresFacade.getMedico().buscar(crm).getBody();
         agendaMedicoServico.cadastrarAgendaMedica(dto, medico);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     @Override
-    public ResponseEntity<List<AgendaMedica>> buscarAgendasMedicas(String crm) {
+    public ResponseEntity<List<Agendamento>> buscarAgendasMedicas(String crm) {
         Medico medico = auxiliaresFacade.getMedico().buscar(crm).getBody();
         return agendaMedicoServico.buscarAgendasMedicas(medico);
     }
 
     @Override
-    public ResponseEntity<List<AgendaMedica>> buscarAgendasMedicasEntreDatas(String crm, String dataInicial, String dataFinal) {
+    public ResponseEntity<List<Agendamento>> buscarAgendasMedicasEntreDatas(String crm, String dataInicial, String dataFinal) {
         Medico medico = auxiliaresFacade.getMedico().buscar(crm).getBody();
         LocalDateTime di = ConversorDataHora.conversorDataHora(dataInicial);
         LocalDateTime df = ConversorDataHora.conversorDataHora(dataFinal);
