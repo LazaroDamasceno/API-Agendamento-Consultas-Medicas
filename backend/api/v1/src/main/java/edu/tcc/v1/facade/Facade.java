@@ -17,7 +17,6 @@ import edu.tcc.v1.medico.Medico;
 import edu.tcc.v1.medico.MedicoRepositorio;
 import edu.tcc.v1.prontuario.Prontuario;
 import edu.tcc.v1.prontuario.ProntuarioRepositorio;
-
 import edu.tcc.v1.usuario.Usuario;
 import edu.tcc.v1.usuario.UsuarioRepositorio;
 import lombok.AllArgsConstructor;
@@ -47,7 +46,7 @@ public class Facade {
     }
 
     public ResponseEntity<Cliente> buscarCliente(String cpf) {
-        Usuario usuario = usuarioRepositorio.buscarUsuario(cpf);
+        Usuario usuario = buscarUsuarioPeloCPF(cpf);
         return clienteRepositorio
                 .findByUsuario(usuario)
                 .map(ResponseEntity::ok)
