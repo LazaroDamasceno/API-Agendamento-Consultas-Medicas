@@ -16,7 +16,7 @@ import java.util.List;
 public class AgendamentoServicoImpl implements AgendamentoServico {
 
     private AgendamentoRepositorio repositorio;
-    private Facade auxliaresFacade;
+    private Facade facade;
 
     @Override
     public ResponseEntity<Void> cadastrarAgendaMedica(CadastrarAgendamentoDTO dto, Medico medico) {
@@ -28,7 +28,7 @@ public class AgendamentoServicoImpl implements AgendamentoServico {
 
     @Override
     public void associarConsulta(LocalDateTime dataDisponivel, Medico medico, Consulta consulta) {
-        Agendamento agendaMedica = auxliaresFacade.buscarAgendamento(dataDisponivel, medico).getBody();
+        Agendamento agendaMedica = facade.buscarAgendamento(dataDisponivel, medico).getBody();
         if (agendaMedica != null) {
             agendaMedica.setConsulta(consulta);
             repositorio.save(agendaMedica);
@@ -37,7 +37,7 @@ public class AgendamentoServicoImpl implements AgendamentoServico {
 
     @Override
     public void desassociarConsulta(LocalDateTime dataDisponivel, Medico medico) {
-        Agendamento agendaMedica = auxliaresFacade.buscarAgendamento(dataDisponivel, medico).getBody();
+        Agendamento agendaMedica = facade.buscarAgendamento(dataDisponivel, medico).getBody();
         if (agendaMedica != null) {
             agendaMedica.setConsulta(null);
             repositorio.save(agendaMedica);
