@@ -3,7 +3,7 @@ package edu.tcc.v1.agendamento;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import edu.tcc.v1.consulta.Consulta;
-import edu.tcc.v1.facade.ConversorDataHora;
+import edu.tcc.v1.facade.Facade;
 import edu.tcc.v1.medico.Medico;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -42,7 +42,7 @@ public class Agendamento implements Serializable {
     private Consulta consulta;
 
     Agendamento(CadastrarAgendamentoDTO dto, Medico medico) {
-        this.dataDisponivel = ConversorDataHora.conversorDataHora(dto.dataDisponivel());
+        this.dataDisponivel = Facade.conversorDataHora(dto.dataDisponivel());
         this.medico = medico;
     }
 

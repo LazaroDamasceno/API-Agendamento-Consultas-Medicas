@@ -19,7 +19,7 @@ public class GerenteServicoImpl implements GerenteServico {
 
     private MedicoServicoImpl medicoServico;
     private ClienteServicoImpl clienteServicoImp;
-    private Facade auxiliaresFacade;
+    private Facade facade;
 
     @Override
     public ResponseEntity<Void> cadastrarMedico(CadastrarMedicoDTO dto) {
@@ -29,7 +29,7 @@ public class GerenteServicoImpl implements GerenteServico {
 
     @Override
     public ResponseEntity<Void> demitirMedico(String crm) {
-        Medico medico = auxiliaresFacade.getMedico().buscar(crm).getBody();
+        Medico medico = facade.buscarMedico(crm).getBody();
         if (medico == null) return ResponseEntity.badRequest().build();
         medicoServico.demitirMedico(medico);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -42,7 +42,7 @@ public class GerenteServicoImpl implements GerenteServico {
 
     @Override
     public ResponseEntity<Medico> buscarMedicoPeloCRM(String crm) {
-        return auxiliaresFacade.getMedico().buscar(crm);
+        return facade.buscarMedico(crm);
     }
 
     @Override

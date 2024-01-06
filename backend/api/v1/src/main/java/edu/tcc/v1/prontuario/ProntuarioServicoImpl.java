@@ -16,7 +16,7 @@ import java.util.List;
 public class ProntuarioServicoImpl implements ProntuarioServico {
 
     private ProntuarioRepositorio repositorio;
-    private Facade auxiliaresFacade;
+    private Facade facade;
 
     @Override
     public ResponseEntity<Void> criarProntuario(Medico medico, Cliente cliente) {
@@ -27,7 +27,7 @@ public class ProntuarioServicoImpl implements ProntuarioServico {
 
     @Override
     public ResponseEntity<Void> adicionarConsultaAoProntuario(Medico medico, Cliente cliente, Consulta consulta) {
-        Prontuario prontuario = auxiliaresFacade.getProntuario().buscarPorCliente(medico, cliente).getBody();
+        Prontuario prontuario = facade.buscarProntuarioPorCliente(medico, cliente).getBody();
         if (prontuario == null) return ResponseEntity.badRequest().build();
         prontuario.adicionarConsultaAoProntuario(consulta);
         repositorio.saveAndFlush(prontuario);

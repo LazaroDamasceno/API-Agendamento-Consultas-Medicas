@@ -3,7 +3,6 @@ package edu.tcc.v1.consulta;
 import edu.tcc.v1.agendamento.AgendamentoServicoImpl;
 import edu.tcc.v1.cliente.Cliente;
 import edu.tcc.v1.facade.Facade;
-import edu.tcc.v1.facade.ConversorDataHora;
 import edu.tcc.v1.medico.Medico;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -18,30 +17,30 @@ import java.util.List;
 public class ConsultaServicoImpl implements ConsultaServico {
 
     private ConsultaRepositorio repositorio;
-    private AgendamentoServicoImpl amServico;
-    private Facade auxiliaresFacade;
+    private AgendamentoServicoImpl agendamentoServico;
+    private Facade facade;
 
     @Override
     public ResponseEntity<Void> agendarConsulta(AgendarConsultaDTO dto, Cliente cliente, Medico medico) {
         Consulta consulta = ConsultaRepositorio.instanciar(dto, cliente, medico);
         repositorio.save(consulta);
-        amServico.associarConsulta(ConversorDataHora.conversorDataHora(dto.dataAgendamento()), medico, consulta);
+        agendamentoServico.associarConsulta(Facade.conversorDataHora(dto.dataAgendamento()), medico, consulta);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     @Override
     public ResponseEntity<Void> cancelarConsulta(LocalDateTime dataAgendamento, Cliente cliente) {
-        Consulta consulta = auxiliaresFacade.getConsulta().buscarConsultaPeloCliente(dataAgendamento, cliente).getBody();
+        Consulta consulta = facade.buscarConsultaPeloCliente(dataAgendamento, cliente).getBody();
         if (consulta == null) return ResponseEntity.badRequest().build();
         consulta.setDataCancelamento(LocalDateTime.now());
         repositorio.save(consulta);
-        amServico.desassociarConsulta(dataAgendamento, consulta.getMedico());
+        agendamentoServico.desassociarConsulta(dataAgendamento, consulta.getMedico());
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     @Override
     public ResponseEntity<Void> adicionarObservacoesMedicasAConsulta(Medico medico, LocalDateTime dataAgendamento, String observacoes) {
-        Consulta consulta = auxiliaresFacade.getConsulta().buscarConsultaPeloMedico(dataAgendamento, medico).getBody();
+        Consulta consulta = facade.buscarConsultaPeloMedico(dataAgendamento, medico).getBody();
         if (consulta == null) return ResponseEntity.badRequest().build();
         consulta.setObservacoesMedicas(observacoes);
         repositorio.saveAndFlush(consulta);
