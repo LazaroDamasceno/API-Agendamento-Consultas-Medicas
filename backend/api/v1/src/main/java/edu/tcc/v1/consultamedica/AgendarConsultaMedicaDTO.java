@@ -1,8 +1,8 @@
-package edu.tcc.v1.consulta;
+package edu.tcc.v1.consultamedica;
 
 import jakarta.validation.constraints.NotBlank;
 
-public record AgendarConsultaDTO(
+public record AgendarConsultaMedicaDTO(
         @NotBlank String  dataAgendamento
 ) {
 }

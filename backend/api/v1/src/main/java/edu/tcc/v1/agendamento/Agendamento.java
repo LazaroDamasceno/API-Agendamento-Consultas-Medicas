@@ -2,7 +2,7 @@ package edu.tcc.v1.agendamento;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-import edu.tcc.v1.consulta.Consulta;
+import edu.tcc.v1.consultamedica.ConsultaMedica;
 import edu.tcc.v1.facade.Facade;
 import edu.tcc.v1.medico.Medico;
 import jakarta.persistence.*;
@@ -39,7 +39,7 @@ public class Agendamento implements Serializable {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "consulta_id")
-    private Consulta consulta;
+    private ConsultaMedica consultaMedica;
 
     Agendamento(CadastrarAgendamentoDTO dto, Medico medico) {
         this.dataDisponivel = Facade.conversorDataHora(dto.dataDisponivel());

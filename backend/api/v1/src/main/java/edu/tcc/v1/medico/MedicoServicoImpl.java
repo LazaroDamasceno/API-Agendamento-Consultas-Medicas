@@ -2,9 +2,9 @@ package edu.tcc.v1.medico;
 
 import edu.tcc.v1.agendamento.*;
 import edu.tcc.v1.cliente.Cliente;
-import edu.tcc.v1.consulta.Consulta;
-import edu.tcc.v1.consulta.ConsultaServicoImpl;
-import edu.tcc.v1.consulta.ObservacoesMedicasDTO;
+import edu.tcc.v1.consultamedica.ConsultaMedica;
+import edu.tcc.v1.consultamedica.ConsultaMedicaServicoImpl;
+import edu.tcc.v1.consultamedica.ObservacoesMedicasDTO;
 import edu.tcc.v1.facade.Facade;
 import edu.tcc.v1.prontuario.Prontuario;
 import edu.tcc.v1.prontuario.ProntuarioServicoImpl;
@@ -22,7 +22,7 @@ public class MedicoServicoImpl implements MedicoServico {
 
     private MedicoRepositorio repositorio;
     private AgendamentoServicoImpl agendamentoServico;
-    private ConsultaServicoImpl consultaServico;
+    private ConsultaMedicaServicoImpl consultaServico;
     private ProntuarioServicoImpl prontuarioServico;
     private Facade facade;
 
@@ -46,39 +46,39 @@ public class MedicoServicoImpl implements MedicoServico {
     }
 
     @Override
-    public ResponseEntity<Void> cadastrarAgendaMedica(CadastrarAgendamentoDTO dto, String crm) {
+    public ResponseEntity<Void> cadastrarAgendamento(CadastrarAgendamentoDTO dto, String crm) {
         Medico medico = facade.buscarMedico(crm).getBody();
-        agendamentoServico.cadastrarAgendaMedica(dto, medico);
+        agendamentoServico.cadastrarAgendamento(dto, medico);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     @Override
-    public ResponseEntity<List<Agendamento>> buscarAgendasMedicas(String crm) {
+    public ResponseEntity<List<Agendamento>> buscarAgendamentos(String crm) {
         Medico medico = facade.buscarMedico(crm).getBody();
-        return agendamentoServico.buscarAgendasMedicas(medico);
+        return agendamentoServico.buscarAgendamentos(medico);
     }
 
     @Override
-    public ResponseEntity<List<Agendamento>> buscarAgendasMedicasEntreDatas(String crm, String dataInicial, String dataFinal) {
+    public ResponseEntity<List<Agendamento>> buscarAgendamentosEntreDatas(String crm, String dataInicial, String dataFinal) {
         Medico medico = facade.buscarMedico(crm).getBody();
         LocalDateTime di = Facade.conversorDataHora(dataInicial);
         LocalDateTime df = Facade.conversorDataHora(dataFinal);
-        return agendamentoServico.buscarAgendasMedicasEntreDatas(di, df, medico);
+        return agendamentoServico.buscarAgendamentosEntreDatas(di, df, medico);
     }
 
     @Override
-    public ResponseEntity<Void> adicionarObservacoesMedicasAConsulta(String crm, String dataAgendamento, ObservacoesMedicasDTO dto) {
+    public ResponseEntity<Void> adicionarObservacoesMedicasAConsultaMedica(String crm, String dataAgendamento, ObservacoesMedicasDTO dto) {
         Medico medico = facade.buscarMedico(crm).getBody();
         LocalDateTime da = Facade.conversorDataHora(dataAgendamento);
-        consultaServico.adicionarObservacoesMedicasAConsulta(medico, da, dto.observacoes());
+        consultaServico.adicionarObservacoesMedicasAConsultaMedica(medico, da, dto.observacoes());
         return ResponseEntity.noContent().build();
     }
 
     @Override
-    public ResponseEntity<List<Consulta>> buscarConsultas(String crm) {
+    public ResponseEntity<List<ConsultaMedica>> buscarConsultasMedicas(String crm) {
         Medico medico = facade.buscarMedico(crm).getBody();
-        List<Consulta> consultas = consultaServico
-                .buscarConsultas()
+        List<ConsultaMedica> consultas = consultaServico
+                .buscarConsultasMedicas()
                 .stream()
                 .filter(e -> e.getMedico().equals(medico))
                 .toList();
@@ -86,10 +86,10 @@ public class MedicoServicoImpl implements MedicoServico {
     }
 
     @Override
-    public ResponseEntity<List<Consulta>> buscarConsultasAgendadas(String crm) {
+    public ResponseEntity<List<ConsultaMedica>> buscarConsultasMedicasAgendadas(String crm) {
         Medico medico = facade.buscarMedico(crm).getBody();
-        List<Consulta> consultas = consultaServico
-                .buscarConsultasAgendadas()
+        List<ConsultaMedica> consultas = consultaServico
+                .buscarConsultasMedicasAgendadas()
                 .stream()
                 .filter(e -> e.getMedico().equals(medico))
                 .toList();
@@ -97,10 +97,10 @@ public class MedicoServicoImpl implements MedicoServico {
     }
 
     @Override
-    public ResponseEntity<List<Consulta>> buscarConsultasCanceladas(String crm) {
+    public ResponseEntity<List<ConsultaMedica>> buscarConsultasMedicasCanceladas(String crm) {
         Medico medico = facade.buscarMedico(crm).getBody();
-        List<Consulta> consultas = consultaServico
-                .buscarConsultasCanceladas()
+        List<ConsultaMedica> consultas = consultaServico
+                .buscarConsultasMedicasCanceladas()
                 .stream()
                 .filter(e -> e.getMedico().equals(medico))
                 .toList();
@@ -108,12 +108,12 @@ public class MedicoServicoImpl implements MedicoServico {
     }
 
     @Override
-    public ResponseEntity<List<Consulta>> buscarConsultasEntreDatas(String crm, String dataInicial, String dataFinal) {
+    public ResponseEntity<List<ConsultaMedica>> buscarConsultasMedicasEntreDatas(String crm, String dataInicial, String dataFinal) {
         Medico medico = facade.buscarMedico(crm).getBody();
         LocalDateTime di = Facade.conversorDataHora(dataInicial);
         LocalDateTime df = Facade.conversorDataHora(dataFinal);
-        List<Consulta> consultas = consultaServico
-                .buscarConsultasEntreDatas(di, df)
+        List<ConsultaMedica> consultas = consultaServico
+                .buscarConsultasMedicasEntreDatas(di, df)
                 .stream()
                 .filter(e -> e.getMedico().equals(medico))
                 .toList();
@@ -121,11 +121,11 @@ public class MedicoServicoImpl implements MedicoServico {
     }
 
     @Override
-    public ResponseEntity<List<Consulta>> buscarConsultasAgendadasEntreDatas(String crm, String dataInicial, String dataFinal) {
+    public ResponseEntity<List<ConsultaMedica>> buscarConsultasMedicasAgendadasEntreDatas(String crm, String dataInicial, String dataFinal) {
         LocalDateTime di = Facade.conversorDataHora(dataInicial);
         LocalDateTime df = Facade.conversorDataHora(dataFinal);
-        List<Consulta> consultas = consultaServico
-                .buscarConsultasAgendadasEntreDatas(di, df)
+        List<ConsultaMedica> consultas = consultaServico
+                .buscarConsultasMedicasAgendadasEntreDatas(di, df)
                 .stream()
                 .filter(e -> e.getMedico().equals(facade.buscarMedico(crm).getBody()))
                 .toList();
@@ -133,11 +133,11 @@ public class MedicoServicoImpl implements MedicoServico {
     }
 
     @Override
-    public ResponseEntity<List<Consulta>> buscarConsultasCanceladasEntreDatas(String crm, String dataInicial, String dataFinal) {
+    public ResponseEntity<List<ConsultaMedica>> buscarConsultasMedicasCanceladasEntreDatas(String crm, String dataInicial, String dataFinal) {
         LocalDateTime di = Facade.conversorDataHora(dataInicial);
         LocalDateTime df = Facade.conversorDataHora(dataFinal);
-        List<Consulta> consultas = consultaServico
-                .buscarConsultasCanceladasEntreDatas(di, df)
+        List<ConsultaMedica> consultas = consultaServico
+                .buscarConsultasMedicasCanceladasEntreDatas(di, df)
                 .stream()
                 .filter(e -> e.getMedico().equals(facade.buscarMedico(crm).getBody()))
                 .toList();
@@ -145,11 +145,11 @@ public class MedicoServicoImpl implements MedicoServico {
     }
 
     @Override
-    public ResponseEntity<List<Consulta>> buscarConsultasEntreDatasPeloNomeDoCliente(String crm, String nome, String dataInicial, String dataFinal) {
+    public ResponseEntity<List<ConsultaMedica>> buscarConsultasMedicasEntreDatasPeloNomeDoCliente(String crm, String nome, String dataInicial, String dataFinal) {
         LocalDateTime di = Facade.conversorDataHora(dataInicial);
         LocalDateTime df = Facade.conversorDataHora(dataFinal);
-        List<Consulta> consultas = consultaServico
-                .buscarConsultasEntreDatas(di, df)
+        List<ConsultaMedica> consultas = consultaServico
+                .buscarConsultasMedicasEntreDatas(di, df)
                 .stream()
                 .filter(
                         e -> e.getMedico().equals(facade.buscarMedico(crm).getBody())
@@ -159,11 +159,11 @@ public class MedicoServicoImpl implements MedicoServico {
     }
 
     @Override
-    public ResponseEntity<List<Consulta>> buscarConsultasAgendadasEntreDatasPeloNomeDoCliente(String crm, String nome, String dataInicial, String dataFinal) {
+    public ResponseEntity<List<ConsultaMedica>> buscarConsultasMedicasAgendadasEntreDatasPeloNomeDoCliente(String crm, String nome, String dataInicial, String dataFinal) {
         LocalDateTime di = Facade.conversorDataHora(dataInicial);
         LocalDateTime df = Facade.conversorDataHora(dataFinal);
-        List<Consulta> consultas = consultaServico
-                .buscarConsultasAgendadasEntreDatas(di, df)
+        List<ConsultaMedica> consultas = consultaServico
+                .buscarConsultasMedicasAgendadasEntreDatas(di, df)
                 .stream()
                 .filter(
                         e -> e.getMedico().equals(facade.buscarMedico(crm).getBody())
@@ -173,11 +173,11 @@ public class MedicoServicoImpl implements MedicoServico {
     }
 
     @Override
-    public ResponseEntity<List<Consulta>> buscarConsultasCanceladasEntreDatasPeloNomeDoCliente(String crm, String nome, String dataInicial, String dataFinal) {
+    public ResponseEntity<List<ConsultaMedica>> buscarConsultasMedicasCanceladasEntreDatasPeloNomeDoCliente(String crm, String nome, String dataInicial, String dataFinal) {
         LocalDateTime di = Facade.conversorDataHora(dataInicial);
         LocalDateTime df = Facade.conversorDataHora(dataFinal);
-        List<Consulta> consultas = consultaServico
-                .buscarConsultasCanceladasEntreDatas(di, df)
+        List<ConsultaMedica> consultas = consultaServico
+                .buscarConsultasMedicasCanceladasEntreDatas(di, df)
                 .stream()
                 .filter(
                         e -> e.getMedico().equals(facade.buscarMedico(crm).getBody()) 
@@ -187,9 +187,9 @@ public class MedicoServicoImpl implements MedicoServico {
     }
 
     @Override
-    public ResponseEntity<List<Consulta>> buscarConsultasPeloNomeDoCliente(String crm, String nome) {
-        List<Consulta> consultas = consultaServico
-                .buscarConsultas()
+    public ResponseEntity<List<ConsultaMedica>> buscarConsultasMedicasPeloNomeDoCliente(String crm, String nome) {
+        List<ConsultaMedica> consultas = consultaServico
+                .buscarConsultasMedicas()
                 .stream()
                 .filter(
                         e -> e.getMedico().equals(facade.buscarMedico(crm).getBody())
@@ -199,9 +199,9 @@ public class MedicoServicoImpl implements MedicoServico {
     }
 
     @Override
-    public ResponseEntity<List<Consulta>> buscarConsultasAgendadasPeloNomeDoCliente(String crm, String nome) {
-        List<Consulta> consultas = consultaServico
-                .buscarConsultasAgendadas()
+    public ResponseEntity<List<ConsultaMedica>> buscarConsultasMedicasAgendadasPeloNomeDoCliente(String crm, String nome) {
+        List<ConsultaMedica> consultas = consultaServico
+                .buscarConsultasMedicasAgendadas()
                 .stream()
                 .filter(
                         e -> e.getMedico().equals(facade.buscarMedico(crm).getBody())
@@ -211,9 +211,9 @@ public class MedicoServicoImpl implements MedicoServico {
     }
 
     @Override
-    public ResponseEntity<List<Consulta>> buscarConsultasCanceladasPeloNomeDoCliente(String crm, String nome) {
-        List<Consulta> consultas = consultaServico
-                .buscarConsultasCanceladas()
+    public ResponseEntity<List<ConsultaMedica>> buscarConsultasMedicasCanceladasPeloNomeDoCliente(String crm, String nome) {
+        List<ConsultaMedica> consultas = consultaServico
+                .buscarConsultasMedicasCanceladas()
                 .stream()
                 .filter(
                         e -> e.getMedico().equals(facade.buscarMedico(crm).getBody())
@@ -231,12 +231,12 @@ public class MedicoServicoImpl implements MedicoServico {
     }
 
     @Override
-    public ResponseEntity<Void> adicionarConsultaAoProntuario(String crm, String cpf, String dataAgendamento) {
+    public ResponseEntity<Void> adicionarConsultaMedicaAoProntuario(String crm, String cpf, String dataAgendamento) {
         Medico medico = facade.buscarMedico(crm).getBody();
         Cliente cliente = facade.buscarCliente(cpf).getBody();
         LocalDateTime da = Facade.conversorDataHora(dataAgendamento);
-        Consulta consulta = facade.buscarConsultaPeloMedico(da, medico).getBody();
-        prontuarioServico.adicionarConsultaAoProntuario(medico, cliente, consulta);
+        ConsultaMedica consulta = facade.buscarConsultaPeloMedico(da, medico).getBody();
+        prontuarioServico.adicionarConsultaMedicaAoProntuario(medico, cliente, consulta);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 

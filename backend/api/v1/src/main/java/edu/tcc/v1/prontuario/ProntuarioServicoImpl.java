@@ -1,7 +1,7 @@
 package edu.tcc.v1.prontuario;
 
 import edu.tcc.v1.cliente.Cliente;
-import edu.tcc.v1.consulta.Consulta;
+import edu.tcc.v1.consultamedica.ConsultaMedica;
 import edu.tcc.v1.facade.Facade;
 import edu.tcc.v1.medico.Medico;
 import lombok.AllArgsConstructor;
@@ -26,10 +26,10 @@ public class ProntuarioServicoImpl implements ProntuarioServico {
     }
 
     @Override
-    public ResponseEntity<Void> adicionarConsultaAoProntuario(Medico medico, Cliente cliente, Consulta consulta) {
+    public ResponseEntity<Void> adicionarConsultaMedicaAoProntuario(Medico medico, Cliente cliente, ConsultaMedica consultaMedica) {
         Prontuario prontuario = facade.buscarProntuarioPorCliente(medico, cliente).getBody();
         if (prontuario == null) return ResponseEntity.badRequest().build();
-        prontuario.adicionarConsultaAoProntuario(consulta);
+        prontuario.adicionarConsultaMedicaAoProntuario(consultaMedica);
         repositorio.saveAndFlush(prontuario);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }

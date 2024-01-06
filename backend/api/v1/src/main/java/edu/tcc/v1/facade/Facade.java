@@ -11,8 +11,8 @@ import edu.tcc.v1.agendamento.Agendamento;
 import edu.tcc.v1.agendamento.AgendamentoRepositorio;
 import edu.tcc.v1.cliente.Cliente;
 import edu.tcc.v1.cliente.ClienteRepositorio;
-import edu.tcc.v1.consulta.Consulta;
-import edu.tcc.v1.consulta.ConsultaRepositorio;
+import edu.tcc.v1.consultamedica.ConsultaMedica;
+import edu.tcc.v1.consultamedica.ConsultaMedicaRepositorio;
 import edu.tcc.v1.medico.Medico;
 import edu.tcc.v1.medico.MedicoRepositorio;
 import edu.tcc.v1.prontuario.Prontuario;
@@ -28,7 +28,7 @@ public class Facade {
     private final AgendamentoRepositorio agendamentoRepositorio;
     private final ClienteRepositorio clienteRepositorio;
     private final UsuarioRepositorio usuarioRepositorio;
-    private final ConsultaRepositorio consultaRepositorio;
+    private final ConsultaMedicaRepositorio consultaMedicaRepositorio;
     private final MedicoRepositorio medicoRepositorio;
     private final ProntuarioRepositorio prontuarioRepositorio;
 
@@ -53,8 +53,8 @@ public class Facade {
                 .orElse(ResponseEntity.badRequest().build());
     }
 
-    public ResponseEntity<Consulta> buscarConsultaPeloMedico(LocalDateTime dataHora, Medico medico) {
-        Optional<Consulta> consulta = consultaRepositorio
+    public ResponseEntity<ConsultaMedica> buscarConsultaPeloMedico(LocalDateTime dataHora, Medico medico) {
+        Optional<ConsultaMedica> consulta = consultaMedicaRepositorio
                 .findAll()
                 .stream()
                 .filter(
@@ -67,8 +67,8 @@ public class Facade {
                 .orElseGet(() -> ResponseEntity.badRequest().build());
     }
 
-    public ResponseEntity<Consulta> buscarConsultaPeloCliente(LocalDateTime dataHora, Cliente cliente) {
-        Optional<Consulta> consulta = consultaRepositorio
+    public ResponseEntity<ConsultaMedica> buscarConsultaPeloCliente(LocalDateTime dataHora, Cliente cliente) {
+        Optional<ConsultaMedica> consulta = consultaMedicaRepositorio
                 .findAll()
                 .stream()
                 .filter(

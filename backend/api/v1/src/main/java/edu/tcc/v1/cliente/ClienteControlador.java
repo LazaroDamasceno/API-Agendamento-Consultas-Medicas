@@ -1,7 +1,7 @@
 package edu.tcc.v1.cliente;
 
-import edu.tcc.v1.consulta.AgendarConsultaDTO;
-import edu.tcc.v1.consulta.Consulta;
+import edu.tcc.v1.consultamedica.AgendarConsultaMedicaDTO;
+import edu.tcc.v1.consultamedica.ConsultaMedica;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;
@@ -9,19 +9,19 @@ import java.util.List;
 public interface ClienteControlador {
 
     ResponseEntity<Void> cadastrarCliente(CadastrarClienteDTO dto);
-    ResponseEntity<Void> agendarConsulta(AgendarConsultaDTO dto, String crm, String cpf);
-    ResponseEntity<Void> cancelarConsulta(String cpf, String dataAgendamento);
-    ResponseEntity<List<Consulta>> buscarConsultas(String cpf);
-    ResponseEntity<List<Consulta>> buscarConsultasAgendadas(String cpf);
-    ResponseEntity<List<Consulta>> buscarConsultasCanceladas(String cpf);
-    ResponseEntity<List<Consulta>> buscarConsultasEntreDatas(String cpf, String dataInicial, String dataFinal);
-    ResponseEntity<List<Consulta>> buscarConsultasAgendadasEntreDatas(String cpf, String dataInicial, String dataFinal);
-    ResponseEntity<List<Consulta>> buscarConsultasCanceladasEntreDatas(String cpf, String dataInicial, String dataFinal);
-    ResponseEntity<List<Consulta>> buscarConsultasEntreDatasPeloNomeDoMedico(String cpf, String nome, String dataInicial, String dataFinal);
-    ResponseEntity<List<Consulta>> buscarConsultasAgendadasEntreDatasPeloNomeDoMedico(String cpf, String nome, String dataInicial, String dataFinal);
-    ResponseEntity<List<Consulta>> buscarConsultasCanceladasEntreDatasPeloNomeDoMedico(String cpf, String nome, String dataInicial, String dataFinal);
-    ResponseEntity<List<Consulta>> buscarConsultasPeloNomeDoMedico(String cpf, String nome);
-    ResponseEntity<List<Consulta>> buscarConsultasAgendadasPeloNomeDoMedico(String cpf, String nome);
-    ResponseEntity<List<Consulta>> buscarConsultasCanceladasPeloNomeDoMedico(String cpf, String nome);
+    ResponseEntity<Void> agendarConsultaMedica(AgendarConsultaMedicaDTO dto, String crm, String cpf);
+    ResponseEntity<Void> cancelarConsultaMedica(String cpf, String dataAgendamento);
+    ResponseEntity<List<ConsultaMedica>> buscarConsultasMedicas(String cpf);
+    ResponseEntity<List<ConsultaMedica>> buscarConsultasMedicasAgendadas(String cpf);
+    ResponseEntity<List<ConsultaMedica>> buscarConsultasMedicasCanceladas(String cpf);
+    ResponseEntity<List<ConsultaMedica>> buscarConsultasMedicasEntreDatas(String cpf, String dataInicial, String dataFinal);
+    ResponseEntity<List<ConsultaMedica>> buscarConsultasMedicasAgendadasEntreDatas(String cpf, String dataInicial, String dataFinal);
+    ResponseEntity<List<ConsultaMedica>> buscarConsultasMedicasCanceladasEntreDatas(String cpf, String dataInicial, String dataFinal);
+    ResponseEntity<List<ConsultaMedica>> buscarConsultasMedicasEntreDatasPeloNomeDoMedico(String cpf, String nome, String dataInicial, String dataFinal);
+    ResponseEntity<List<ConsultaMedica>> buscarConsultasMedicasAgendadasEntreDatasPeloNomeDoMedico(String cpf, String nome, String dataInicial, String dataFinal);
+    ResponseEntity<List<ConsultaMedica>> buscarConsultasMedicasCanceladasEntreDatasPeloNomeDoMedico(String cpf, String nome, String dataInicial, String dataFinal);
+    ResponseEntity<List<ConsultaMedica>> buscarConsultasMedicasPeloNomeDoMedico(String cpf, String nome);
+    ResponseEntity<List<ConsultaMedica>> buscarConsultasMedicasAgendadasPeloNomeDoMedico(String cpf, String nome);
+    ResponseEntity<List<ConsultaMedica>> buscarConsultasMedicasCanceladasPeloNomeDoMedico(String cpf, String nome);
 
 }

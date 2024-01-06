@@ -1,6 +1,6 @@
 package edu.tcc.v1.agendamento;
 
-import edu.tcc.v1.consulta.Consulta;
+import edu.tcc.v1.consultamedica.ConsultaMedica;
 import edu.tcc.v1.facade.Facade;
 import edu.tcc.v1.medico.Medico;
 import lombok.AllArgsConstructor;
@@ -19,7 +19,7 @@ public class AgendamentoServicoImpl implements AgendamentoServico {
     private Facade facade;
 
     @Override
-    public ResponseEntity<Void> cadastrarAgendaMedica(CadastrarAgendamentoDTO dto, Medico medico) {
+    public ResponseEntity<Void> cadastrarAgendamento(CadastrarAgendamentoDTO dto, Medico medico) {
         Agendamento agendaMedica = AgendamentoRepositorio.instanciar(dto, medico);
         repositorio.save(agendaMedica);
         return new ResponseEntity<>(HttpStatus.CREATED);
@@ -27,30 +27,30 @@ public class AgendamentoServicoImpl implements AgendamentoServico {
 
 
     @Override
-    public void associarConsulta(LocalDateTime dataDisponivel, Medico medico, Consulta consulta) {
+    public void associarConsultaMedica(LocalDateTime dataDisponivel, Medico medico, ConsultaMedica consulta) {
         Agendamento agendaMedica = facade.buscarAgendamento(dataDisponivel, medico).getBody();
         if (agendaMedica != null) {
-            agendaMedica.setConsulta(consulta);
+            agendaMedica.setConsultaMedica(consulta);
             repositorio.save(agendaMedica);
         }
     }
 
     @Override
-    public void desassociarConsulta(LocalDateTime dataDisponivel, Medico medico) {
+    public void desassociarConsultaMedica(LocalDateTime dataDisponivel, Medico medico) {
         Agendamento agendaMedica = facade.buscarAgendamento(dataDisponivel, medico).getBody();
         if (agendaMedica != null) {
-            agendaMedica.setConsulta(null);
+            agendaMedica.setConsultaMedica(null);
             repositorio.save(agendaMedica);
         }
     }
 
     @Override
-    public ResponseEntity<List<Agendamento>> buscarAgendasMedicas(Medico medico) {
+    public ResponseEntity<List<Agendamento>> buscarAgendamentos(Medico medico) {
         return new ResponseEntity<>(repositorio.buscarAgendasMedicas(medico), HttpStatus.OK);
     }
 
     @Override
-    public ResponseEntity<List<Agendamento>> buscarAgendasMedicasEntreDatas(LocalDateTime dataInicial, LocalDateTime dataFinal, Medico medico) {
+    public ResponseEntity<List<Agendamento>> buscarAgendamentosEntreDatas(LocalDateTime dataInicial, LocalDateTime dataFinal, Medico medico) {
         return new ResponseEntity<>(repositorio.buscarAgendasMedicasEntreDatas(dataInicial, dataFinal, medico), HttpStatus.OK);
     }
 

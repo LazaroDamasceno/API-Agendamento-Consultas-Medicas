@@ -2,7 +2,7 @@ package edu.tcc.v1.prontuario;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import edu.tcc.v1.cliente.Cliente;
-import edu.tcc.v1.consulta.Consulta;
+import edu.tcc.v1.consultamedica.ConsultaMedica;
 import edu.tcc.v1.medico.Medico;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -35,7 +35,7 @@ public class Prontuario  implements Serializable {
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "consultas_id")
-    private List<Consulta> consultas = new ArrayList<>();
+    private List<ConsultaMedica> consultas = new ArrayList<>();
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "medico_id")
@@ -51,8 +51,8 @@ public class Prontuario  implements Serializable {
         this.cliente = cliente;
     }
 
-    public void adicionarConsultaAoProntuario(Consulta consulta) {
-        consultas.add(consulta);
+    public void adicionarConsultaMedicaAoProntuario(ConsultaMedica consultaMedica) {
+        consultas.add(consultaMedica);
     }
 
 }

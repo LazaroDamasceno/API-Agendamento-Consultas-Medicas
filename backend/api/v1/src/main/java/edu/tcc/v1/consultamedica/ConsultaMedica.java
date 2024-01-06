@@ -1,4 +1,4 @@
-package edu.tcc.v1.consulta;
+package edu.tcc.v1.consultamedica;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -20,7 +20,7 @@ import java.util.UUID;
 @Getter
 @Setter
 @NoArgsConstructor
-public class Consulta implements Serializable {
+public class ConsultaMedica implements Serializable {
 
     @Serial
     private static final long serialVersionUID = 1L;
@@ -46,7 +46,7 @@ public class Consulta implements Serializable {
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;
 
-    Consulta(AgendarConsultaDTO dto, Cliente cliente, Medico medico) {
+    ConsultaMedica(AgendarConsultaMedicaDTO dto, Cliente cliente, Medico medico) {
         this.dataAgendamento = Facade.conversorDataHora(dto.dataAgendamento());
         this.cliente = cliente;
         this.medico = medico;

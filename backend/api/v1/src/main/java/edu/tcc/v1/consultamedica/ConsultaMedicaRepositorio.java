@@ -1,4 +1,4 @@
-package edu.tcc.v1.consulta;
+package edu.tcc.v1.consultamedica;
 
 import edu.tcc.v1.cliente.Cliente;
 import edu.tcc.v1.medico.Medico;
@@ -10,30 +10,30 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
-public interface ConsultaRepositorio extends JpaRepository<Consulta, UUID> {
+public interface ConsultaMedicaRepositorio extends JpaRepository<ConsultaMedica, UUID> {
 
-    static Consulta instanciar(AgendarConsultaDTO dto, Cliente cliente, Medico medico) {
-        return new Consulta(dto, cliente, medico);
+    static ConsultaMedica instanciar(AgendarConsultaMedicaDTO dto, Cliente cliente, Medico medico) {
+        return new ConsultaMedica(dto, cliente, medico);
     }
 
     @Query("""
         select c from Consulta c
     """)
-    List<Consulta> buscarConsultas();
+    List<ConsultaMedica> buscarConsultasMedicas();
 
     @Query("""
         select c from Consulta c
         where c.dataAgendamento >= :dataInicial
         and c.dataAgendamento <= :dataFinal
     """)
-    List<Consulta> buscarConsultasEntreDatas(@Param("dataInicial") LocalDateTime dataInicial,
+    List<ConsultaMedica> buscarConsultasMedicasEntreDatas(@Param("dataInicial") LocalDateTime dataInicial,
                                              @Param("dataFinal") LocalDateTime dataFinal);
 
     @Query("""
         select c from Consulta c
         where c.dataCancelamento is null
     """)
-    List<Consulta> buscarConsultasAgendadas();
+    List<ConsultaMedica> buscarConsultasMedicasAgendadas();
 
     @Query("""
         select c from Consulta c
@@ -41,14 +41,14 @@ public interface ConsultaRepositorio extends JpaRepository<Consulta, UUID> {
         and c.dataAgendamento <= :dataFinal
         and c.dataCancelamento is null
     """)
-    List<Consulta> buscarConsultasAgendadasEntreDatas(@Param("dataInicial") LocalDateTime dataInicial,
+    List<ConsultaMedica> buscarConsultasMedicasAgendadasEntreDatas(@Param("dataInicial") LocalDateTime dataInicial,
                                                       @Param("dataFinal") LocalDateTime dataFinal);
 
     @Query("""
         select c from Consulta c
         where c.dataCancelamento is not null
     """)
-    List<Consulta> buscarConsultasCanceladas();
+    List<ConsultaMedica> buscarConsultasMedicasCanceladas();
 
     @Query("""
         select c from Consulta c
@@ -56,7 +56,7 @@ public interface ConsultaRepositorio extends JpaRepository<Consulta, UUID> {
         and c.dataAgendamento <= :dataFinal
         and c.dataCancelamento is not null
     """)
-    List<Consulta> buscarConsultasCanceladasEntreDatas(@Param("dataInicial") LocalDateTime dataInicial,
+    List<ConsultaMedica> buscarConsultasMedicasCanceladasEntreDatas(@Param("dataInicial") LocalDateTime dataInicial,
                                                        @Param("dataFinal") LocalDateTime dataFinal);
 
 }
