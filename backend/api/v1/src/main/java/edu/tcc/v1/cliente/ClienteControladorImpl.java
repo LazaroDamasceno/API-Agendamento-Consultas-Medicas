@@ -22,7 +22,7 @@ public class ClienteControladorImpl implements ClienteControlador {
     }
 
     @Override
-    @PostMapping("consulta/{cpf}/{crm}")
+    @PostMapping("consulta-medica/{cpf}/{crm}")
     public ResponseEntity<Void> agendarConsultaMedica(@RequestBody AgendarConsultaMedicaDTO dto, 
                                                 @PathVariable(name = "crm") String crm, 
                                                 @PathVariable(name = "cpf") String cpf) {
@@ -30,32 +30,32 @@ public class ClienteControladorImpl implements ClienteControlador {
     }
 
     @Override
-    @PatchMapping("consulta/{cpf}/{dataAgendamento}")
+    @PatchMapping("consulta-medica/{cpf}/{dataAgendamento}")
     public ResponseEntity<Void> cancelarConsultaMedica(@PathVariable(name = "cpf") String cpf,
                                           @PathVariable(name = "dataAgendamento") String dataAgendamento) {
         return servico.cancelarConsultaMedica(cpf, dataAgendamento);
     }
 
     @Override
-    @GetMapping("consultas/{cpf}")
+    @GetMapping("consultas-medicas/{cpf}")
     public ResponseEntity<List<ConsultaMedica>> buscarConsultasMedicas(@PathVariable(name = "cpf") String cpf) {
         return servico.buscarConsultasMedicas(cpf);
     }
 
     @Override
-    @GetMapping("consultas/agendadas/{cpf}")
+    @GetMapping("consultas-medicas/agendadas/{cpf}")
     public ResponseEntity<List<ConsultaMedica>> buscarConsultasMedicasAgendadas(@PathVariable(name = "cpf") String cpf) {
         return servico.buscarConsultasMedicasAgendadas(cpf);
     }
 
     @Override
-    @GetMapping("consultas/canceladas/{cpf}")
+    @GetMapping("consultas-medicas/canceladas/{cpf}")
     public ResponseEntity<List<ConsultaMedica>> buscarConsultasMedicasCanceladas(@PathVariable(name = "cpf") String cpf) {
         return servico.buscarConsultasMedicasCanceladas(cpf);
     }
 
     @Override
-    @GetMapping("consultas/entre-datas/{cpf}/{dataInicial}/{dataFinal}")
+    @GetMapping("consultas-medicas/entre-datas/{cpf}/{dataInicial}/{dataFinal}")
     public ResponseEntity<List<ConsultaMedica>> buscarConsultasMedicasEntreDatas(@PathVariable(name = "cpf") String cpf, 
                                                                     @PathVariable(name = "dataInicial") String dataInicial, 
                                                                     @PathVariable(name = "dataFinal") String dataFinal) {
@@ -63,7 +63,7 @@ public class ClienteControladorImpl implements ClienteControlador {
     }
 
     @Override
-    @GetMapping("consultas/agendadas/entre-datas/{cpf}/{dataInicial}/{dataFinal}")
+    @GetMapping("consultas-medicas/agendadas/entre-datas/{cpf}/{dataInicial}/{dataFinal}")
     public ResponseEntity<List<ConsultaMedica>> buscarConsultasMedicasAgendadasEntreDatas(@PathVariable(name = "cpf") String cpf, 
                                                                              @PathVariable(name = "dataInicial") String dataInicial, 
                                                                              @PathVariable(name = "dataFinal") String dataFinal) {
@@ -71,7 +71,7 @@ public class ClienteControladorImpl implements ClienteControlador {
     }
 
     @Override
-    @GetMapping("consultas/canceladas/entre-datas/{cpf}/{dataInicial}/{dataFinal}")
+    @GetMapping("consultas-medicas/canceladas/entre-datas/{cpf}/{dataInicial}/{dataFinal}")
     public ResponseEntity<List<ConsultaMedica>> buscarConsultasMedicasCanceladasEntreDatas(@PathVariable(name = "cpf") String cpf,
                                                                               @PathVariable(name = "dataInicial") String dataInicial, 
                                                                               @PathVariable(name = "dataFinal") String dataFinal) {
@@ -79,7 +79,7 @@ public class ClienteControladorImpl implements ClienteControlador {
     }
 
     @Override
-    @GetMapping("consultas/entre-datas/{cpf}/{nome}/{dataInicial}/{dataFinal}")
+    @GetMapping("consultas-medicas/entre-datas/{cpf}/{nome}/{dataInicial}/{dataFinal}")
     public ResponseEntity<List<ConsultaMedica>> buscarConsultasMedicasEntreDatasPeloNomeDoMedico(@PathVariable(name = "cpf") String cpf, 
                                                                                     @PathVariable(name = "nome") String nome,
                                                                                     @PathVariable(name = "dataInicial") String dataInicial, 
@@ -88,7 +88,7 @@ public class ClienteControladorImpl implements ClienteControlador {
     }
 
     @Override
-    @GetMapping("consultas/entre-datas/agendadadas/{cpf}/{nome}/{dataInicial}/{dataFinal}")
+    @GetMapping("consultas-medicas/entre-datas/agendadadas/{cpf}/{nome}/{dataInicial}/{dataFinal}")
     public ResponseEntity<List<ConsultaMedica>> buscarConsultasMedicasAgendadasEntreDatasPeloNomeDoMedico(@PathVariable(name = "cpf") String cpf,
                                                                                              @PathVariable(name = "nome") String nome,
                                                                                              @PathVariable(name = "dataInicial") String dataInicial, 
@@ -97,7 +97,7 @@ public class ClienteControladorImpl implements ClienteControlador {
     }
 
     @Override
-    @GetMapping("consultas/canceladas/entre-datas/{cpf}/{nome}/{dataInicial}/{dataFinal}")
+    @GetMapping("consultas-medicas/canceladas/entre-datas/{cpf}/{nome}/{dataInicial}/{dataFinal}")
     public ResponseEntity<List<ConsultaMedica>> buscarConsultasMedicasCanceladasEntreDatasPeloNomeDoMedico(@PathVariable(name = "cpf") String cpf,
                                                                                               @PathVariable(name = "nome") String nome,
                                                                                               @PathVariable(name = "dataInicial") String dataInicial,
@@ -106,21 +106,21 @@ public class ClienteControladorImpl implements ClienteControlador {
     }
 
     @Override
-    @GetMapping("consultas/{cpf}/{nome}")
+    @GetMapping("consultas-medicas/{cpf}/{nome}")
     public ResponseEntity<List<ConsultaMedica>> buscarConsultasMedicasPeloNomeDoMedico(@PathVariable(name = "cpf") String cpf,
                                                                           @PathVariable(name = "nome") String nome) {
         return servico.buscarConsultasMedicasPeloNomeDoMedico(cpf, nome);
     }
 
     @Override
-    @GetMapping("consultas/agendadas/{cpf}/{nome}")
+    @GetMapping("consultas-medicas/agendadas/{cpf}/{nome}")
     public ResponseEntity<List<ConsultaMedica>> buscarConsultasMedicasAgendadasPeloNomeDoMedico(@PathVariable(name = "cpf") String cpf,
                                                                                    @PathVariable(name = "nome") String nome) {
         return servico.buscarConsultasMedicasAgendadasPeloNomeDoMedico(cpf, nome);
     }
 
     @Override
-    @GetMapping("consultas/canceladas/{cpf}/{nome}")
+    @GetMapping("consultas-medicas/canceladas/{cpf}/{nome}")
     public ResponseEntity<List<ConsultaMedica>> buscarConsultasMedicasCanceladasPeloNomeDoMedico(@PathVariable(name = "cpf") String cpf,
                                                                                     @PathVariable(name = "nome") String nome) {
         return servico.buscarConsultasMedicasCanceladasPeloNomeDoMedico(cpf, nome);
