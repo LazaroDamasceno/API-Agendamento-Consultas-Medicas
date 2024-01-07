@@ -1,7 +1,5 @@
 package edu.tcc.v1.agendamento;
 
-import edu.tcc.v1.consultamedica.ConsultaMedica;
-import edu.tcc.v1.facade.Facade;
 import edu.tcc.v1.medico.Medico;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -16,32 +14,12 @@ import java.util.List;
 public class AgendamentoServicoImpl implements AgendamentoServico {
 
     private AgendamentoRepositorio repositorio;
-    private Facade facade;
 
     @Override
     public ResponseEntity<Void> cadastrarAgendamento(CadastrarAgendamentoDTO dto, Medico medico) {
         Agendamento agendaMedica = AgendamentoRepositorio.instanciar(dto, medico);
         repositorio.save(agendaMedica);
         return new ResponseEntity<>(HttpStatus.CREATED);
-    }
-
-
-    @Override
-    public void associarConsultaMedica(LocalDateTime dataDisponivel, Medico medico, ConsultaMedica consulta) {
-        Agendamento agendaMedica = facade.buscarAgendamento(dataDisponivel, medico).getBody();
-        if (agendaMedica != null) {
-            agendaMedica.setConsultaMedica(consulta);
-            repositorio.save(agendaMedica);
-        }
-    }
-
-    @Override
-    public void desassociarConsultaMedica(LocalDateTime dataDisponivel, Medico medico) {
-        Agendamento agendaMedica = facade.buscarAgendamento(dataDisponivel, medico).getBody();
-        if (agendaMedica != null) {
-            agendaMedica.setConsultaMedica(null);
-            repositorio.save(agendaMedica);
-        }
     }
 
     @Override

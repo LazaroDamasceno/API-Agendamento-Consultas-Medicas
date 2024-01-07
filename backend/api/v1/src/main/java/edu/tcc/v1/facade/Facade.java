@@ -100,7 +100,23 @@ public class Facade {
         return usuarioRepositorio.buscarUsuario(cpf);
     }
 
-    public static LocalDateTime conversorDataHora(String dataHora) {
+    public void associarConsultaMedica(LocalDateTime dataDisponivel, Medico medico, ConsultaMedica consulta) {
+        Agendamento agendaMedica = buscarAgendamento(dataDisponivel, medico).getBody();
+        if (agendaMedica != null) {
+            agendaMedica.setConsultaMedica(consulta);
+            agendamentoRepositorio.save(agendaMedica);
+        }
+    }
+
+    public void desassociarConsultaMedica(LocalDateTime dataDisponivel, Medico medico) {
+        Agendamento agendaMedica = buscarAgendamento(dataDisponivel, medico).getBody();
+        if (agendaMedica != null) {
+            agendaMedica.setConsultaMedica(null);
+            agendamentoRepositorio.save(agendaMedica);
+        }
+    }
+
+        public static LocalDateTime conversorDataHora(String dataHora) {
         return LocalDateTime.parse(dataHora, DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss"));
     }
     

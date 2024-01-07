@@ -1,6 +1,5 @@
 package edu.tcc.v1.consultamedica;
 
-import edu.tcc.v1.agendamento.AgendamentoServicoImpl;
 import edu.tcc.v1.cliente.Cliente;
 import edu.tcc.v1.facade.Facade;
 import edu.tcc.v1.medico.Medico;
@@ -17,14 +16,13 @@ import java.util.List;
 public class ConsultaMedicaServicoImpl implements ConsultaMedicaServico {
 
     private ConsultaMedicaRepositorio repositorio;
-    private AgendamentoServicoImpl agendamentoServico;
     private Facade facade;
 
     @Override
     public ResponseEntity<Void> agendarConsultaMedica(AgendarConsultaMedicaDTO dto, Cliente cliente, Medico medico) {
         ConsultaMedica consulta = ConsultaMedicaRepositorio.instanciar(dto, cliente, medico);
         repositorio.save(consulta);
-        agendamentoServico.associarConsultaMedica(Facade.conversorDataHora(dto.dataAgendamento()), medico, consulta);
+        facade.associarConsultaMedica(Facade.conversorDataHora(dto.dataAgendamento()), medico, consulta);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
@@ -34,7 +32,7 @@ public class ConsultaMedicaServicoImpl implements ConsultaMedicaServico {
         if (consulta == null) return ResponseEntity.badRequest().build();
         consulta.setDataCancelamento(LocalDateTime.now());
         repositorio.save(consulta);
-        agendamentoServico.desassociarConsultaMedica(dataAgendamento, consulta.getMedico());
+        facade.desassociarConsultaMedica(dataAgendamento, consulta.getMedico());
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
