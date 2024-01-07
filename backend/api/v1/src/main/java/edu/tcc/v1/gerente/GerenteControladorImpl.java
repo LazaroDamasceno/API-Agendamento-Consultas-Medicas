@@ -35,7 +35,7 @@ public class GerenteControladorImpl implements GerenteServico {
     }
 
     @Override
-    @GetMapping("medico/crm/{crm}")
+    @GetMapping("medico/{crm}")
     public ResponseEntity<Medico> buscarMedicoPeloCRM(@PathVariable(name = "crm") String crm) {
         return servico.buscarMedicoPeloCRM(crm);
     }
