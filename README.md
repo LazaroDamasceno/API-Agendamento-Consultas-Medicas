@@ -56,3 +56,7 @@ Para tanto, deve ser digitado na barra de navegadores `http://localhost:8080/swa
 O banco de dados usado foi o PostgreSQL na sua versão online presente no site [elephantSQL](https://www.elephantsql.com/).
 
 O sistema de gerenciamento de banco de dados escolhido o [DBeaver Community](https://dbeaver.io/download/). 
+
+## API funcionando
+
+O link do vídeo que contém a API funcionando é [este](https://youtu.be/FJ6vMU-Udco).
