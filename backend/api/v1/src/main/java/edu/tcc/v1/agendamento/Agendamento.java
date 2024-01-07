@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity
-@Table(name = "V1_AGENDA_MEDICA")
+@Table(name = "V1_AGENDAMENTO")
 @Getter
 @Setter
 @NoArgsConstructor
