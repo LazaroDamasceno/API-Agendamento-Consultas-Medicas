@@ -145,7 +145,7 @@ public class MedicoControladorImpl implements MedicoControlador {
     }
 
     @Override
-    @PatchMapping("consulta/prontuario/{crm}/{cpf}/{dataAgendamento}")
+    @PatchMapping("consulta-medica/prontuario/{crm}/{cpf}/{dataAgendamento}")
     public ResponseEntity<Void> adicionarConsultaMedicaAoProntuario(@PathVariable(name = "crm") String crm,
                                                               @PathVariable(name = "cpf") String cpf,
                                                               @PathVariable(name = "dataAgendamento") String dataAgendamento) {
