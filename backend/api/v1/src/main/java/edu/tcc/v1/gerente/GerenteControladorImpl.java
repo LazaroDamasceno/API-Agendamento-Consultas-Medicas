@@ -12,7 +12,7 @@ import java.util.List;
 @RestController
 @RequestMapping("api/v1/gerente")
 @AllArgsConstructor
-public class GerenteControladorImpl implements GerenteServico {
+public class GerenteControladorImpl implements GerenteControlador {
 
     private GerenteServicoImpl servico;
 
@@ -44,6 +44,16 @@ public class GerenteControladorImpl implements GerenteServico {
     @GetMapping("clientes")
     public ResponseEntity<List<Cliente>> buscarClientes() {
         return servico.buscarClientes();
+    }
+
+    @Override
+    public ResponseEntity<Void> deletarMedicos() {
+        return servico.deletarMedicos();
+    }
+
+    @Override
+    public ResponseEntity<Void> deletarClientes() {
+        return servico.deletarClientes();
     }
 
 }

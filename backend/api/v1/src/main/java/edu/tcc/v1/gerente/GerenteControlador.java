@@ -11,8 +11,10 @@ public interface GerenteControlador {
 
     ResponseEntity<Void> cadastrarMedico(CadastrarMedicoDTO dto);
     ResponseEntity<Void> demitirMedico(String crm);
-    ResponseEntity<List<Medico>> exibirListaDosMedicos();
-    ResponseEntity<Medico> exibirMedicoPeloCRM(String crm);
-    ResponseEntity<List<Cliente>> exibirListaDosClientes();
+    ResponseEntity<List<Medico>> buscarMedicos();
+    ResponseEntity<Medico> buscarMedicoPeloCRM(String crm);
+    ResponseEntity<List<Cliente>> buscarClientes();
+    ResponseEntity<Void> deletarMedicos();
+    ResponseEntity<Void> deletarClientes();
 
 }
