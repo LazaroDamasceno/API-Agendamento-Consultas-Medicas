@@ -116,7 +116,7 @@ public class Facade {
         }
     }
 
-        public static LocalDateTime conversorDataHora(String dataHora) {
+    public static LocalDateTime conversorDataHora(String dataHora) {
         return LocalDateTime.parse(dataHora, DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss"));
     }
     
