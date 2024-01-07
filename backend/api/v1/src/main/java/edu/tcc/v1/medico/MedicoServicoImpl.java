@@ -253,4 +253,10 @@ public class MedicoServicoImpl implements MedicoServico {
         return prontuarioServico.buscarProntuariosPorMedico(medico);
     }
 
+    @Override
+    public ResponseEntity<Void> deletarMedicos() {
+        repositorio.deleteAll();
+        return ResponseEntity.noContent().build();
+    }
+
 }

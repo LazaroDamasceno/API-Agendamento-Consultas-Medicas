@@ -1,12 +1,10 @@
 package edu.tcc.v1.gerente;
 
 import edu.tcc.v1.cliente.Cliente;
-import edu.tcc.v1.cliente.ClienteRepositorio;
 import edu.tcc.v1.cliente.ClienteServicoImpl;
 import edu.tcc.v1.facade.Facade;
 import edu.tcc.v1.medico.CadastrarMedicoDTO;
 import edu.tcc.v1.medico.Medico;
-import edu.tcc.v1.medico.MedicoRepositorio;
 import edu.tcc.v1.medico.MedicoServicoImpl;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -20,10 +18,8 @@ import java.util.List;
 public class GerenteServicoImpl implements GerenteServico {
 
     private MedicoServicoImpl medicoServico;
-    private ClienteServicoImpl clienteServicoImp;
+    private ClienteServicoImpl clienteServico;
     private Facade facade;
-    private MedicoRepositorio medicoRepositorio;
-    private ClienteRepositorio clienteRepositorio;
 
     @Override
     public ResponseEntity<Void> cadastrarMedico(CadastrarMedicoDTO dto) {
@@ -51,18 +47,18 @@ public class GerenteServicoImpl implements GerenteServico {
 
     @Override
     public ResponseEntity<List<Cliente>> buscarClientes() {
-        return clienteServicoImp.exibirClientes();
+        return clienteServico.exibirClientes();
     }
 
     @Override
     public ResponseEntity<Void> deletarMedicos() {
-        medicoRepositorio.deleteAll();
+        medicoServico.deletarMedicos();
         return ResponseEntity.noContent().build();
     }
 
     @Override
     public ResponseEntity<Void> deletarClientes() {
-        clienteRepositorio.deleteAll();
+        clienteServico.deletarClientes();
         return ResponseEntity.noContent().build();
     }
 

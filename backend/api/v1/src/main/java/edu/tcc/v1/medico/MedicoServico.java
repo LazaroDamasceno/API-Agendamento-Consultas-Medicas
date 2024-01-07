@@ -34,5 +34,6 @@ public interface MedicoServico {
     ResponseEntity<Void> adicionarConsultaMedicaAoProntuario(String crm, String cpf, String dataAgendamento);
     ResponseEntity<Prontuario> buscarProntuarioDeCliente(String crm, String cpf);
     ResponseEntity<List<Prontuario>> buscarProntuarios(String crm);   
+    ResponseEntity<Void> deletarMedicos();
 
 }
