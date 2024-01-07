@@ -50,14 +50,4 @@ public class GerenteServicoImpl implements GerenteServico {
         return clienteServico.exibirClientes();
     }
 
-    @Override
-    public ResponseEntity<Void> deletarMedicos() {
-        return medicoServico.deletarMedicos();
-    }
-
-    @Override
-    public ResponseEntity<Void> deletarClientes() {
-        return clienteServico.deletarClientes();
-    }
-
 }

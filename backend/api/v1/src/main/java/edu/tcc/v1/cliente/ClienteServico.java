@@ -24,6 +24,5 @@ public interface ClienteServico {
     ResponseEntity<List<ConsultaMedica>> buscarConsultasMedicasPeloNomeDoMedico(String cpf, String nome);
     ResponseEntity<List<ConsultaMedica>> buscarConsultasMedicasAgendadasPeloNomeDoMedico(String cpf, String nome);
     ResponseEntity<List<ConsultaMedica>> buscarConsultasMedicasCanceladasPeloNomeDoMedico(String cpf, String nome);
-    ResponseEntity<Void> deletarClientes();
 
 }

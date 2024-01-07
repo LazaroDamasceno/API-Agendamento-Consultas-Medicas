@@ -14,7 +14,5 @@ public interface GerenteControlador {
     ResponseEntity<List<Medico>> buscarMedicos();
     ResponseEntity<Medico> buscarMedicoPeloCRM(String crm);
     ResponseEntity<List<Cliente>> buscarClientes();
-    ResponseEntity<Void> deletarMedicos();
-    ResponseEntity<Void> deletarClientes();
 
 }

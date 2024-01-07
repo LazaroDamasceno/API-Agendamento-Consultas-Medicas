@@ -193,10 +193,4 @@ public class ClienteServicoImpl implements ClienteServico {
         return ResponseEntity.ok(consultas);
     }
 
-    @Override
-    public ResponseEntity<Void> deletarClientes() {
-        repositorio.deleteAll();
-        return ResponseEntity.noContent().build();
-    }
-
 }

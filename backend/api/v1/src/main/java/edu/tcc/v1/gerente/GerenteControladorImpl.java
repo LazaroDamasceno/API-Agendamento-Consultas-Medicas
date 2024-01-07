@@ -46,16 +46,4 @@ public class GerenteControladorImpl implements GerenteControlador {
         return servico.buscarClientes();
     }
 
-    @Override
-    @DeleteMapping("medicos")
-    public ResponseEntity<Void> deletarMedicos() {
-        return servico.deletarMedicos();
-    }
-
-    @Override
-    @DeleteMapping("clientes")
-    public ResponseEntity<Void> deletarClientes() {
-        return servico.deletarClientes();
-    }
-
 }
