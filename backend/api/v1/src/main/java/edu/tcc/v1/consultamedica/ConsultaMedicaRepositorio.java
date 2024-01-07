@@ -17,12 +17,12 @@ public interface ConsultaMedicaRepositorio extends JpaRepository<ConsultaMedica,
     }
 
     @Query("""
-        select c from Consulta c
+        select c from ConsultaMedica c
     """)
     List<ConsultaMedica> buscarConsultasMedicas();
 
     @Query("""
-        select c from Consulta c
+        select c from ConsultaMedica c
         where c.dataAgendamento >= :dataInicial
         and c.dataAgendamento <= :dataFinal
     """)
@@ -30,13 +30,13 @@ public interface ConsultaMedicaRepositorio extends JpaRepository<ConsultaMedica,
                                              @Param("dataFinal") LocalDateTime dataFinal);
 
     @Query("""
-        select c from Consulta c
+        select c from ConsultaMedica c
         where c.dataCancelamento is null
     """)
     List<ConsultaMedica> buscarConsultasMedicasAgendadas();
 
     @Query("""
-        select c from Consulta c
+        select c from ConsultaMedica c
         where c.dataAgendamento >= :dataInicial
         and c.dataAgendamento <= :dataFinal
         and c.dataCancelamento is null
@@ -45,13 +45,13 @@ public interface ConsultaMedicaRepositorio extends JpaRepository<ConsultaMedica,
                                                       @Param("dataFinal") LocalDateTime dataFinal);
 
     @Query("""
-        select c from Consulta c
+        select c from ConsultaMedica c
         where c.dataCancelamento is not null
     """)
     List<ConsultaMedica> buscarConsultasMedicasCanceladas();
 
     @Query("""
-        select c from Consulta c
+        select c from ConsultaMedica c
         where c.dataAgendamento >= :dataInicial
         and c.dataAgendamento <= :dataFinal
         and c.dataCancelamento is not null
