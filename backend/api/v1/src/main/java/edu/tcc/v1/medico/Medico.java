@@ -3,13 +3,10 @@ package edu.tcc.v1.medico;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import edu.tcc.v1.usuario.Usuario;
 import edu.tcc.v1.usuario.UsuarioRepositorio;
-
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -21,7 +18,6 @@ import java.util.UUID;
 @NoArgsConstructor
 public class Medico implements Serializable {
 
-    @Serial
     private static final long serialVersionUID = 1L;
 
     @Id

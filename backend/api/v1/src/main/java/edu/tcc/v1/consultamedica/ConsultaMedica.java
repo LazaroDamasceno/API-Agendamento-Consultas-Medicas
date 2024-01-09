@@ -1,7 +1,6 @@
 package edu.tcc.v1.consultamedica;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-
 import edu.tcc.v1.cliente.Cliente;
 import edu.tcc.v1.facade.Facade;
 import edu.tcc.v1.medico.Medico;
@@ -9,8 +8,6 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -22,7 +19,6 @@ import java.util.UUID;
 @NoArgsConstructor
 public class ConsultaMedica implements Serializable {
 
-    @Serial
     private static final long serialVersionUID = 1L;
     
     @Id
