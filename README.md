@@ -49,13 +49,13 @@ Foi adicionado a aplicação o Swagger UI.
 
 Por este motivo, recomanda-se o uso do Swagger após a execução. 
 
-Para tanto, deve ser digitado na barra de navegadores `http://localhost:8080/swagger-ui/index.html`.
+Para tanto, o Swagger UI pode ser acessado em [http://localhost:8080/swagger-ui/index.html](http://localhost:8080/swagger-ui/index.html).
 
 ## Banco de dados
 
 O banco de dados usado foi o H2.
 
-O banco de dados pode ser acessadoe `http://localhost:8080/api` cujo username é `sa`. 
+O banco de dados pode ser acessado em [http://localhost:8080/api](http://localhost:8080/api) cujo username é `sa`. 
 
 ## API funcionando
 
