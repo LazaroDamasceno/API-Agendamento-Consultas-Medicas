@@ -53,9 +53,9 @@ Para tanto, deve ser digitado na barra de navegadores `http://localhost:8080/swa
 
 ## Banco de dados
 
-O banco de dados usado foi o PostgreSQL na sua versão online presente no site [elephantSQL](https://www.elephantsql.com/).
+O banco de dados usado foi o H2.
 
-O sistema de gerenciamento de banco de dados escolhido o [DBeaver Community](https://dbeaver.io/download/). 
+O banco de dados pode ser acessadoe `http://localhost:8080/api` cujo username é `sa`. 
 
 ## API funcionando
 
