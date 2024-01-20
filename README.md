@@ -53,9 +53,9 @@ Para tanto, o Swagger UI pode ser acessado em [http://localhost:8080/swagger-ui/
 
 ## Banco de dados
 
-O banco de dados usado foi o H2.
+O banco de dados usado foi o PostregreSQL.
 
-O banco de dados pode ser acessado em [http://localhost:8080/api](http://localhost:8080/api) cujo username é `sa`. 
+O banco de dados pode baixado em [https://www.enterprisedb.com/downloads/postgres-postgresql-downloads](https://www.enterprisedb.com/downloads/postgres-postgresql-downloadsi). 
 
 ## API funcionando
 
