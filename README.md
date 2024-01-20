@@ -33,7 +33,7 @@ Abra o CMD e digite `git clone https://github.com/LazaroDamasceno/API-Gerenciame
 
 ### Como executar via comando do Maven
 
-Abre o CMD e digite `cd backend` e em seguida `cd v1`. 
+Abre o CMD e digite `cd backend; cd api; cd v1`. 
 
 Por fim, digite, caso o sistema operacional seja Windows, `./mvnw clean spring-boot:run`.
 
