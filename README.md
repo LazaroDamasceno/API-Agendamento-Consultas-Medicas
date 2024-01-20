@@ -55,7 +55,7 @@ Para tanto, o Swagger UI pode ser acessado em [http://localhost:8080/swagger-ui/
 
 O banco de dados usado foi o PostregreSQL.
 
-O banco de dados pode baixado em [https://www.enterprisedb.com/downloads/postgres-postgresql-downloads](https://www.enterprisedb.com/downloads/postgres-postgresql-downloadsi). 
+É necessário ir no site [https://www.elephantsql.com/](https://www.elephantsql.com/), criar uma instância e colocar os dados necessários nos lugares no arquivo `propeties`.
 
 ## API funcionando
 
