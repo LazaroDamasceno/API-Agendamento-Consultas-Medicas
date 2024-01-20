@@ -21,6 +21,9 @@ public class ConsultaMedicaServicoImpl implements ConsultaMedicaServico {
     @Override
     public ResponseEntity<Void> agendarConsultaMedica(AgendarConsultaMedicaDTO dto, Cliente cliente, Medico medico) {
         ConsultaMedica consulta = ConsultaMedicaRepositorio.instanciar(dto, cliente, medico);
+        if (consulta == null) {
+            return ResponseEntity.badRequest().build();
+        }
         repositorio.save(consulta);
         facade.associarConsultaMedica(Facade.conversorDataHora(dto.dataAgendamento()), medico, consulta);
         return new ResponseEntity<>(HttpStatus.CREATED);

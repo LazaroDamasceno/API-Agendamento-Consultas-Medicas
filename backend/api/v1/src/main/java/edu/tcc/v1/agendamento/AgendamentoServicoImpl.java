@@ -18,6 +18,9 @@ public class AgendamentoServicoImpl implements AgendamentoServico {
     @Override
     public ResponseEntity<Void> cadastrarAgendamento(CadastrarAgendamentoDTO dto, Medico medico) {
         Agendamento agendaMedica = AgendamentoRepositorio.instanciar(dto, medico);
+        if (agendaMedica == null) {
+            return ResponseEntity.badRequest().build();
+        }
         repositorio.save(agendaMedica);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }

@@ -29,6 +29,9 @@ public class ClienteServicoImpl implements ClienteServico {
     @Override
     public ResponseEntity<Void> cadastrarCliente(CadastrarClienteDTO dto) {
         Cliente cliente = ClienteRepositorio.instaciar(dto);
+        if (cliente == null) {
+            return ResponseEntity.badRequest().build();
+        }
         repositorio.save(cliente);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }

@@ -21,6 +21,9 @@ public class ProntuarioServicoImpl implements ProntuarioServico {
     @Override
     public ResponseEntity<Void> criarProntuario(Medico medico, Cliente cliente) {
         Prontuario prontuario = ProntuarioRepositorio.instanciar(medico, cliente);
+        if (prontuario == null) {
+            return ResponseEntity.badRequest().build();
+        }
         repositorio.save(prontuario);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
