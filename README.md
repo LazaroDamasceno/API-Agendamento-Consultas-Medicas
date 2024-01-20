@@ -4,8 +4,6 @@
 
 Esta API foi desenvolvida como a parte prática da monografia API de Gerenciamento de Consultas.
 
-[Clique aqui para acessar a monografia](https://1drv.ms/b/s!AmEkfpapXCEszhsEph9g0q91Yo50?e=GojKgE)
-
 ## Tecnologias usadas
 
 |Tecnologia|Versão|
