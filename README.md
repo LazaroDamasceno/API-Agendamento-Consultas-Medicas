@@ -8,7 +8,7 @@ Esta API foi desenvolvida como a parte prática da monografia API de Gerenciamen
 
 |Tecnologia|Versão|
 |:-:|:-:|
-|Java|17|
+|Java|21|
 |Spring Boot|3.2.2|
 
 ## Configurações básicas
